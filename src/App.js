@@ -1,61 +1,25 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from "framer-motion";
+import { Route, Routes, useLocation } from "react-router";
+import LandingPage from "./Pages/LandingPage";
 import s from './Styles/App.module.css'
-import { imgs } from './Utils/Backgrounds'
-import { isVisible } from '@testing-library/user-event/dist/utils';
+import Page1 from './Pages/Page1'
+import Page2 from './Pages/Page2'
 
 
 function App () {
-  const [backgroundIndex, setBackgroundIndex] = useState( { index: 0, isVisible: true } )
-
-  useEffect( () => {
-
-    const timer = setInterval( () => {
-      setBackgroundIndex( { ...backgroundIndex, isVisible: false } )
-      setTimeout( () => {
-        const newIndex = ( backgroundIndex.index + 1 ) % imgs.length
-        setBackgroundIndex( { index: newIndex, isVisible: true } )
-
-      }, 3000 );
-    }, 3200 );
-    return () => {
-      clearInterval( timer )
-    }
-  }, [backgroundIndex] )
-
-
+  const location = useLocation()
 
 
 
   return (
-    <div className={s.wrapper}>
-
-      <div className={s.background}>
-        {/* <div className={s.backdrop} /> */}
-
-        <AnimatePresence>
-          {backgroundIndex.isVisible &&
-            <motion.img
-              initial={{ scale: 1, opacity: 0 }}
-              animate={{ scale: 1.1, opacity: 1 }}
-              exit={{ scale: 1.2, opacity: 0, }}
-              transition={{ duration: 3 }}
-              className={s.image}
-              alt=''
-              src={imgs[backgroundIndex.index]}
-            />}
-        </AnimatePresence>
-      </div>
-
-      <div className={s.section}>
-        <p className={s.text}>
-          Welcome to PokeWiki
-        </p>
-      </div>
-
-      <p className={s.click}>
-        Click anywhere to continue
-      </p>
+    <div >
+      <AnimatePresence mode="wait">
+        <Routes key={location.pathname} location={location}>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/page1" element={<Page1 />} />
+          <Route path="/page2" element={<Page2 />} />
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 }
