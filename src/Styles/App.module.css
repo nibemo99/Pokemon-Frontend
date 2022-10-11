@@ -47,3 +47,8 @@
   /* background-color: blue;
   backdrop-filter: opacity(0.6); */
 }
+
+.appContainer {
+  width: 100vw;
+  height: 100vh;
+}

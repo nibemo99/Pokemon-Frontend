@@ -4,6 +4,7 @@ import LandingPage from "./Pages/LandingPage";
 import s from './Styles/App.module.css'
 import Page1 from './Pages/Page1'
 import Page2 from './Pages/Page2'
+import { Bg } from "./Pages/Bg";
 
 
 function App () {
@@ -12,7 +13,8 @@ function App () {
 
 
   return (
-    <div >
+    <div className={s.appContainer} style={{ position: 'relative' }}>
+      <Bg />
       <AnimatePresence mode="wait">
         <Routes key={location.pathname} location={location}>
           <Route exact path="/" element={<LandingPage />} />
@@ -20,6 +22,7 @@ function App () {
           <Route path="/page2" element={<Page2 />} />
         </Routes>
       </AnimatePresence>
+
     </div>
   );
 }

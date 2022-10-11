@@ -32,7 +32,10 @@ const LandingPage = () => {
 
     return (
         <AnimatedPage>
-            <div className={s.wrapper}>
+            <div
+                className={s.wrapper}
+                onClick={() => navigate( "/page1" )}
+            >
 
                 <div className={s.background}>
                     {/* <div className={s.backdrop} /> */}
@@ -57,9 +60,7 @@ const LandingPage = () => {
                     </p>
                 </div>
 
-                <p
-                    className={s.click}
-                    onClick={() => navigate( "/page1" )}                >
+                <p className={s.click}>
                     Click anywhere to continue
                 </p>
             </div>

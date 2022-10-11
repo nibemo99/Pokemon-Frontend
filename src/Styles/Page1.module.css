@@ -1,5 +1,71 @@
 .window {
-  background-color: aqua;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.interface {
+  width: 90%;
+  height: 90%;
+  /* max-width: 1000px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: gold;
+}
+
+.cardsContainer {
+  height: 100%;
+  width: 70%;
+}
+
+.topBorder {
+  border-top: 3px red solid;
+  width: 70%;
+}
+
+.flexColCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  margin-top: 20px;
+  border-radius: 40px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: medium;
+  width: 70%;
+}
+
+.filterTitle {
+  font-size: xx-large;
+}
+
+.searchTitle {
+  font-size: x-large;
+}
+
+.filterTitleMargin {
+  margin: 22px 0;
+}
+
+.smallGap {
+  gap: 3px;
+}
+
+.mediumGap {
+  gap: 5px;
+  margin-bottom: 22px;
 }

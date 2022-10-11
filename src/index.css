@@ -12,3 +12,7 @@ body {
 * {
   outline: 1px blue solid;
 }
+
+p {
+  margin: 0;
+}
