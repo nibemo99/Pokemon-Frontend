@@ -44,9 +44,6 @@ const Page1 = () => {
         fetchData()
         return () => { }
     }, [dispatch] )
-
-    const imagen = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png`
-
     // FUNCTIONS
 
     return (
