@@ -19,7 +19,7 @@ const PokemonCard = ( { pokemon } ) => {
             </div>
             <img className={s.miniImage} alt='' src={pokemon.image} />
             <div className={s.cardTypes}>
-                Feugo
+                Type
             </div>
 
         </div>
