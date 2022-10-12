@@ -19,8 +19,8 @@ const Page1 = () => {
                 for ( let i = 1; i < 25; i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
-                    let { id, name, height, weight, stats } = json
-                    pokemons.push( { id, name, height, weight, stats } )
+                    let { id, name, height, weight, stats, types } = json
+                    pokemons.push( { id, name, height, weight, stats, types } )
                 }
                 dispatch( addPokemonsAPI( pokemons ) )
                 console.log( pokemons )
