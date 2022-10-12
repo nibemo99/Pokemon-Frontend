@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect, Suspense, lazy } from 'react'
 import s from '../Styles/PokemonCard.module.css'
+import loading from '../Assets/loading_smaller2.gif'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import 'react-lazy-load-image-component/src/effects/black-and-white.css';
+
 
 const PokemonCard = ( { pokemon } ) => {
-
-
 
 
     const capFirstLetter = ( name ) => {
@@ -17,7 +20,14 @@ const PokemonCard = ( { pokemon } ) => {
                 <p>{capFirstLetter( pokemon.name )}</p>
                 <p>{pokemon.id}</p>
             </div>
-            <img className={s.miniImage} alt='' src={pokemon.image} />
+
+            <LazyLoadImage
+                className={s.miniImage}
+                alt=''
+                src={pokemon.image}
+                effect='blur'
+                placeholderSrc={loading}
+            />
             <div className={s.cardTypes}>
                 Type
             </div>
