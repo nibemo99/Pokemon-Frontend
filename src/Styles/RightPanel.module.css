@@ -2,7 +2,7 @@
   background-color: green;
 }
 
-.cardsContainer {
+.rightPanel {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

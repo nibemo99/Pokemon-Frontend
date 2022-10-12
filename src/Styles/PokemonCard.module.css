@@ -16,6 +16,6 @@
 }
 
 .miniImage {
-  /* height: 80%; */
   width: inherit;
+  height: 100%;
 }

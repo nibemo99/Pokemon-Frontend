@@ -1,17 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
-import s from '../Styles/CardsContainer.module.css'
+import s from '../Styles/RightPanel.module.css'
 
 
-const CardsContainer = () => {
+const RightPanel = () => {
     const pokemonsAll = useSelector( state => state.pokemonsAPI )
 
     return (
         <div className={s.wrapper}>
 
             <div>Create new pokemon</div>
-            <div className={s.cardsContainer}>
+            <div className={s.rightPanel}>
                 {( pokemonsAll.length ) ?
                     ( pokemonsAll.map( pokemon => (
                         <PokemonCard
@@ -26,4 +26,4 @@ const CardsContainer = () => {
     )
 }
 
-export default CardsContainer
+export default RightPanel

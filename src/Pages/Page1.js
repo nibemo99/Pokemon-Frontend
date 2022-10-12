@@ -3,9 +3,9 @@ import React, { useEffect } from 'react'
 import AnimatedPage from './AnimatedPage'
 import s from '../Styles/Page1.module.css'
 import { useNavigate } from 'react-router';
-import CardsContainer from '../Components/CardsContainer';
 import { addPokemonsAPI, appendPokemonsAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
+import RightPanel from '../Components/RightPanel';
 
 const Page1 = () => {
     const navigate = useNavigate();
@@ -92,9 +92,8 @@ const Page1 = () => {
                         </div>
 
                     </div>
-                    <div className={s.cardsContainer}>
-                        <CardsContainer />
-                        <img alt='' src={imagen} />
+                    <div className={s.RightPanel}>
+                        <RightPanel />
                     </div>
                 </div>
             </div>
