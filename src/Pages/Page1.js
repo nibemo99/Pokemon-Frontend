@@ -50,7 +50,7 @@ const Page1 = () => {
         <AnimatedPage>
             <div
                 className={s.window}
-                onClick={() => navigate( "/" )}
+            // onClick={() => navigate( "/" )}
             >
                 <div className={s.interface}>
                     <div className={s.filters}>

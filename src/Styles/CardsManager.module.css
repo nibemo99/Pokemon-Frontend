@@ -1,6 +1,38 @@
 .cardsManager {
   display: flex;
+  flex-direction: column;
+  height: 88%;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+
+.cardsDisplayer {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+
+.loading {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 4.5rem;
+  margin-bottom: 1rem;
+  font-size: x-large;
+}
+
+.icons {
+  height: 2rem;
+  width: 2rem;
 }
