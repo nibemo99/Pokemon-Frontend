@@ -2,7 +2,7 @@ import { ADD_POKEMONS_API, APPEND_POKEMONS_API, GET_ALL_POKEMONS } from "./Actio
 
 const initialState = {
     pokemonsAPI: [],
-    conditionToRender: 'pokemonsDB',
+    conditionToRender: 'pokemonsAPI',
     pokemonsDB: [{
         "id": 1,
         "name": "bulbasaur",
