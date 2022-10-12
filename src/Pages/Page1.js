@@ -4,25 +4,38 @@ import AnimatedPage from './AnimatedPage'
 import s from '../Styles/Page1.module.css'
 import { useNavigate } from 'react-router';
 import CardsContainer from '../Components/CardsContainer';
-import { addPokemonsAPI } from '../Redux/Actions';
+import { addPokemonsAPI, appendPokemonsAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 
 const Page1 = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
-
+    const POKEMONS_PER_PAGE = 12
 
     useEffect( () => {
-        const pokemons = []
+        let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = 1; i < 25; i++ ) {
+                for ( let i = 1; i <= POKEMONS_PER_PAGE; i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
-                    let { id, name, height, weight, stats, types } = json
-                    pokemons.push( { id, name, height, weight, stats, types } )
+                    let { id, name, height, weight, stats, types, sprites } = json
+                    let image = sprites.other["official-artwork"].front_default
+                    pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
                 dispatch( addPokemonsAPI( pokemons ) )
+                setTimeout( async () => {
+                    pokemons = []
+                    for ( let i = POKEMONS_PER_PAGE * 12 + 1; i <= POKEMONS_PER_PAGE * 20; i++ ) {
+                        let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
+                        let json = await res.json()
+                        let { id, name, height, weight, stats, types, sprites } = json
+                        let image = sprites.other["official-artwork"].front_default
+                        pokemons.push( { id, name, height, weight, image, stats, types } )
+                    }
+                    dispatch( addPokemonsAPI( pokemons ) )
+
+                }, 500 );
                 console.log( pokemons )
             } catch ( error ) {
                 console.log( error )
@@ -30,7 +43,7 @@ const Page1 = () => {
         }
         fetchData()
         return () => { }
-    }, [] )
+    }, [dispatch] )
 
     const imagen = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png`
 
