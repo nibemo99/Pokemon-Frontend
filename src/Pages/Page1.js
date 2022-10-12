@@ -1,11 +1,40 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import AnimatedPage from './AnimatedPage'
 import s from '../Styles/Page1.module.css'
 import { useNavigate } from 'react-router';
+import CardsContainer from '../Components/CardsContainer';
+import { addPokemonsAPI } from '../Redux/Actions';
+import { useDispatch } from 'react-redux';
 
 const Page1 = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+
+
+    useEffect( () => {
+        const pokemons = []
+        const fetchData = async () => {
+            try {
+                for ( let i = 1; i < 25; i++ ) {
+                    let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
+                    let json = await res.json()
+                    let { id, name, height, weight, stats } = json
+                    pokemons.push( { id, name, height, weight, stats } )
+                }
+                dispatch( addPokemonsAPI( pokemons ) )
+                console.log( pokemons )
+            } catch ( error ) {
+                console.log( error )
+            }
+        }
+        fetchData()
+        return () => { }
+    }, [] )
+
+    const imagen = `https://assets.pokemon.com/assets/cms2/img/pokedex/full/150.png`
+
+    // FUNCTIONS
 
     return (
         <AnimatedPage>
@@ -51,7 +80,8 @@ const Page1 = () => {
 
                     </div>
                     <div className={s.cardsContainer}>
-                        cards
+                        <CardsContainer />
+                        <img alt='' src={imagen} />
                     </div>
                 </div>
             </div>
