@@ -7,6 +7,7 @@ import { addPokemonsAPI, appendPokemonsAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
 
+
 const Page1 = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
@@ -23,17 +24,16 @@ const Page1 = () => {
                     let image = sprites.other["official-artwork"].front_default
                     pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
-                dispatch( addPokemonsAPI( pokemons ) )
+                dispatch( appendPokemonsAPI( pokemons ) )
                 setTimeout( async () => {
                     pokemons = []
-                    for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 20; i++ ) {
+                    for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 10; i++ ) {
                         let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                         let json = await res.json()
                         let { id, name, height, weight, stats, types, sprites } = json
                         let image = sprites.other["official-artwork"].front_default
-                        pokemons.push( { id, name, height, weight, image, stats, types } )
+                        dispatch( appendPokemonsAPI( [{ id, name, height, weight, image, stats, types }] ) )
                     }
-                    dispatch( appendPokemonsAPI( pokemons ) )
 
                 }, 500 );
                 console.log( pokemons )
