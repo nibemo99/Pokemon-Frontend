@@ -1,8 +1,11 @@
-import { ADD_POKEMONS_API, APPEND_POKEMONS_API, GET_ALL_POKEMONS } from "./Actions"
+import { ADD_POKEMONS_API, APPEND_POKEMONS_API, CREATE_ALPHABETICAL_ORDER, FLIP_ARRAY, SET_ARRAY_TO_DISPLAY, SET_ORDER_AS, SET_ORDER_DE } from "./Actions"
 
 const initialState = {
     pokemonsAPI: [],
     conditionToRender: 'pokemonsAPI',
+    currentOrder: 'as',
+    pokemonsAlphabetical: [],
+
     pokemonsDB: [{
         "id": 1,
         "name": "bulbasaur",
@@ -79,6 +82,64 @@ const initialState = {
 
 }
 
+const orderPokemonsAlphabetical = ( state ) => {
+    let firstRound = filterByLetter( state.pokemonsAPI, 0 )
+    let secondRound = []
+    firstRound.forEach( element => {
+        if ( element ) {
+            let temp = filterByLetter( element, 1 )
+            temp.forEach( element2 => {
+                if ( element2 ) {
+                    secondRound = [...secondRound, ...element2]
+                }
+            } )
+        }
+    } )
+    return secondRound
+}
+
+const filterByLetter = ( array, position ) => {
+    let tempArray = new Array( 26 ).fill( '' )
+    array.forEach( ( pokemon ) => {
+        let letter = alphabet[pokemon.name[position]]
+        if ( !tempArray[letter] ) {
+            tempArray[letter] = [pokemon]
+        } else {
+            tempArray[letter] = [...tempArray[letter], pokemon]
+        }
+    } )
+    return tempArray
+}
+
+const alphabet = {
+    'a': 0,
+    'b': 1,
+    'c': 2,
+    'd': 3,
+    'e': 4,
+    'f': 5,
+    'g': 6,
+    'h': 7,
+    'i': 8,
+    'j': 9,
+    'k': 10,
+    'l': 11,
+    'm': 12,
+    'n': 13,
+    'o': 14,
+    'p': 15,
+    'q': 16,
+    'r': 17,
+    's': 18,
+    't': 19,
+    'u': 20,
+    'v': 21,
+    'w': 22,
+    'x': 23,
+    'y': 24,
+    'z': 25
+}
+
 const rootReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case ADD_POKEMONS_API:
@@ -86,14 +147,35 @@ const rootReducer = ( state = initialState, action ) => {
                 ...state,
                 pokemonsAPI: action.payload
             }
-        case GET_ALL_POKEMONS:
-            return {
-                ...state,
-            }
         case APPEND_POKEMONS_API:
             return {
                 ...state,
                 pokemonsAPI: [...state.pokemonsAPI, ...action.payload]
+            }
+        case CREATE_ALPHABETICAL_ORDER:
+            return {
+                ...state,
+                pokemonsAlphabetical: [...orderPokemonsAlphabetical( state )]
+            }
+        case SET_ARRAY_TO_DISPLAY:
+            return {
+                ...state,
+                conditionToRender: action.payload
+            }
+        case SET_ORDER_AS:
+            return {
+                ...state,
+                currentOrder: 'as'
+            }
+        case SET_ORDER_DE:
+            return {
+                ...state,
+                currentOrder: 'de'
+            }
+        case FLIP_ARRAY:
+            return {
+                ...state,
+                [action.payload]: [...state[action.payload].reverse()]
             }
 
 

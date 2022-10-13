@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import { addPokemonsAPI, appendPokemonsAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
+import LeftPanel from '../Components/LeftPanel';
 
 
 const Pokemons = () => {
@@ -53,44 +54,10 @@ const Pokemons = () => {
             // onClick={() => navigate( "/" )}
             >
                 <div className={s.interface}>
-                    <div className={s.filters}>
-                        <div className={` ${s.flexColCenter} ${s.filterTitleMargin}`} >
-                            <p className={`${s.filterTitle}`} >Filter by...</p>
-                            <input
-                                placeholder='Name'
-                                className={s.input}
-                            />
-                        </div>
-                        <div className={`${s.topBorder} ${s.flexColCenter} ${s.mediumGap}`} >
-                            <p className={`${s.searchTitle}`} >Source</p>
-                            <div className={`${s.flexColCenter} ${s.smallGap}`} >
-                                <p>Both</p>
-                                <p>PokeAPI</p>
-                                <p>Database</p>
-                            </div>
-                        </div>
-                        <div className={`${s.topBorder} ${s.flexColCenter} ${s.mediumGap}`} >
-                            <p className={`${s.searchTitle}`} >Order ↓</p>
-                            <div className={`${s.flexColCenter} ${s.smallGap}`} >
-                                <p>ID</p>
-                                <p>Alphabetical</p>
-                                <p>Attack</p>
-                                <p>Defense</p>
-                                <p>Speed</p>
-                            </div>
-                        </div>
-                        <div className={`${s.topBorder}`} >
-                            <p className={`${s.searchTitle}`} >Type</p>
-                            <div>
-                                <p>Fire</p>
-                                <p>Water</p>
-                                <p>Grass</p>
-                                <p>Rock</p>
-                            </div>
-                        </div>
-
+                    <div className={s.leftPanel}>
+                        <LeftPanel />
                     </div>
-                    <div className={s.RightPanel}>
+                    <div className={s.rightPanel}>
                         <RightPanel />
                     </div>
                 </div>

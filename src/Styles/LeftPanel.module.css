@@ -1,0 +1,65 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .topBorder {
+  border-top: 3px red solid;
+} */
+
+.width {
+  width: 80%;
+}
+
+.flexColCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}
+
+.flexRowCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input {
+  /* margin-top: 20px; */
+  border-radius: 40px;
+  text-align: center;
+  padding: 5px 0;
+  font-size: medium;
+  width: 70%;
+}
+
+.filterTitle {
+  font-size: xx-large;
+}
+
+.searchTitle {
+  font-size: x-large;
+}
+
+.filterTitleMargin {
+  /* margin: 22px 0; */
+}
+
+.smallGap {
+  gap: 10%;
+}
+
+.mediumGap {
+  gap: 5px;
+  /* margin-bottom: 22px; */
+}
+
+.mx {
+  margin: 0.2rem 0;
+  cursor: pointer;
+}

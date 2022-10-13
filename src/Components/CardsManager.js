@@ -18,7 +18,7 @@ const CardsManager = () => {
     const [page, setPage] = useState( 0 )
     const POKEMONS_PER_PAGE = 12
     let pokemonsPerPage = [...pokemonsToRender.slice( page * POKEMONS_PER_PAGE, POKEMONS_PER_PAGE * ( page + 1 ) )]
-    console.log( pokemonsPerPage.length, pokemonsToRender.length )
+    // console.log( pokemonsPerPage.length, pokemonsToRender.length )
 
 
     useEffect( () => {
