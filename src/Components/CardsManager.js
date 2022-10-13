@@ -3,21 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import loading from '../Assets/loading_smaller2.gif'
 import s from '../Styles/CardsManager.module.css'
-import { appendPokemonsAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs } from '../Redux/Actions';
+import { appendPokemonsAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs, setPageTo } from '../Redux/Actions';
 
 
 const CardsManager = () => {
     const dispatch = useDispatch()
-    const nextPageRef = useRef()
-    const prevPageRef = useRef()
-    const midPageRef = useRef()
 
     const conditionToRender = useSelector( state => state.conditionToRender )
     const pokemonsToRender = useSelector( state => state[conditionToRender] )
+    const currentPage = useSelector( state => state.currentPage )
 
-    const [page, setPage] = useState( 0 )
+    // const [page, setPage] = useState( 0 )
     const POKEMONS_PER_PAGE = 12
-    let pokemonsPerPage = [...pokemonsToRender.slice( page * POKEMONS_PER_PAGE, POKEMONS_PER_PAGE * ( page + 1 ) )]
+    let pokemonsPerPage = [...pokemonsToRender.slice( ( currentPage - 1 ) * POKEMONS_PER_PAGE, POKEMONS_PER_PAGE * currentPage )]
     // console.log( pokemonsPerPage.length, pokemonsToRender.length )
 
 
@@ -25,7 +23,7 @@ const CardsManager = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = pokemonsToRender.length + 1; i <= ( page + 3 ) * POKEMONS_PER_PAGE; i++ ) {
+                for ( let i = pokemonsToRender.length + 1; i <= ( currentPage + 2 ) * POKEMONS_PER_PAGE; i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
                     let { id, name, height, weight, stats, types, sprites } = json
@@ -42,34 +40,48 @@ const CardsManager = () => {
             }
         }
 
-        if ( !pokemonsPerPage.length && page > 2 ) {
+        if ( !pokemonsPerPage.length && currentPage > 3 ) {
             fetchData()
         }
-    }, [pokemonsPerPage.length, page, dispatch] )
+    }, [pokemonsPerPage.length, currentPage, pokemonsToRender.length, dispatch] )
 
 
 
     // Functions
     const handlePrevious = ( event ) => {
-        if ( page !== 0 ) {
-            setPage( prev => prev - 1 )
+        if ( currentPage !== 1 ) {
+            dispatch( setPageTo( currentPage - 1 ) )
         }
     }
     const handleNext = ( event ) => {
-        if ( pokemonsPerPage.length ) setPage( prev => prev + 1 )
+        if ( pokemonsPerPage.length ) dispatch( setPageTo( currentPage + 1 ) )
     }
-    const handlePage = ( ref ) => {
-        const number = Number( ref.current.innerText ) - 1
-        setPage( number )
+    const handlePage = ( event ) => {
+        const number = Number( event.target.innerText )
+        dispatch( setPageTo( number ) )
     }
 
     return (
         <div className={s.cardsManager}>
             <div className={s.navbar}>
                 <svg onClick={handlePrevious} className={s.icons} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
-                <div onClick={() => handlePage( prevPageRef )} ref={prevPageRef} >{( page <= 1 ) ? ( 1 ) : ( page - 1 )}</div>
-                <div onClick={() => handlePage( midPageRef )} ref={midPageRef} >{( page === 0 ) ? ( page + 2 ) : ( page + 1 )}</div>
-                <div onClick={() => handlePage( nextPageRef )} ref={nextPageRef} >{( page === 0 ) ? ( page + 3 ) : ( page + 3 )}</div>
+
+                <button onClick={handlePage} className={`${s.button} ${( currentPage === 1 ) ? ( s.selected ) : ''}`} >
+                    {( currentPage >= 4 ) ? ( currentPage - 2 ) : '1'}
+                </button>
+                <button onClick={handlePage} className={`${s.button} ${( currentPage === 2 ) ? ( s.selected ) : ''}`} >
+                    {( currentPage >= 4 ) ? ( currentPage - 1 ) : '2'}
+                </button>
+                <button onClick={handlePage} className={`${s.button} ${( currentPage > 2 ) ? ( s.selected ) : ''}`} >
+                    {( currentPage >= 4 ) ? ( currentPage ) : '3'}
+                </button>
+                <button onClick={handlePage} className={`${s.button} `} >
+                    {( currentPage >= 4 ) ? ( currentPage + 1 ) : '4'}
+                </button>
+                <button onClick={handlePage} className={`${s.button} `} >
+                    {( currentPage >= 4 ) ? ( currentPage + 2 ) : '5'}
+                </button>
+
                 <svg onClick={handleNext} className={s.icons} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
 

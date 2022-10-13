@@ -6,6 +6,8 @@ export const SET_ORDER_AS = 'SET_ORDER_AS'
 export const SET_ORDER_DE = 'SET_ORDER_DE'
 export const FLIP_ARRAY = 'FLIP_ARRAY'
 export const CREATE_BY_ID_ORDER = 'CREATE_BY_ID_ORDER'
+export const RESET_PAGE = 'RESET_PAGE'
+export const SET_PAGE = 'SET_PAGE'
 
 
 export const addPokemonsAPI = ( payload ) => ( {
@@ -42,4 +44,13 @@ export const flipArray = ( payload ) => ( {
 
 export const createByIdOrder = () => ( {
     type: CREATE_BY_ID_ORDER,
+} )
+
+export const resetPage = () => ( {
+    type: RESET_PAGE,
+} )
+
+export const setPageTo = ( payload ) => ( {
+    type: SET_PAGE,
+    payload
 } )

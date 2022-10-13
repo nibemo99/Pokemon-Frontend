@@ -30,6 +30,7 @@
 .navbar {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 4.5rem;
   margin-bottom: 1rem;
   font-size: x-large;
@@ -38,4 +39,18 @@
 .icons {
   height: 2rem;
   width: 2rem;
+  cursor: pointer;
+}
+
+.button {
+  width: 3rem;
+  height: 1.5rem;
+  font-size: small;
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+}
+
+.selected {
+  background-color: red;
 }
