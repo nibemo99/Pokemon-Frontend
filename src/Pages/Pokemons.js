@@ -1,14 +1,14 @@
 
 import React, { useEffect } from 'react'
 import AnimatedPage from './AnimatedPage'
-import s from '../Styles/Page1.module.css'
+import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
 import { addPokemonsAPI, appendPokemonsAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
 
 
-const Page1 = () => {
+const Pokemons = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const POKEMONS_PER_PAGE = 12
@@ -24,7 +24,7 @@ const Page1 = () => {
                     let image = sprites.other["official-artwork"].front_default
                     pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
-                dispatch( appendPokemonsAPI( pokemons ) )
+                dispatch( addPokemonsAPI( pokemons ) )
                 setTimeout( async () => {
                     pokemons = []
                     for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 10; i++ ) {
@@ -72,6 +72,7 @@ const Page1 = () => {
                         <div className={`${s.topBorder} ${s.flexColCenter} ${s.mediumGap}`} >
                             <p className={`${s.searchTitle}`} >Order ↓</p>
                             <div className={`${s.flexColCenter} ${s.smallGap}`} >
+                                <p>ID</p>
                                 <p>Alphabetical</p>
                                 <p>Attack</p>
                                 <p>Defense</p>
@@ -98,4 +99,4 @@ const Page1 = () => {
     )
 }
 
-export default Page1
+export default Pokemons

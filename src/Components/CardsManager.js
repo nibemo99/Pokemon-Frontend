@@ -25,7 +25,7 @@ const CardsManager = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = pokemonsToRender.length + 1; i <= ( page + 2 ) * POKEMONS_PER_PAGE; i++ ) {
+                for ( let i = pokemonsToRender.length + 1; i <= ( page + 3 ) * POKEMONS_PER_PAGE; i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
                     let { id, name, height, weight, stats, types, sprites } = json
@@ -53,21 +53,20 @@ const CardsManager = () => {
         }
     }
     const handleNext = ( event ) => {
-        setPage( prev => prev + 1 )
+        if ( pokemonsPerPage.length ) setPage( prev => prev + 1 )
     }
     const handlePage = ( ref ) => {
         const number = Number( ref.current.innerText ) - 1
         setPage( number )
-
     }
 
     return (
         <div className={s.cardsManager}>
             <div className={s.navbar}>
                 <svg onClick={handlePrevious} className={s.icons} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path></svg>
-                <div onClick={() => handlePage( prevPageRef )} ref={prevPageRef} >{( page === 0 ) ? ( page + 1 ) : ( page )}</div>
+                <div onClick={() => handlePage( prevPageRef )} ref={prevPageRef} >{( page <= 1 ) ? ( 1 ) : ( page - 1 )}</div>
                 <div onClick={() => handlePage( midPageRef )} ref={midPageRef} >{( page === 0 ) ? ( page + 2 ) : ( page + 1 )}</div>
-                <div onClick={() => handlePage( nextPageRef )} ref={nextPageRef} >{( page === 0 ) ? ( page + 3 ) : ( page + 2 )}</div>
+                <div onClick={() => handlePage( nextPageRef )} ref={nextPageRef} >{( page === 0 ) ? ( page + 3 ) : ( page + 3 )}</div>
                 <svg onClick={handleNext} className={s.icons} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
 
