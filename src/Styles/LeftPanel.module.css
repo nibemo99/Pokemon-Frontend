@@ -55,11 +55,14 @@
 }
 
 .mediumGap {
-  gap: 5px;
+  gap: 10px;
   /* margin-bottom: 22px; */
 }
 
 .mx {
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
   cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  padding: 3px 10px;
 }

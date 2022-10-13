@@ -90,6 +90,9 @@ const LeftPanel = () => {
                     <button className={s.mx} >Water</button>
                     <button className={s.mx} >Grass</button>
                     <button className={s.mx} >Rock</button>
+                    <button className={s.mx} >Posion</button>
+                    <button className={s.mx} >Fight</button>
+                    <button className={s.mx} >Fairy</button>
                 </div>
             </div>
 
