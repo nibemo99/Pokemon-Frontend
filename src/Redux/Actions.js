@@ -5,6 +5,7 @@ export const SET_ARRAY_TO_DISPLAY = 'SET_ARRAY_TO_DISPLAY'
 export const SET_ORDER_AS = 'SET_ORDER_AS'
 export const SET_ORDER_DE = 'SET_ORDER_DE'
 export const FLIP_ARRAY = 'FLIP_ARRAY'
+export const CREATE_BY_ID_ORDER = 'CREATE_BY_ID_ORDER'
 
 
 export const addPokemonsAPI = ( payload ) => ( {
@@ -39,3 +40,6 @@ export const flipArray = ( payload ) => ( {
     payload
 } )
 
+export const createByIdOrder = () => ( {
+    type: CREATE_BY_ID_ORDER,
+} )

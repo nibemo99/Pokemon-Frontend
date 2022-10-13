@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import loading from '../Assets/loading_smaller2.gif'
 import s from '../Styles/CardsManager.module.css'
-import { appendPokemonsAPI } from '../Redux/Actions';
+import { appendPokemonsAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs } from '../Redux/Actions';
 
 
 const CardsManager = () => {
@@ -33,6 +33,9 @@ const CardsManager = () => {
                     pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
                 dispatch( appendPokemonsAPI( pokemons ) )
+                dispatch( createAlphabeticalOrder() )
+                dispatch( createByIdOrder() )
+                dispatch( setOrderAs() )
                 console.log( pokemons )
             } catch ( error ) {
                 console.log( error )

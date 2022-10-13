@@ -1,10 +1,11 @@
-import { ADD_POKEMONS_API, APPEND_POKEMONS_API, CREATE_ALPHABETICAL_ORDER, FLIP_ARRAY, SET_ARRAY_TO_DISPLAY, SET_ORDER_AS, SET_ORDER_DE } from "./Actions"
+import { ADD_POKEMONS_API, APPEND_POKEMONS_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, SET_ARRAY_TO_DISPLAY, SET_ORDER_AS, SET_ORDER_DE } from "./Actions"
 
 const initialState = {
     pokemonsAPI: [],
     conditionToRender: 'pokemonsAPI',
     currentOrder: 'as',
     pokemonsAlphabetical: [],
+    pokemonsById: [],
 
     pokemonsDB: [{
         "id": 1,
@@ -176,6 +177,11 @@ const rootReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 [action.payload]: [...state[action.payload].reverse()]
+            }
+        case CREATE_BY_ID_ORDER:
+            return {
+                ...state,
+                pokemonsById: [...state.pokemonsAPI]
             }
 
 

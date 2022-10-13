@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createAlphabeticalOrder, flipArray, setArrayToDisplay, setOrderAs, setOrderDe } from '../Redux/Actions'
+import { createAlphabeticalOrder, createByIdOrder, flipArray, setArrayToDisplay, setOrderAs, setOrderDe } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 
@@ -15,17 +15,11 @@ const LeftPanel = () => {
         const type = event.target.innerText
         switch ( type ) {
             case 'Alphabetical':
-                if ( !state.pokemonsAlphabetical.length ) {
+                if ( state.conditionToRender !== 'pokemonsAlphabetical' ) {
                     dispatch( createAlphabeticalOrder() )
                     dispatch( setArrayToDisplay( 'pokemonsAlphabetical' ) )
                     dispatch( setOrderAs() )
-                }
-                else if ( state.conditionToRender !== 'pokemonsAlphabetical' ) {
-                    if ( state.currentOrder === 'de' ) dispatch( flipArray( 'pokemonsAlphabetical' ) )
-                    dispatch( setArrayToDisplay( 'pokemonsAlphabetical' ) )
-                    dispatch( setOrderAs() )
-                }
-                else {
+                } else {
                     if ( state.currentOrder === 'as' ) {
                         dispatch( flipArray( 'pokemonsAlphabetical' ) )
                         dispatch( setArrayToDisplay( 'pokemonsAlphabetical' ) )
@@ -38,7 +32,24 @@ const LeftPanel = () => {
                 }
                 break;
             case 'ID':
-                console.log( state.pokemonsAlphabetical )
+                console.log( state.conditionToRender )
+                if ( state.conditionToRender !== 'pokemonsById' ) {
+                    dispatch( createByIdOrder() )
+                    if ( state.conditionToRender === 'pokemonsAPI' ) dispatch( flipArray( 'pokemonsById' ) )
+                    dispatch( setArrayToDisplay( 'pokemonsById' ) )
+                    dispatch( ( state.conditionToRender === 'pokemonsAPI' ) ? setOrderDe() : setOrderAs() )
+                } else {
+                    if ( state.currentOrder === 'as' ) {
+                        console.log( state.conditionToRender )
+                        dispatch( flipArray( 'pokemonsById' ) )
+                        dispatch( setArrayToDisplay( 'pokemonsById' ) )
+                        dispatch( setOrderDe() )
+                    } else {
+                        dispatch( flipArray( 'pokemonsById' ) )
+                        dispatch( setArrayToDisplay( 'pokemonsById' ) )
+                        dispatch( setOrderAs() )
+                    }
+                }
                 break;
             default:
                 break;
