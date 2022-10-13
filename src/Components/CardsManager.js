@@ -52,6 +52,7 @@ const CardsManager = () => {
 
     // Functions
     const handlePrevious = ( event ) => {
+        if ( !pokemonsPerPage.length ) return
         if ( currentPage !== 1 ) {
             dispatch( setPageTo( currentPage - 1 ) )
         }
@@ -97,7 +98,7 @@ const CardsManager = () => {
                     (
                         <div className={s.cardsDisplayer}>
                             {pokemonsPerPage.map( pokemon => (
-                                <AnimatePresence mode="wait">
+                                <AnimatePresence key={pokemon.id} mode="wait">
                                     <PokemonCard
                                         key={pokemon.id}
                                         pokemon={pokemon}
