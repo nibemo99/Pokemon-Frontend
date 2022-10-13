@@ -7,6 +7,7 @@
 .wrapper {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .cardsDisplayer {
@@ -19,6 +20,10 @@
 }
 
 .loading {
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   display: flex;
@@ -53,4 +58,12 @@
 
 .selected {
   background-color: red;
+}
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }

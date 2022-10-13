@@ -4,6 +4,9 @@ import PokemonCard from './PokemonCard';
 import loading from '../Assets/loading_smaller2.gif'
 import s from '../Styles/CardsManager.module.css'
 import { appendPokemonsAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs, setPageTo } from '../Redux/Actions';
+import { AnimatePresence } from 'framer-motion';
+import AnimatedDisplayer from './AnimatedDisplayer';
+import AnimatedLoading from './AnimatedLoading';
 
 
 const CardsManager = () => {
@@ -57,9 +60,13 @@ const CardsManager = () => {
         if ( pokemonsPerPage.length ) dispatch( setPageTo( currentPage + 1 ) )
     }
     const handlePage = ( event ) => {
+        if ( !pokemonsPerPage.length ) return
         const number = Number( event.target.innerText )
         dispatch( setPageTo( number ) )
     }
+
+
+    // Animations
 
     return (
         <div className={s.cardsManager}>
@@ -89,27 +96,32 @@ const CardsManager = () => {
                 {( pokemonsPerPage.length ) ?
                     (
                         <div className={s.cardsDisplayer}>
-
                             {pokemonsPerPage.map( pokemon => (
-                                <PokemonCard
-                                    key={pokemon.id}
-                                    pokemon={pokemon}
-                                />
+                                <AnimatePresence mode="wait">
+                                    <PokemonCard
+                                        key={pokemon.id}
+                                        pokemon={pokemon}
+                                    />
+                                </AnimatePresence>
                             ) )}
                         </div>
                     )
-                    : (
-                        <div
-                            className={s.loading}
-                        >
+                    : ''}
+                <AnimatePresence mode="wait">
+                    {!pokemonsPerPage.length &&
+                        ( (
+                            <AnimatedLoading>
+                                <div className={s.loading} >
+                                    <img alt='' src={loading} />
+                                    <p>Loading</p>
+                                </div>
+                            </AnimatedLoading>
 
-                            <img alt='' src={loading} />
-                            <p>Loading</p>
-                        </div>
-                    )}
-
+                        ) )
+                    }
+                </AnimatePresence>
             </div>
-        </div>
+        </div >
     )
 }
 
