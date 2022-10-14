@@ -2,8 +2,20 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: cornflowerblue;
+  /* background-color: rgb(39, 39, 39); */
   width: 100vw;
   height: 100vh;
   z-index: -2;
+  background-color: #3a3a3a;
+  opacity: 0.8;
+  background-image: radial-gradient(circle at center center, #fff400, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #fff400,
+      #fff400,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
 }
