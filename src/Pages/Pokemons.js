@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import AnimatedPage from './AnimatedPage'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
-import { addPokeAPI, appendPokeAPI } from '../Redux/Actions';
+import { addPokeAPI, appendPokeAPI, setCurrentRender } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
 import LeftPanel from '../Components/LeftPanel';
@@ -26,6 +26,7 @@ const Pokemons = () => {
                     pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
                 dispatch( addPokeAPI( pokemons ) )
+                dispatch( setCurrentRender( 'pokeapi' ) )
                 setTimeout( async () => {
                     pokemons = []
                     for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 13; i++ ) {
@@ -35,7 +36,6 @@ const Pokemons = () => {
                         let image = sprites.other["official-artwork"].front_default
                         dispatch( appendPokeAPI( [{ id, name, height, weight, image, stats, types }] ) )
                     }
-
                 }, 500 );
                 console.log( pokemons )
             } catch ( error ) {

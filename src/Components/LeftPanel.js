@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createAlphabeticalOrder, createByIdOrder, flipArray, setSourceToRender, setOrderAs, setOrderDe, setOrderToRender, resetPage } from '../Redux/Actions'
+import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,113 +9,66 @@ import AnimatedFiltersTitle from './AnimatedFiltersTitle'
 const LeftPanel = () => {
     const dispatch = useDispatch()
     const { sourceToRender, orderToRender, currentOrder } = useSelector( state => state )
-    const hasFilters = ( sourceToRender === 'pokeAPI' && orderToRender === 'id' )
+    const hasFilters = ( sourceToRender === 'pokeapi' && orderToRender === 'id' )
 
     // Functions
+    const setFilter = ( text ) => {
+        // console.log( , typeof text )
+        dispatch( resetPage() )
+        if ( orderToRender !== text.toLowerCase() ) {
+            dispatch( setOrderAs() )
+            dispatch( applyOrder( text.toLowerCase() ) )
+        } else {
+            dispatch( flipArray( 'currentRender' ) )
+            if ( currentOrder === 'as' ) {
+                dispatch( setOrderDe() )
+            } else {
+                dispatch( setOrderAs() )
+            }
+        }
+    }
+
     const handleOrder = ( event ) => {
         const type = event.target.innerText
-        switch ( type ) {
-            case 'Alphabetical':
-                dispatch( setOrderToRender( 'alphabetical' ) )
-                if ( sourceToRender !== 'pokemonsAlphabetical' ) {
-                    dispatch( createAlphabeticalOrder() )
-                    dispatch( setSourceToRender( 'pokemonsAlphabetical' ) )
-                    dispatch( setOrderAs() )
-                } else {
-                    if ( currentOrder === 'as' ) {
-                        dispatch( flipArray( 'pokemonsAlphabetical' ) )
-                        dispatch( setSourceToRender( 'pokemonsAlphabetical' ) )
-                        dispatch( setOrderDe() )
-                    } else {
-                        dispatch( flipArray( 'pokemonsAlphabetical' ) )
-                        dispatch( setSourceToRender( 'pokemonsAlphabetical' ) )
-                        dispatch( setOrderAs() )
-                    }
-                }
-                break;
-            case 'ID':
-                dispatch( setOrderToRender( 'id' ) )
-                console.log( sourceToRender )
-                if ( sourceToRender !== 'pokemonsById' ) {
-                    dispatch( createByIdOrder() )
-                    if ( sourceToRender === 'pokeAPI' ) dispatch( flipArray( 'pokemonsById' ) )
-                    dispatch( setSourceToRender( 'pokemonsById' ) )
-                    dispatch( ( sourceToRender === 'pokeAPI' ) ? setOrderDe() : setOrderAs() )
-                } else {
-                    if ( currentOrder === 'as' ) {
-                        console.log( sourceToRender )
-                        dispatch( flipArray( 'pokemonsById' ) )
-                        dispatch( setSourceToRender( 'pokemonsById' ) )
-                        dispatch( setOrderDe() )
-                    } else {
-                        dispatch( flipArray( 'pokemonsById' ) )
-                        dispatch( setSourceToRender( 'pokemonsById' ) )
-                        dispatch( setOrderAs() )
-                    }
-                }
-                break;
-            case 'Attack':
-                dispatch( setOrderToRender( 'attack' ) )
-                break
-            case 'Defense':
-                dispatch( setOrderToRender( 'defense' ) )
-                break
-            case 'Speed':
-                dispatch( setOrderToRender( 'speed' ) )
-                break
-            default:
-                break;
-        }
+        setFilter( type )
     }
-    const handleSource = ( event ) => {
-        const type = event.target.innerText
-        switch ( type ) {
-            case 'Both':
-                if ( sourceToRender === 'both' ) break
-                dispatch( setSourceToRender( 'empty' ) )
-                setTimeout( () => {
-                    dispatch( setSourceToRender( 'both' ) )
-                }, 500 );
-                break;
-            case 'PokeAPI':
-                if ( sourceToRender === 'pokeAPI' ) break
-                dispatch( setSourceToRender( 'empty' ) )
-                setTimeout( () => {
-                    dispatch( setSourceToRender( 'pokeAPI' ) )
-                }, 500 );
-                break;
-            case 'Database':
-                if ( sourceToRender === 'database' ) break
-                dispatch( setSourceToRender( 'empty' ) )
-                setTimeout( () => {
-                    dispatch( setSourceToRender( 'database' ) )
-                }, 500 );
-                break;
 
-            default:
-                break;
-        }
-    }
-    const handleClearFilters = ( event ) => {
-        dispatch( setSourceToRender( 'empty' ) )
-        dispatch( setOrderToRender( 'empty' ) )
+    const setSource = async ( text ) => {
+        if ( sourceToRender === text.toLowerCase() ) return
+        dispatch( setLoadingTrue() )
         dispatch( setOrderAs() )
         dispatch( resetPage() )
+        dispatch( setCurrentRender( 'empty' ) )
+        dispatch( setSourceToRender( text.toLowerCase() ) )
+        dispatch( setCurrentRender( text.toLowerCase() ) )
+        dispatch( applyOrder( orderToRender ) )
         setTimeout( () => {
-            dispatch( setSourceToRender( 'pokeAPI' ) )
-            dispatch( setOrderToRender( 'id' ) )
+            dispatch( setLoadingFalse() )
+        }, 800 );
+    }
+
+    const handleSource = ( event ) => {
+        const type = event.target.innerText
+        setSource( type )
+    }
+
+    const handleClearFilters = ( event ) => {
+        dispatch( clearFilters() )
+        dispatch( setCurrentRender( 'empty' ) )
+        setTimeout( () => {
+            dispatch( setCurrentRender( 'pokeapi' ) )
         }, 500 );
     }
 
     // Animations
     const animations = {
         whileHover: {
-            scale: 1.2,
+            scale: 1.1,
             backgroundColor: '#B3541E',
-            color: 'white'
+            // color: 'white'
         },
         whileTap: {
-            scale: 0.9,
+            scale: 1.2,
         },
     }
 
@@ -167,7 +120,7 @@ const LeftPanel = () => {
                         variants={animations}
                         whileHover='whileHover'
                         whileTap='whileTap'
-                        className={`${s.mx} ${( sourceToRender === 'pokeAPI' ) && s.selected}`}
+                        className={`${s.mx} ${( sourceToRender === 'pokeapi' ) && s.selected}`}
                         onClick={handleSource}
                     >
                         PokeAPI

@@ -9,6 +9,11 @@ export const FLIP_ARRAY = 'FLIP_ARRAY'
 export const CREATE_BY_ID_ORDER = 'CREATE_BY_ID_ORDER'
 export const RESET_PAGE = 'RESET_PAGE'
 export const SET_PAGE = 'SET_PAGE'
+export const APPLY_ORDER = 'APPLY_ORDER'
+export const SET_CURRENT_RENDER = 'SET_CURRENT_RENDER'
+export const CLEAR_FILTERS = 'CLEAR_FILTERS'
+export const LOADING_TRUE = 'LOADING_TRUE'
+export const LOADING_FALSE = 'LOADING_FALSE'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -58,5 +63,30 @@ export const resetPage = () => ( {
 
 export const setPageTo = ( payload ) => ( {
     type: SET_PAGE,
+    payload
+} )
+
+export const applyOrder = ( payload ) => ( {
+    type: APPLY_ORDER,
+    payload
+} )
+
+export const setCurrentRender = ( payload ) => ( {
+    type: SET_CURRENT_RENDER,
+    payload
+} )
+
+export const clearFilters = ( payload ) => ( {
+    type: CLEAR_FILTERS,
+    payload
+} )
+
+export const setLoadingTrue = ( payload ) => ( {
+    type: LOADING_TRUE,
+    payload
+} )
+
+export const setLoadingFalse = ( payload ) => ( {
+    type: LOADING_FALSE,
     payload
 } )
