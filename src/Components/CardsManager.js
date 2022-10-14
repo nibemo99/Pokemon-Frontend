@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import loading from '../Assets/loading_smaller2.gif'
 import s from '../Styles/CardsManager.module.css'
-import { appendPokemonsAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs } from '../Redux/Actions';
+import { appendPokeAPI, createAlphabeticalOrder, createByIdOrder, setOrderAs } from '../Redux/Actions';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedLoading from './AnimatedLoading';
 import Navbar from './Navbar';
@@ -12,8 +12,8 @@ import Navbar from './Navbar';
 const CardsManager = () => {
     const dispatch = useDispatch()
 
-    const conditionToRender = useSelector( state => state.conditionToRender )
-    const pokemonsToRender = useSelector( state => state[conditionToRender] )
+    const sourceToRender = useSelector( state => state.sourceToRender )
+    const pokemonsToRender = useSelector( state => state[sourceToRender] )
     const currentPage = useSelector( state => state.currentPage )
 
     // const [page, setPage] = useState( 0 )
@@ -33,7 +33,7 @@ const CardsManager = () => {
                     let image = sprites.other["official-artwork"].front_default
                     pokemons.push( { id, name, height, weight, image, stats, types } )
                 }
-                dispatch( appendPokemonsAPI( pokemons ) )
+                dispatch( appendPokeAPI( pokemons ) )
                 dispatch( createAlphabeticalOrder() )
                 dispatch( createByIdOrder() )
                 dispatch( setOrderAs() )
@@ -59,7 +59,7 @@ const CardsManager = () => {
                     (
                         <div className={s.cardsDisplayer}>
                             {pokemonsPerPage.map( pokemon => (
-                                <AnimatePresence key={pokemon.id} mode="wait">
+                                <AnimatePresence mode="wait">
                                     <PokemonCard
                                         key={pokemon.id}
                                         pokemon={pokemon}

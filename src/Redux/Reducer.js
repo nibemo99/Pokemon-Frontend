@@ -1,14 +1,16 @@
-import { ADD_POKEMONS_API, APPEND_POKEMONS_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_ARRAY_TO_DISPLAY, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE } from "./Actions"
+import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER } from "./Actions"
 
 const initialState = {
-    conditionToRender: 'pokemonsAPI',
+    sourceToRender: 'pokeAPI',
+    orderToRender: 'id',
     currentOrder: 'as',
     currentPage: 1,
-    pokemonsAPI: [],
+    pokeAPI: [],
     pokemonsAlphabetical: [],
     pokemonsById: [],
-
-    pokemonsDB: [{
+    both: [],
+    empty: '',
+    database: [{
         "id": 1,
         "name": "bulbasaur",
         "height": 7,
@@ -85,7 +87,7 @@ const initialState = {
 }
 
 const orderPokemonsAlphabetical = ( state ) => {
-    let firstRound = filterByLetter( state.pokemonsAPI, 0 )
+    let firstRound = filterByLetter( state.pokeAPI, 0 )
     let secondRound = []
     firstRound.forEach( element => {
         if ( element ) {
@@ -144,25 +146,30 @@ const alphabet = {
 
 const rootReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case ADD_POKEMONS_API:
+        case ADD_POKE_API:
             return {
                 ...state,
-                pokemonsAPI: action.payload
+                pokeAPI: action.payload
             }
-        case APPEND_POKEMONS_API:
+        case APPEND_POKE_API:
             return {
                 ...state,
-                pokemonsAPI: [...state.pokemonsAPI, ...action.payload]
+                pokeAPI: [...state.pokeAPI, ...action.payload]
             }
         case CREATE_ALPHABETICAL_ORDER:
             return {
                 ...state,
                 pokemonsAlphabetical: [...orderPokemonsAlphabetical( state )]
             }
-        case SET_ARRAY_TO_DISPLAY:
+        case SET_SOURCE_TO_RENDER:
             return {
                 ...state,
-                conditionToRender: action.payload
+                sourceToRender: action.payload
+            }
+        case SET_ORDER_TO_RENDER:
+            return {
+                ...state,
+                orderToRender: action.payload
             }
         case SET_ORDER_AS:
             return {
@@ -182,7 +189,7 @@ const rootReducer = ( state = initialState, action ) => {
         case CREATE_BY_ID_ORDER:
             return {
                 ...state,
-                pokemonsById: [...state.pokemonsAPI]
+                pokemonsById: [...state.pokeAPI]
             }
         case RESET_PAGE:
             return {

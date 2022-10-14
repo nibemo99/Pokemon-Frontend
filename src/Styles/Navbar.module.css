@@ -24,7 +24,6 @@
 }
 
 .selected {
-  /* background-color: red; */
   -webkit-box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
   -moz-box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
   box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);

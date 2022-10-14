@@ -6,10 +6,6 @@
   align-items: center;
 }
 
-/* .topBorder {
-  border-top: 3px red solid;
-} */
-
 .width {
   width: 80%;
 }
@@ -30,7 +26,7 @@
 }
 
 .input {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   border-radius: 40px;
   text-align: center;
   padding: 5px 0;
@@ -39,15 +35,12 @@
 }
 
 .filterTitle {
+  position: relative;
   font-size: xx-large;
 }
 
 .searchTitle {
   font-size: x-large;
-}
-
-.filterTitleMargin {
-  /* margin: 22px 0; */
 }
 
 .smallGap {
@@ -56,7 +49,6 @@
 
 .mediumGap {
   gap: 10px;
-  /* margin-bottom: 22px; */
 }
 
 .mx {
@@ -65,4 +57,10 @@
   border: none;
   border-radius: 20px;
   padding: 3px 10px;
+}
+
+.selected {
+  -webkit-box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
+  -moz-box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
+  box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
 }

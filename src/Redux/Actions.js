@@ -1,7 +1,8 @@
-export const ADD_POKEMONS_API = 'ADD_POKEMONS_API'
-export const APPEND_POKEMONS_API = 'APPEND_POKEMONS_API'
+export const ADD_POKE_API = 'ADD_POKE_API'
+export const APPEND_POKE_API = 'APPEND_POKE_API'
 export const CREATE_ALPHABETICAL_ORDER = 'CREATE_ALPHABETICAL_ORDER'
-export const SET_ARRAY_TO_DISPLAY = 'SET_ARRAY_TO_DISPLAY'
+export const SET_SOURCE_TO_RENDER = 'SET_SOURCE_TO_RENDER'
+export const SET_ORDER_TO_RENDER = 'SET_ORDER_TO_RENDER'
 export const SET_ORDER_AS = 'SET_ORDER_AS'
 export const SET_ORDER_DE = 'SET_ORDER_DE'
 export const FLIP_ARRAY = 'FLIP_ARRAY'
@@ -10,13 +11,13 @@ export const RESET_PAGE = 'RESET_PAGE'
 export const SET_PAGE = 'SET_PAGE'
 
 
-export const addPokemonsAPI = ( payload ) => ( {
-    type: ADD_POKEMONS_API,
+export const addPokeAPI = ( payload ) => ( {
+    type: ADD_POKE_API,
     payload
 } )
 
-export const appendPokemonsAPI = ( payload ) => ( {
-    type: APPEND_POKEMONS_API,
+export const appendPokeAPI = ( payload ) => ( {
+    type: APPEND_POKE_API,
     payload
 } )
 
@@ -24,8 +25,13 @@ export const createAlphabeticalOrder = () => ( {
     type: CREATE_ALPHABETICAL_ORDER,
 } )
 
-export const setArrayToDisplay = ( payload ) => ( {
-    type: SET_ARRAY_TO_DISPLAY,
+export const setSourceToRender = ( payload ) => ( {
+    type: SET_SOURCE_TO_RENDER,
+    payload
+} )
+
+export const setOrderToRender = ( payload ) => ( {
+    type: SET_ORDER_TO_RENDER,
     payload
 } )
 
