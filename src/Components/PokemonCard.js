@@ -18,7 +18,7 @@ const PokemonCard = ( { pokemon } ) => {
     return (
         <AnimatedDisplayer>
             <div
-                className={s.individualCardddd}
+                className={s.individualCardd}
                 onClick={() => navigate( `/pokemons/${pokemon.id}` )}
 
             >

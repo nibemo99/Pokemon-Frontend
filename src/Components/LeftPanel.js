@@ -4,7 +4,6 @@ import { createAlphabeticalOrder, createByIdOrder, flipArray, setSourceToRender,
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 import { AnimatePresence, motion } from "framer-motion";
-import AnimatedDisplayer from './AnimatedDisplayer'
 import AnimatedFiltersTitle from './AnimatedFiltersTitle'
 
 const LeftPanel = () => {
