@@ -5,9 +5,11 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import AnimatedDisplayer from './AnimatedDisplayer';
+import { useNavigate } from 'react-router';
 
 
 const PokemonCard = ( { pokemon } ) => {
+    const navigate = useNavigate();
 
     const capFirstLetter = ( name ) => {
         return name.replace( name[0], name[0].toUpperCase() )
@@ -15,7 +17,11 @@ const PokemonCard = ( { pokemon } ) => {
 
     return (
         <AnimatedDisplayer>
-            <div className={s.individualCardddd}>
+            <div
+                className={s.individualCardddd}
+                onClick={() => navigate( `/pokemons/${pokemon.id}` )}
+
+            >
                 <div className={s.cardTitle}>
                     <p>{capFirstLetter( pokemon.name )}</p>
                     <p>{pokemon.id}</p>

@@ -19,7 +19,7 @@ function App () {
         <Routes key={location.pathname} location={location}>
           <Route exact path="/" element={<LandingPage />} />
           <Route path="/pokemons" element={<Pokemons />} />
-          <Route path="/page2" element={<PokemonDetail />} />
+          <Route path="/pokemons/:id" element={<PokemonDetail />} />
         </Routes>
       </AnimatePresence>
 

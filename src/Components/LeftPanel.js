@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createAlphabeticalOrder, createByIdOrder, flipArray, setSourceToRender, setOrderAs, setOrderDe, setOrderToRender } from '../Redux/Actions'
+import { createAlphabeticalOrder, createByIdOrder, flipArray, setSourceToRender, setOrderAs, setOrderDe, setOrderToRender, resetPage } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 import { AnimatePresence, motion } from "framer-motion";
@@ -100,6 +100,8 @@ const LeftPanel = () => {
     const handleClearFilters = ( event ) => {
         dispatch( setSourceToRender( 'empty' ) )
         dispatch( setOrderToRender( 'empty' ) )
+        dispatch( setOrderAs() )
+        dispatch( resetPage() )
         setTimeout( () => {
             dispatch( setSourceToRender( 'pokeAPI' ) )
             dispatch( setOrderToRender( 'id' ) )

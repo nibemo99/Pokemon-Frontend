@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import AnimatedPage from './AnimatedPage'
 import s from '../Styles/Pokemons.module.css'
-// import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import { addPokeAPI, appendPokeAPI } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
@@ -10,7 +10,7 @@ import LeftPanel from '../Components/LeftPanel';
 
 
 const Pokemons = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch()
     const POKEMONS_PER_PAGE = 12
 
@@ -51,7 +51,7 @@ const Pokemons = () => {
         <AnimatedPage>
             <div
                 className={s.window}
-            // onClick={() => navigate( "/" )}
+            // onClick={() => navigate( "/pokemons/1" )}
             >
                 <div className={s.interface}>
                     <div className={s.leftPanel}>
