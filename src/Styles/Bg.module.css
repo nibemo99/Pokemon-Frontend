@@ -2,10 +2,12 @@
   position: absolute;
   top: 0;
   left: 0;
-  /* background-color: rgb(39, 39, 39); */
   width: 100vw;
   height: 100vh;
   z-index: -2;
+}
+
+.gray {
   background-color: #3a3a3a;
   opacity: 0.8;
   background-image: radial-gradient(circle at center center, #eeeeee, #3a3a3a),
@@ -13,6 +15,21 @@
       circle at center center,
       #eeeeee,
       #eeeeee,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
+}
+
+.yellow {
+  background-color: #3a3a3a;
+  opacity: 0.8;
+  background-image: radial-gradient(circle at center center, #ebe134, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #ebe134,
+      #ebe134,
       40px,
       transparent 40px,
       transparent 40px

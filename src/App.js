@@ -14,7 +14,7 @@ function App () {
 
   return (
     <div className={s.appContainer} style={{ position: 'relative' }}>
-      <Bg />
+      <Bg location={location} />
       <AnimatePresence mode="wait">
         <Routes key={location.pathname} location={location}>
           <Route exact path="/" element={<LandingPage />} />
