@@ -72,21 +72,21 @@ const LeftPanel = () => {
         const type = event.target.innerText
         switch ( type ) {
             case 'Both':
-                if ( sourceToRender === 'Both' ) break
+                if ( sourceToRender === 'both' ) break
                 dispatch( setSourceToRender( 'empty' ) )
                 setTimeout( () => {
                     dispatch( setSourceToRender( 'both' ) )
                 }, 500 );
                 break;
             case 'PokeAPI':
-                if ( sourceToRender === 'PokeAPI' ) break
+                if ( sourceToRender === 'pokeAPI' ) break
                 dispatch( setSourceToRender( 'empty' ) )
                 setTimeout( () => {
                     dispatch( setSourceToRender( 'pokeAPI' ) )
                 }, 500 );
                 break;
             case 'Database':
-                if ( sourceToRender === 'Database' ) break
+                if ( sourceToRender === 'database' ) break
                 dispatch( setSourceToRender( 'empty' ) )
                 setTimeout( () => {
                     dispatch( setSourceToRender( 'database' ) )
@@ -96,6 +96,14 @@ const LeftPanel = () => {
             default:
                 break;
         }
+    }
+    const handleClearFilters = ( event ) => {
+        dispatch( setSourceToRender( 'empty' ) )
+        dispatch( setOrderToRender( 'empty' ) )
+        setTimeout( () => {
+            dispatch( setSourceToRender( 'pokeAPI' ) )
+            dispatch( setOrderToRender( 'id' ) )
+        }, 500 );
     }
 
     // Animations
@@ -116,18 +124,25 @@ const LeftPanel = () => {
             <div className={` ${s.flexColCenter}`} >
                 <div className={`${s.filterTitle}`} >
                     <AnimatePresence mode="wait">
+                        {/* <AnimatedFiltersTitle> */}
                         {( hasFilters ) && (
                             <AnimatedFiltersTitle>
-                                <p>Filter by...</p>
+                                <p className={s.absolute} >
+                                    Filter by...
+                                </p>
                             </AnimatedFiltersTitle>
                         )}
                     </AnimatePresence>
                     <AnimatePresence mode="wait">
-                        {( !hasFilters ) && (
-                            <AnimatedFiltersTitle>
-                                <p>Clear filters</p>
-                            </AnimatedFiltersTitle>
-                        )}
+                        {( !hasFilters ) &&
+                            (
+                                <AnimatedFiltersTitle>
+                                    <p className={`${s.absolute} ${s.pointer}`} onClick={handleClearFilters} >
+                                        Clear filters
+                                    </p>
+                                </AnimatedFiltersTitle>
+                            )}
+                        {/* </AnimatedFiltersTitle> */}
                     </AnimatePresence>
                 </div>
                 <input
