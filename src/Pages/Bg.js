@@ -6,6 +6,6 @@ export const Bg = () => {
         <div
             className={s.container}
         // style={{ color: 'red' }}
-        >Container</div>
+        ></div>
     )
 }

@@ -8,11 +8,11 @@
   z-index: -2;
   background-color: #3a3a3a;
   opacity: 0.8;
-  background-image: radial-gradient(circle at center center, #fff400, #3a3a3a),
+  background-image: radial-gradient(circle at center center, #eeeeee, #3a3a3a),
     repeating-radial-gradient(
       circle at center center,
-      #fff400,
-      #fff400,
+      #eeeeee,
+      #eeeeee,
       40px,
       transparent 40px,
       transparent 40px

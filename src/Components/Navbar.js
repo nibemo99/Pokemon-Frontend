@@ -31,6 +31,8 @@ const Navbar = ( { pokemonsPerPage } ) => {
     const animations = {
         whileHover: {
             scale: 1.2,
+            backgroundColor: '#B3541E',
+            color: 'white'
         },
         whileTap: {
             scale: 0.9,
