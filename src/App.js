@@ -5,6 +5,7 @@ import s from './Styles/App.module.css'
 import Pokemons from './Pages/Pokemons'
 import PokemonDetail from './Pages/PokemonDetail'
 import { Bg } from "./Pages/Bg";
+import NotFound from "./Pages/NotFound";
 
 
 function App () {
@@ -20,6 +21,7 @@ function App () {
           <Route exact path="/" element={<LandingPage />} />
           <Route path="/pokemons" element={<Pokemons />} />
           <Route path="/pokemons/:id" element={<PokemonDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
 

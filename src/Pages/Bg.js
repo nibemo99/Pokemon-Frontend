@@ -4,17 +4,7 @@ import s from '../Styles/Bg.module.css'
 
 export const Bg = ( { location } ) => {
 
-    console.log( location.pathname, location.pathname.length )
-    let background = ''
-    if ( location.pathname.length !== 9 ) {
-        background = 'yellow'
-    }
-
-    const spring = {
-        type: "spring",
-        stiffness: 700,
-        damping: 30
-    }
+    console.log( location.pathname, typeof location.pathname )
 
     const animations = {
         initial: { opacity: 0, },
@@ -22,12 +12,11 @@ export const Bg = ( { location } ) => {
         exit: { opacity: 0 },
     }
 
-
     return (
         <div className={`${s.container} ${s.gray}`}>
             <AnimatePresence mode='wait'>
                 {
-                    ( location.pathname.length !== 9 ) &&
+                    ( location.pathname.length > 9 && location.pathname.includes( '/pokemons' ) ) &&
                     (
                         <motion.div
                             className={`${s.container} ${s.yellow}`}
@@ -40,6 +29,22 @@ export const Bg = ( { location } ) => {
                         </motion.div>
                     )
                 }
+
+                {
+                    ( !location.pathname.includes( '/pokemons' ) ) &&
+                    (
+                        <motion.div
+                            className={`${s.container} ${s.red}`}
+                            variants={animations}
+                            initial='initial'
+                            animate='animate'
+                            exit='exit'
+                            transition={{ duration: 2 }}
+                        >
+                        </motion.div>
+                    )
+                }
+
             </AnimatePresence>
         </div>
     )

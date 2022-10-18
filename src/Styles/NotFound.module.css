@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: large;
+  cursor: pointer;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, transparent, #a63121, transparent);
+  border-image-slice: 1;
+}
+
+.title {
+  font-size: 3rem;
+}

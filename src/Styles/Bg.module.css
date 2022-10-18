@@ -36,3 +36,18 @@
     );
   background-blend-mode: multiply;
 }
+
+.red {
+  background-color: #3a3a3a;
+  opacity: 0.8;
+  background-image: radial-gradient(circle at center center, #a63121, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #a63121,
+      #a63121,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
+}
