@@ -4,7 +4,7 @@ import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
 import { addPokeAPI, appendPokeAPI, setCurrentRender } from '../Redux/Actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
 import LeftPanel from '../Components/LeftPanel';
 
@@ -13,6 +13,8 @@ const Pokemons = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const POKEMONS_PER_PAGE = 12
+
+    const { pokeapi } = useSelector( state => state )
 
     useEffect( () => {
         let pokemons = []
@@ -42,9 +44,10 @@ const Pokemons = () => {
                 console.log( error )
             }
         }
-        fetchData()
-        return () => { }
-    }, [dispatch] )
+
+        if ( !pokeapi.length ) fetchData()
+
+    }, [] )
     // FUNCTIONS
 
     return (

@@ -14,7 +14,7 @@ export const Bg = ( { location } ) => {
     }
 
     const { bgColor } = useSelector( state => state )
-    console.log( bgColor )
+    // console.log( bgColor )
 
     return (
         <div className={`${s.container} ${s.gray}`}>

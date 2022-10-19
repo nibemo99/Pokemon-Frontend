@@ -5,6 +5,7 @@ import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 import { AnimatePresence, motion } from "framer-motion";
 import AnimatedFiltersTitle from './AnimatedFiltersTitle'
+import SearchInput from './SearchInput'
 
 const LeftPanel = () => {
     const dispatch = useDispatch()
@@ -78,7 +79,6 @@ const LeftPanel = () => {
             <div className={` ${s.flexColCenter}`} >
                 <div className={`${s.filterTitle}`} >
                     <AnimatePresence mode="wait">
-                        {/* <AnimatedFiltersTitle> */}
                         {( hasFilters ) && (
                             <AnimatedFiltersTitle>
                                 <p className={s.absolute} >
@@ -96,13 +96,9 @@ const LeftPanel = () => {
                                     </p>
                                 </AnimatedFiltersTitle>
                             )}
-                        {/* </AnimatedFiltersTitle> */}
                     </AnimatePresence>
                 </div>
-                <input
-                    placeholder='Name'
-                    className={s.input}
-                />
+                <SearchInput />
             </div>
             <div className={` ${s.flexColCenter} ${s.mediumGap}`} >
                 <p className={`${s.searchTitle}`} >Source</p>
