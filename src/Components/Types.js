@@ -104,8 +104,9 @@ const Types = ( { type } ) => {
             style={{
                 backgroundImage: `linear-gradient(${color1} 50%, ${color2} 50%)`,
                 padding: '0 5%',
-                paddingBottom: '2%',
+                paddingBottom: '1%',
                 borderRadius: '8px',
+                fontSize: 'medium',
                 color: color3
             }}
         >{type}</p>

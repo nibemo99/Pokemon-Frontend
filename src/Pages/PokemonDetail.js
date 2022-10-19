@@ -11,6 +11,7 @@ import SpecialAttack from '../Assets/Icons/sword-double.svg'
 import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
+import Types from '../Components/Types';
 
 const PokemonDetail = () => {
     const navigate = useNavigate();
@@ -99,7 +100,8 @@ const PokemonDetail = () => {
                             </div>
                             <div className={s.types}>
                                 {detail.types.map( type => (
-                                    <p>{capFirstLetter( type.type.name )}</p>
+                                    // <p>{capFirstLetter( type.type.name )}</p>
+                                    <Types key={type.type.name} type={capFirstLetter( type.type.name )} />
                                 ) )}
                             </div>
 
