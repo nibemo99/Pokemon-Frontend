@@ -3,11 +3,6 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router';
 import s from '../Styles/NotFound.module.css'
 
-const obj = {
-    borderBottom: '3px solid',
-    borderImage: 'linear-gradient(90deg, transparent 20%, blue, transparent)',
-    borderImageSlice: '1'
-}
 
 const NotFound = () => {
     const navigate = useNavigate();
