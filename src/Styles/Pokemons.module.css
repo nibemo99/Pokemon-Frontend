@@ -24,3 +24,12 @@
   height: 100%;
   width: 70%;
 }
+
+.click {
+  color: gray;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  translate: -50% -50%;
+  cursor: pointer;
+}

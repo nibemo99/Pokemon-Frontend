@@ -1,4 +1,4 @@
-
+import { motion } from 'framer-motion'
 import React, { useEffect } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
@@ -53,6 +53,14 @@ const Pokemons = () => {
                 className={s.window}
             // onClick={() => navigate( "/pokemons/1" )}
             >
+                <motion.p
+                    whileHover={{ scale: 1.3, color: 'white' }}
+                    className={s.click}
+                    onClick={() => navigate( "/" )}
+                >
+                    Back
+                </motion.p>
+
                 <div className={s.interface}>
                     <div className={s.leftPanel}>
                         <LeftPanel />

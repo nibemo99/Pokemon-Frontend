@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, animations } from 'framer-motion'
 import s from '../Styles/App.module.css'
 import { imgs } from '../Utils/Backgrounds'
 import React from 'react'
@@ -26,9 +26,25 @@ const LandingPage = () => {
         }
     }, [backgroundIndex] )
 
+    const changeLanguage = ( event ) => {
+        console.log( '.' )
+        if ( language === 'es' ) {
+            left = '55%'
+            // i18n.changeLanguage( 'en' );
+            localStorage.setItem( "lng", 'en' );
+            setLanguage( 'en' )
+        }
+        else if ( language === 'en' ) {
+            left = '20%'
+            // i18n.changeLanguage( 'es' );
+            localStorage.setItem( "lng", 'es' );
+            setLanguage( 'es' )
+        }
+        console.log( localStorage.getItem( 'lng' ) )
+    }
 
-
-
+    const [language, setLanguage] = useState( localStorage.getItem( 'lng' ) || 'en' )
+    let left = ( language === 'en' ) ? '55%' : '20%'
 
     return (
         <AnimatedPage>
@@ -37,7 +53,9 @@ const LandingPage = () => {
                 onClick={() => navigate( "/pokemons" )}
             >
 
-                <div className={s.background}>
+                <div
+                    className={s.background}
+                >
                     {/* <div className={s.backdrop} /> */}
 
                     <AnimatePresence>
@@ -60,10 +78,30 @@ const LandingPage = () => {
                     </p>
                 </div>
 
-                <p className={s.click}>
+            </div>
+
+            <div className={s.click}>
+                <p>
+                    <motion.span animate={{ left }} className={s.bar} />
+                    <motion.span
+                        whileHover={{ display: 'inline-block', color: 'white' }}
+                        onClick={changeLanguage}
+                    >
+                        Español
+                    </motion.span>
+                    {' | '}
+                    <motion.span
+                        whileHover={{ display: 'inline-block', color: 'white' }}
+                        onClick={changeLanguage}
+                    >
+                        English
+                    </motion.span>
+                </p>
+                <p onClick={() => navigate( "/pokemons" )} >
                     Click anywhere to continue
                 </p>
             </div>
+
         </AnimatedPage>
 
     );
