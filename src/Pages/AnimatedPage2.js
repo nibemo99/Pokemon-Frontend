@@ -1,23 +1,13 @@
 import React from 'react'
-import { motion } from "framer-motion";
+import s from '../Styles/Animations.module.css'
 
-const animations = {
-    initial: { opacity: 0, y: '30px' },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: '-30px' },
-}
-
-const AnimatedPage2 = ( { children } ) => {
+const AnimatedPage2 = ( { children, removing } ) => {
     return (
-        <motion.div
-            variants={animations}
-            initial='initial'
-            animate='animate'
-            exit='exit'
-            transition={{ duration: 0.5 }}
+        <div
+            className={`${s.loadPokemonsPage} ${( removing ) ? s.removingPokemonsPage : ''}`}
         >
             {children}
-        </motion.div>
+        </div>
     )
 }
 

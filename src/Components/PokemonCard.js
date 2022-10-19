@@ -7,19 +7,31 @@ import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import AnimatedDisplayer from './AnimatedDisplayer';
 import { useNavigate } from 'react-router';
 import Types from './Types';
+import { useDispatch } from 'react-redux';
+import { toggleRemovePage } from '../Redux/Actions';
 
 const PokemonCard = ( { pokemon } ) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const capFirstLetter = ( name ) => {
         return name.replace( name[0], name[0].toUpperCase() )
     }
 
+    const navigateHandler = ( event ) => {
+        dispatch( toggleRemovePage() )
+        setTimeout( () => {
+            navigate( `/pokemons/${pokemon.id}` )
+            dispatch( toggleRemovePage() )
+        }, 300 );
+    }
+
+
     return (
         <AnimatedDisplayer>
             <div
                 className={s.individualCardd}
-                onClick={() => navigate( `/pokemons/${pokemon.id}` )}
+                onClick={navigateHandler}
 
             >
                 <div className={s.cardTitle}>

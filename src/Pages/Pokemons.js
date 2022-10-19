@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
@@ -14,7 +14,7 @@ const Pokemons = () => {
     const dispatch = useDispatch()
     const POKEMONS_PER_PAGE = 12
 
-    const { pokeapi } = useSelector( state => state )
+    const { pokeapi, removingPage } = useSelector( state => state )
 
     useEffect( () => {
         let pokemons = []
@@ -50,8 +50,9 @@ const Pokemons = () => {
     }, [] )
     // FUNCTIONS
 
+
     return (
-        <AnimatedPage2>
+        <AnimatedPage2 removing={removingPage}>
             <div
                 className={s.window}
             // onClick={() => navigate( "/pokemons/1" )}

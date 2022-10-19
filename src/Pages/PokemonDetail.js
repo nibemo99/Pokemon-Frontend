@@ -12,7 +12,7 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
-import { setBgColor } from '../Redux/Actions';
+import { setBgColor, toggleRemovePage } from '../Redux/Actions';
 import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
@@ -50,12 +50,20 @@ const PokemonDetail = () => {
         console.log( 'redux' )
     }
 
+    const [removing, setRemoving] = useState( false )
+
+    const navigateHandler = ( event ) => {
+        setRemoving( prev => !prev )
+        setTimeout( () => {
+            navigate( '/pokemons' )
+        }, 300 );
+    }
 
 
     return (
-        <AnimatedPage2>
+        <AnimatedPage2 removing={removing}>
             <div
-                onClick={() => navigate( "/pokemons" )}
+                onClick={navigateHandler}
                 className={s.wrapper}
             >
                 <p className={s.click}>

@@ -1,10 +1,10 @@
 import React from 'react'
-import s from '../Styles/App.module.css'
+import s from '../Styles/Animations.module.css'
 
 const AnimatedPage = ( { children, removing } ) => {
     return (
         <div
-            className={`${s.loadLandingPage} ${( removing ) ? s.removing : ''}`}
+            className={`${s.loadLandingPage} ${( removing ) ? s.removingLandingPage : ''}`}
         >
             {children}
         </div>
