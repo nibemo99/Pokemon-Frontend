@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/PokemonDetail.module.css'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SpecialDefense from '../Assets/Icons/blue-shield.svg'
 import Defense from '../Assets/Icons/green-shield.svg'
 import Hp from '../Assets/Icons/heart.svg'
@@ -12,12 +12,19 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
+import { setBgColor } from '../Redux/Actions';
+import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
     const navigate = useNavigate();
     const { pathname } = useLocation()
+    const dispatch = useDispatch()
     const query = Number( pathname.split( '/' ).at( -1 ) )
     const [detail, setDetail] = useState( useSelector( state => state.pokeapi[query - 1] ) )
+
+    const capFirstLetter = ( name ) => {
+        return name.replace( name[0], name[0].toUpperCase() )
+    }
 
     const fetchData = async ( index ) => {
         try {
@@ -26,6 +33,8 @@ const PokemonDetail = () => {
             let { id, name, height, weight, stats, types, sprites } = json
             let image = sprites.other["official-artwork"].front_default
             setDetail( { id, name, height, weight, image, stats, types } )
+            const colors = TypeColors[capFirstLetter( types[0].type.name )]
+            dispatch( setBgColor( colors ) )
             console.log( 'fetched' )
         } catch ( error ) {
             console.log( error )
@@ -36,12 +45,11 @@ const PokemonDetail = () => {
     if ( !detail ) {
         fetchData( query )
     } else {
+        const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
+        dispatch( setBgColor( colors ) )
         console.log( 'redux' )
     }
 
-    const capFirstLetter = ( name ) => {
-        return name.replace( name[0], name[0].toUpperCase() )
-    }
 
 
     return (

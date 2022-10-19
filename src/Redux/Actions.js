@@ -14,6 +14,7 @@ export const SET_CURRENT_RENDER = 'SET_CURRENT_RENDER'
 export const CLEAR_FILTERS = 'CLEAR_FILTERS'
 export const LOADING_TRUE = 'LOADING_TRUE'
 export const LOADING_FALSE = 'LOADING_FALSE'
+export const SET_BG_COLOR = 'SET_BG_COLOR'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -88,5 +89,10 @@ export const setLoadingTrue = ( payload ) => ( {
 
 export const setLoadingFalse = ( payload ) => ( {
     type: LOADING_FALSE,
+    payload
+} )
+
+export const setBgColor = ( payload ) => ( {
+    type: SET_BG_COLOR,
     payload
 } )
