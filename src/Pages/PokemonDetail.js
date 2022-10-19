@@ -98,12 +98,9 @@ const PokemonDetail = () => {
                                 </p>
                             </div>
                             <div className={s.types}>
-                                {/* {detail.types[0].type.name} */}
-
                                 {detail.types.map( type => (
                                     <p>{capFirstLetter( type.type.name )}</p>
-                                )
-                                )}
+                                ) )}
                             </div>
 
                         </div>

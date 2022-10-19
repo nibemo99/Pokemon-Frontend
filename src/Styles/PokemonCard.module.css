@@ -1,5 +1,4 @@
 .individualCard {
-  /* background-color: red; */
   width: 15%;
   /* height: 200px; */
   margin: 5px;
@@ -27,4 +26,12 @@
 
 .loadingGif {
   object-fit: cover;
+}
+
+.cardTypes {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
 }

@@ -6,7 +6,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import AnimatedDisplayer from './AnimatedDisplayer';
 import { useNavigate } from 'react-router';
-
+import Types from './Types';
 
 const PokemonCard = ( { pokemon } ) => {
     const navigate = useNavigate();
@@ -26,7 +26,6 @@ const PokemonCard = ( { pokemon } ) => {
                     <p>{capFirstLetter( pokemon.name )}</p>
                     <p>{pokemon.id}</p>
                 </div>
-
                 <LazyLoadImage
                     className={s.miniImage}
                     alt=''
@@ -35,7 +34,10 @@ const PokemonCard = ( { pokemon } ) => {
                     placeholderSrc={loading}
                 />
                 <div className={s.cardTypes}>
-                    Type
+                    {pokemon.types.map( type => (
+                        // <p>{capFirstLetter( type.type.name )}</p>
+                        <Types key={type.type.name} type={capFirstLetter( type.type.name )} />
+                    ) )}
                 </div>
             </div>
         </AnimatedDisplayer>
