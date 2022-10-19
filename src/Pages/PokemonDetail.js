@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SpecialDefense from '../Assets/Icons/blue-shield.svg'
 import Defense from '../Assets/Icons/green-shield.svg'
 import Hp from '../Assets/Icons/heart.svg'
-import Horizontal from '../Assets/Icons/horizontal.svg'
+import Weight from '../Assets/Icons/weight.svg'
 import SpecialAttack from '../Assets/Icons/sword-double.svg'
 import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
@@ -63,11 +63,11 @@ const PokemonDetail = () => {
                             </div>
                             <div className={s.stats}>
                                 <p>
-                                    <img alt='' src={Vertical} />
+                                    <img alt='' className={s.icons} src={Vertical} />
                                     Height: {detail.height}
                                 </p>
                                 <p>
-                                    <img alt='' src={Horizontal} />
+                                    <img alt='' className={s.icons} src={Weight} />
                                     Weight: {detail.weight}
                                 </p>
                             </div>
