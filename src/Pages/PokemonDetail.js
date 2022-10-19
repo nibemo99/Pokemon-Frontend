@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router';
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/PokemonDetail.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import SpecialDefense from '../Assets/Icons/blue-shield.svg'
 import Defense from '../Assets/Icons/green-shield.svg'
 import Hp from '../Assets/Icons/heart.svg'
@@ -60,7 +60,7 @@ const PokemonDetail = () => {
                         <div className={s.info}>
                             <div className={s.title}>
                                 <p className={s.name}>{capFirstLetter( detail.name )}</p>
-                                {/* <p>{detail.id}</p> */}
+                                <p className={s.id}>#{detail.id}</p>
                             </div>
                             <div className={s.stats}>
                                 <p>

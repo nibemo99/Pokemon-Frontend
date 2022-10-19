@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, animations } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import s from '../Styles/App.module.css'
 import { imgs } from '../Utils/Backgrounds'
 import React from 'react'
