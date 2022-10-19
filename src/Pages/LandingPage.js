@@ -46,11 +46,20 @@ const LandingPage = () => {
     const [language, setLanguage] = useState( localStorage.getItem( 'lng' ) || 'en' )
     let left = ( language === 'en' ) ? '55%' : '20%'
 
+    const [removing, setRemoving] = useState( false )
+
+    const navigateHandler = ( event ) => {
+        setRemoving( prev => !prev )
+        setTimeout( () => {
+            navigate( '/pokemons' )
+        }, 1000 );
+    }
+
     return (
-        <AnimatedPage>
+        <div className={`${s.landingPage} ${( removing ) ? s.removing : ''}`}>
             <div
                 className={s.wrapper}
-                onClick={() => navigate( "/pokemons" )}
+                onClick={navigateHandler}
             >
 
                 <div
@@ -97,12 +106,12 @@ const LandingPage = () => {
                         English
                     </motion.span>
                 </p>
-                <p onClick={() => navigate( "/pokemons" )} >
+                <p onClick={navigateHandler}>
                     Click anywhere to continue
                 </p>
             </div>
 
-        </AnimatedPage>
+        </div>
 
     );
 }

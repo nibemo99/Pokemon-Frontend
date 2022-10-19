@@ -71,3 +71,37 @@
 .click > p > span {
   cursor: pointer;
 }
+
+.landingPage {
+  animation: load-page 1000ms ease-in;
+  animation-fill-mode: forwards;
+  /* width: 1000px; */
+}
+
+.removing {
+  animation: remove-page 1000ms ease-in;
+  animation-fill-mode: forwards;
+  /* width: 1200px; */
+}
+
+@keyframes load-page {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes remove-page {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
