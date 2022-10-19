@@ -65,29 +65,25 @@ const CardsManager = () => {
                     (
                         <div className={s.cardsDisplayer}>
                             {pokemonsPerPage.map( pokemon => (
-                                <AnimatePresence mode="wait">
-                                    <PokemonCard
-                                        key={pokemon.id}
-                                        pokemon={pokemon}
-                                    />
-                                </AnimatePresence>
+                                <PokemonCard
+                                    key={pokemon.id}
+                                    pokemon={pokemon}
+                                />
                             ) )}
                         </div>
                     )
                     : ''}
-                <AnimatePresence mode="wait">
-                    {( isLoading || !pokemonsPerPage.length ) &&
-                        ( (
-                            <AnimatedLoading>
-                                <div className={s.loading} >
-                                    <img alt='' src={loading} />
-                                    <p>Loading</p>
-                                </div>
-                            </AnimatedLoading>
+                {( isLoading || !pokemonsPerPage.length ) &&
+                    ( (
+                        <AnimatedLoading>
+                            <div className={s.loading} >
+                                <img alt='' src={loading} />
+                                <p>Loading</p>
+                            </div>
+                        </AnimatedLoading>
 
-                        ) )
-                    }
-                </AnimatePresence>
+                    ) )
+                }
             </div>
         </div >
     )

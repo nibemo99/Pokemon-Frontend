@@ -12,7 +12,7 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
-import { setBgColor, toggleRemovePage } from '../Redux/Actions';
+import { setBgColor, setRemovePage, toggleRemovePage } from '../Redux/Actions';
 import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
@@ -59,7 +59,7 @@ const PokemonDetail = () => {
         }, 300 );
     }
 
-
+    dispatch( setRemovePage( false ) )
     return (
         <AnimatedPage2 removing={removing}>
             <div

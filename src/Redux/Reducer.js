@@ -1,4 +1,4 @@
-import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE } from "./Actions"
+import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE } from "./Actions"
 
 const initialState = {
     bgColor: 'gray',
@@ -1674,6 +1674,11 @@ const rootReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 removingPage: !state.removingPage
+            }
+        case SET_REMOVE_PAGE:
+            return {
+                ...state,
+                removingPage: action.payload
             }
 
 

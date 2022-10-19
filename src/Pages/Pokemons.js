@@ -1,5 +1,4 @@
-import { motion } from 'framer-motion'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
@@ -53,17 +52,13 @@ const Pokemons = () => {
 
     return (
         <AnimatedPage2 removing={removingPage}>
-            <div
-                className={s.window}
-            // onClick={() => navigate( "/pokemons/1" )}
-            >
-                <motion.p
-                    whileHover={{ scale: 1.3, color: 'white' }}
+            <div className={s.window} >
+                <p
                     className={s.click}
                     onClick={() => navigate( "/" )}
                 >
                     Back
-                </motion.p>
+                </p>
 
                 <div className={s.interface}>
                     <div className={s.leftPanel}>

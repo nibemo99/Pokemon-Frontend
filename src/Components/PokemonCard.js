@@ -22,7 +22,6 @@ const PokemonCard = ( { pokemon } ) => {
         dispatch( toggleRemovePage() )
         setTimeout( () => {
             navigate( `/pokemons/${pokemon.id}` )
-            dispatch( toggleRemovePage() )
         }, 300 );
     }
 

@@ -32,4 +32,11 @@
   left: 50%;
   translate: -50% -50%;
   cursor: pointer;
+  transition: scale, color, 100ms ease-in-out;
+}
+
+.click:hover,
+.click:focus {
+  scale: 1.4;
+  color: whitesmoke;
 }

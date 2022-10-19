@@ -9,12 +9,12 @@
 }
 
 .loadPokemonsPage {
-  animation: load-page 300ms ease-in;
+  animation: load-page 500ms ease-in;
   animation-fill-mode: forwards;
 }
 
 .removingPokemonsPage {
-  animation: remove-pokemons-page 300ms ease-in;
+  animation: remove-pokemons-page 500ms ease-in;
   animation-fill-mode: forwards;
 }
 
