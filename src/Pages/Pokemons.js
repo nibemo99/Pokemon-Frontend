@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react'
-import AnimatedPage from './AnimatedPage'
+import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
 import { addPokeAPI, appendPokeAPI, setCurrentRender } from '../Redux/Actions';
@@ -48,7 +48,7 @@ const Pokemons = () => {
     // FUNCTIONS
 
     return (
-        <AnimatedPage>
+        <AnimatedPage2>
             <div
                 className={s.window}
             // onClick={() => navigate( "/pokemons/1" )}
@@ -62,7 +62,7 @@ const Pokemons = () => {
                     </div>
                 </div>
             </div>
-        </AnimatedPage>
+        </AnimatedPage2>
     )
 }
 
