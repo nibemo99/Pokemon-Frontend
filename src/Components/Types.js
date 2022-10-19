@@ -14,7 +14,9 @@ const Types = ( { type } ) => {
                 fontSize: 'medium',
                 color: color3
             }}
-        >{type}</p>
+        >
+            {type}
+        </p>
     )
 }
 

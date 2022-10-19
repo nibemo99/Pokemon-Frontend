@@ -75,14 +75,4 @@ export const TypeColors = {
         color1: '#58a4cc',
         color2: '#f86c54',
     },
-    '': {
-        color1: '',
-        color2: '',
-    },
-    '': {
-        color1: '',
-        color2: '',
-    },
-
-
 }

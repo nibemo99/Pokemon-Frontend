@@ -72,16 +72,14 @@
   cursor: pointer;
 }
 
-.landingPage {
+.loadLandingPage {
   animation: load-page 1000ms ease-in;
   animation-fill-mode: forwards;
-  /* width: 1000px; */
 }
 
 .removing {
   animation: remove-page 1000ms ease-in;
   animation-fill-mode: forwards;
-  /* width: 1200px; */
 }
 
 @keyframes load-page {

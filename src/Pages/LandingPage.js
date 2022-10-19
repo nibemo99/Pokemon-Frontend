@@ -56,7 +56,8 @@ const LandingPage = () => {
     }
 
     return (
-        <div className={`${s.landingPage} ${( removing ) ? s.removing : ''}`}>
+        // <div className={`${s.loadLandingPage} ${( removing ) ? s.removing : ''}`}>
+        <AnimatedPage removing={removing} >
             <div
                 className={s.wrapper}
                 onClick={navigateHandler}
@@ -111,7 +112,8 @@ const LandingPage = () => {
                 </p>
             </div>
 
-        </div>
+        </AnimatedPage>
+        // </div>
 
     );
 }
