@@ -75,4 +75,8 @@ export const TypeColors = {
         color1: '#58a4cc',
         color2: '#f86c54',
     },
+    'Dark': {
+        color1: '#161a1c',
+        color2: '#161a1c',
+    },
 }

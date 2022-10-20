@@ -27,6 +27,7 @@ const TypeFilter = () => {
             <TypeButton selectType={selectType} >Ice</TypeButton>
             <TypeButton selectType={selectType} >Ghost</TypeButton>
             <TypeButton selectType={selectType} >Dragon</TypeButton>
+            <TypeButton selectType={selectType} >Dark</TypeButton>
         </div>
     )
 }
