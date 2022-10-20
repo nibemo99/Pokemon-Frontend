@@ -6,10 +6,10 @@ import s from '../Styles/Navbar.module.css'
 const Navbar = ( { pokemonsPerPage } ) => {
     const dispatch = useDispatch()
 
-    const { currentPage, currentRender } = useSelector( state => state )
+    const { currentPage, currentRender, sourceToRender } = useSelector( state => state )
     const MAX_PER_PAGE = 12
     const pages = Math.ceil( currentRender.length / MAX_PER_PAGE )
-    console.log( Math.ceil( pages ) )
+    // console.log( Math.ceil( pages ) )
 
 
 
@@ -23,7 +23,8 @@ const Navbar = ( { pokemonsPerPage } ) => {
     }
 
     const handleNext = ( event ) => {
-        if ( pokemonsPerPage.length ) dispatch( setPageTo( currentPage + 1 ) )
+        if ( !pokemonsPerPage.length || ( sourceToRender === 'database' && currentPage === pages ) ) return
+        dispatch( setPageTo( currentPage + 1 ) )
     }
 
     const handlePage = ( event ) => {
@@ -50,43 +51,6 @@ const Navbar = ( { pokemonsPerPage } ) => {
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"></path>
             </svg>
-
-            {/* <button
-                onClick={handlePage}
-                className={`${s.button} ${( currentPage === 1 ) ? ( s.selected ) : ''}`}
-            >
-                {( currentPage >= 4 ) ? ( currentPage - 2 ) : '1'}
-            </button>
-
-            <button
-                onClick={handlePage}
-                className={`${s.button} ${( currentPage === 2 ) ? ( s.selected ) : ''}`}
-            >
-                {( currentPage >= 4 ) ? ( currentPage - 1 ) : '2'}
-            </button>
-
-            <button
-                onClick={handlePage}
-                className={`${s.button} ${( currentPage > 2 ) ? ( s.selected ) : ''}`}
-            >
-                {( currentPage >= 4 ) ? ( currentPage ) : '3'}
-            </button>
-
-            <button
-                onClick={handlePage}
-                className={`${s.button} `}
-            >
-                {( currentPage >= 4 ) ? ( currentPage + 1 ) : '4'}
-            </button>
-
-            <button
-                onClick={handlePage}
-                className={`${s.button} `}
-            >
-                {( currentPage >= 4 ) ? ( currentPage + 2 ) : '5'}
-            </button> */}
-            {/* {pages} */}
-
             {( calcArrayLength( pages ) === 1 ) && (
                 <button
                     onClick={handlePage}
@@ -169,31 +133,31 @@ const Navbar = ( { pokemonsPerPage } ) => {
                 <>
                     <button
                         onClick={handlePage}
-                        className={`${s.button} `}
+                        className={`${s.button} ${( currentPage < 3 && currentPage === 1 ) ? s.selected : ''} `}
                     >
                         {( currentPage >= 3 ) ? ( currentPage - 2 ) : "1"}
                     </button>
                     <button
                         onClick={handlePage}
-                        className={`${s.button} `}
+                        className={`${s.button} ${( currentPage < 3 && currentPage === 2 ) ? s.selected : ''} `}
                     >
                         {( currentPage >= 3 ) ? ( currentPage - 1 ) : "2"}
                     </button>
                     <button
                         onClick={handlePage}
-                        className={`${s.button} ${s.selected}`}
+                        className={`${s.button} ${( currentPage >= 3 ) ? s.selected : ''} `}
                     >
                         {( currentPage >= 3 ) ? ( currentPage ) : "3"}
                     </button>
                     <button
                         onClick={handlePage}
-                        className={`${s.button} `}
+                        className={`${s.button}`}
                     >
                         {( currentPage >= 3 ) ? ( currentPage + 1 ) : "4"}
                     </button>
                     <button
                         onClick={handlePage}
-                        className={`${s.button} `}
+                        className={`${s.button}`}
                     >
                         {( currentPage >= 3 ) ? ( currentPage + 2 ) : "5"}
                     </button>

@@ -19,7 +19,7 @@ const Pokemons = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = 1; i <= ( POKEMONS_PER_PAGE ); i++ ) {
+                for ( let i = 1; i <= ( POKEMONS_PER_PAGE * 13 ); i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
                     let { id, name, height, weight, stats, types, sprites } = json
