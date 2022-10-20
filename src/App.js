@@ -1,4 +1,3 @@
-import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router";
 import LandingPage from "./Pages/LandingPage";
 import s from './Styles/App.module.css'
@@ -16,14 +15,12 @@ function App () {
   return (
     <div className={s.appContainer} style={{ position: 'relative' }}>
       <Bg location={location} />
-      <AnimatePresence mode="wait">
-        <Routes key={location.pathname} location={location}>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/pokemons" element={<Pokemons />} />
-          <Route path="/pokemons/:id" element={<PokemonDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </AnimatePresence>
+      <Routes>
+        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/pokemons" element={<Pokemons />} />
+        <Route path="/pokemons/:id" element={<PokemonDetail />} />
+        <Route path="/*" element={<NotFound />} />
+      </Routes>
 
     </div>
   );
