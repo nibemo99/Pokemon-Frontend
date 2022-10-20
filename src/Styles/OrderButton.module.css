@@ -13,8 +13,7 @@
   box-shadow: 0px 0px 0px 4px rgb(179, 84, 30);
 }
 
-.button:hover,
-.button:focus {
+.button:hover {
   scale: 1.2;
   background-color: #b3541e;
 }
