@@ -17,3 +17,8 @@ body {
 p {
   margin: 0;
 }
+
+button {
+  background: none;
+  color: white;
+}

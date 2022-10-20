@@ -6,6 +6,9 @@ import Order from './Order'
 import { AnimatePresence, motion } from "framer-motion";
 import AnimatedFiltersTitle from './AnimatedFiltersTitle'
 import SearchInput from './SearchInput'
+import OrderButton from './OrderButton'
+import TypeButton from './TypeButton'
+import TypeFilter from './TypeFilter'
 
 const LeftPanel = () => {
     const dispatch = useDispatch()
@@ -135,113 +138,26 @@ const LeftPanel = () => {
             <div className={` ${s.flexColCenter} ${s.mediumGap}`} >
                 <p className={`${s.searchTitle}`} ><Order /></p>
                 <div className={`${s.flexRowCenter} ${s.smallGap}`} >
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( orderToRender === 'id' ) && s.selected}`}
-                        onClick={handleOrder}
-                    >
+                    <OrderButton orderToRender={orderToRender} handleOrder={handleOrder}>
                         ID
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( orderToRender === 'alphabetical' ) && s.selected}`}
-                        onClick={handleOrder}
-                    >
+                    </OrderButton>
+                    <OrderButton orderToRender={orderToRender} handleOrder={handleOrder}>
                         Alphabetical
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( orderToRender === 'attack' ) && s.selected}`}
-                        onClick={handleOrder}
-                    >
+                    </OrderButton>
+                    <OrderButton orderToRender={orderToRender} handleOrder={handleOrder}>
                         Attack
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( orderToRender === 'defense' ) && s.selected}`}
-                        onClick={handleOrder}
-                    >
+                    </OrderButton>
+                    <OrderButton orderToRender={orderToRender} handleOrder={handleOrder}>
                         Defense
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( orderToRender === 'speed' ) && s.selected}`}
-                        onClick={handleOrder}
-                    >
+                    </OrderButton>
+                    <OrderButton orderToRender={orderToRender} handleOrder={handleOrder}>
                         Speed
-                    </motion.button>
+                    </OrderButton>
                 </div>
             </div>
             <div className={` ${s.flexColCenter} ${s.mediumGap}`} >
                 <p className={`${s.searchTitle}`} >Type</p>
-                <div className={`${s.flexRowCenter} ${s.smallGap}`} >
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Fire
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Water
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Grass
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Rock
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Posion
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Fight
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={s.mx}
-                    >
-                        Fairy
-                    </motion.button>
-                </div>
+                <TypeFilter />
             </div>
 
         </div>

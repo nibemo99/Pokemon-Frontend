@@ -1,0 +1,168 @@
+.text {
+  padding: 0 2%;
+  margin: 3px 0;
+  border: none;
+  padding: 1% 1%;
+  border-radius: 10px;
+  font-size: small;
+  transition: scale, background-image, 200ms;
+  --scale-hover: 1.2;
+}
+
+.text:hover,
+.text:focus {
+  scale: var(--scale-hover);
+}
+
+.Grass:hover,
+.Grass:focus {
+  color: black;
+  background-image: linear-gradient(#a0cc54 50%, #a0cc54 50%);
+}
+
+.Poison:hover,
+.Poison:focus {
+  background-image: linear-gradient(#dc07cc 50%, #dc07cc 50%);
+}
+
+.Fire:hover,
+.Fire:focus {
+  background-image: linear-gradient(#ff7c24 50%, #ff7c24 50%);
+}
+
+.Flying:hover,
+.Flying:focus {
+  color: black;
+  background-image: linear-gradient(#40c4ec 50%, #c0bcbc 50%);
+}
+
+.Water:hover,
+.Water:focus {
+  background-image: linear-gradient(#4894c4 50%, #4894c4 50%);
+}
+
+.Bug:hover,
+.Bug:focus {
+  background-image: linear-gradient(#789c3c 50%, #789c3c 50%);
+}
+
+.Normal:hover,
+.Normal:focus {
+  color: black;
+  background-image: linear-gradient(#a8acac 50%, #a8acac 50%);
+}
+
+.Electric:hover,
+.Electric:focus {
+  color: black;
+  background-image: linear-gradient(#f0d434 50%, #f0d434 50%);
+}
+
+.Ground:hover,
+.Ground:focus {
+  color: black;
+  background-image: linear-gradient(#f8dc3c 50%, #b09c44 50%);
+}
+
+.Fairy:hover,
+.Fairy:focus {
+  color: black;
+  background-image: linear-gradient(#ffbcec 50%, #ffbcec 50%);
+}
+
+.Fighting:hover,
+.Fighting:focus {
+  background-image: linear-gradient(#b4581c 50%, #b4581c 50%);
+}
+
+.Psychic:hover,
+.Psychic:focus {
+  background-image: linear-gradient(#f864bc 50%, #f864bc 50%);
+}
+
+.Rock:hover,
+.Rock:focus {
+  background-image: linear-gradient(#a88c24 50%, #a88c24 50%);
+}
+
+.Steel:hover,
+.Steel:focus {
+  color: black;
+  background-image: linear-gradient(#a0b4bc 50%, #a0b4bc 50%);
+}
+
+.Ice:hover,
+.Ice:focus {
+  color: black;
+  background-image: linear-gradient(#58c4e4 50%, #58c4e4 50%);
+}
+
+.Ghost:hover,
+.Ghost:focus {
+  background-image: linear-gradient(#8064a4 50%, #8064a4 50%);
+}
+
+.Dragon:hover,
+.Dragon:focus {
+  background-image: linear-gradient(#58a4cc 50%, #f86c54 50%);
+}
+
+.GrassSel {
+  color: black;
+  background-image: linear-gradient(#a0cc54 50%, #a0cc54 50%);
+}
+.PoisonSel {
+  background-image: linear-gradient(#dc07cc 50%, #dc07cc 50%);
+}
+.FireSel {
+  background-image: linear-gradient(#ff7c24 50%, #ff7c24 50%);
+}
+.FlyingSel {
+  color: black;
+  background-image: linear-gradient(#40c4ec 50%, #c0bcbc 50%);
+}
+.WaterSel {
+  background-image: linear-gradient(#4894c4 50%, #4894c4 50%);
+}
+.BugSel {
+  background-image: linear-gradient(#789c3c 50%, #789c3c 50%);
+}
+.NormalSel {
+  color: black;
+  background-image: linear-gradient(#a8acac 50%, #a8acac 50%);
+}
+.ElectricSel {
+  color: black;
+  background-image: linear-gradient(#f0d434 50%, #f0d434 50%);
+}
+.GroundSel {
+  color: black;
+  background-image: linear-gradient(#f8dc3c 50%, #b09c44 50%);
+}
+.FairySel {
+  color: black;
+  background-image: linear-gradient(#ffbcec 50%, #ffbcec 50%);
+}
+.FightingSel {
+  background-image: linear-gradient(#b4581c 50%, #b4581c 50%);
+}
+.PsychicSel {
+  background-image: linear-gradient(#f864bc 50%, #f864bc 50%);
+}
+.RockSel {
+  background-image: linear-gradient(#a88c24 50%, #a88c24 50%);
+}
+.SteelSel {
+  color: black;
+  background-image: linear-gradient(#a0b4bc 50%, #a0b4bc 50%);
+}
+.IceSel {
+  color: black;
+  background-image: linear-gradient(#58c4e4 50%, #58c4e4 50%);
+}
+.GhostSel {
+  background-image: linear-gradient(#8064a4 50%, #8064a4 50%);
+}
+.DragonSel {
+  background-image: linear-gradient(#58a4cc 50%, #f86c54 50%);
+}
