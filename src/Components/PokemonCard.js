@@ -34,8 +34,10 @@ const PokemonCard = ( { pokemon } ) => {
 
             >
                 <div className={s.cardTitle}>
-                    <p>{capFirstLetter( pokemon.name )}</p>
-                    <p>{pokemon.id}</p>
+                    <p>
+                        {capFirstLetter( pokemon.name )}
+                    </p>
+                    <p>#{pokemon.id}</p>
                 </div>
                 <LazyLoadImage
                     className={s.miniImage}
