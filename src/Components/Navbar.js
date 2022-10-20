@@ -164,8 +164,6 @@ const Navbar = ( { pokemonsPerPage } ) => {
                 </>
             )}
 
-
-
             <svg
                 onClick={handleNext}
                 className={s.icons}
@@ -176,6 +174,10 @@ const Navbar = ( { pokemonsPerPage } ) => {
             >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
+
+            <p className={s.pagination} >
+                {`${( ( currentPage - 1 ) * MAX_PER_PAGE ) + 1} - ${( currentPage * MAX_PER_PAGE > currentRender.length ) ? currentRender.length : currentPage * MAX_PER_PAGE} of ${currentRender.length}`}
+            </p>
         </div>
     )
 }
