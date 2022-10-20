@@ -11,6 +11,12 @@
   height: 2rem;
   width: 2rem;
   cursor: pointer;
+  transition: scale, 200ms ease-in-out;
+}
+
+.icons:hover,
+.icons:focus {
+  scale: 1.2;
 }
 
 .button {
@@ -21,6 +27,14 @@
   border: none;
   border-radius: 20px;
   font-weight: 500;
+  cursor: pointer;
+  transition: scale, color, 200ms ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  scale: 1.2;
+  background-color: #b3541e;
 }
 
 .selected {

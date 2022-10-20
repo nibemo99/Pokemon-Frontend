@@ -13,7 +13,7 @@ const initialState = {
 
     currentOrder: 'as',
     currentPage: 1,
-    currentRender: [],
+    currentRender: [],  //
     currentRenderFilteredByTypes: [],
 
     pokeapi: [],
@@ -1645,7 +1645,7 @@ const rootReducer = ( state = initialState, action ) => {
         case SET_CURRENT_RENDER:
             return {
                 ...state,
-                currentRender: state[action.payload]
+                currentRender: [...state[action.payload]]
             }
         case CLEAR_FILTERS:
             return {

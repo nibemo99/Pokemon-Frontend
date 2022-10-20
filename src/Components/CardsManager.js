@@ -27,7 +27,7 @@ const CardsManager = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = currentRender.length + 1; i <= ( currentPage + 2 ) * POKEMONS_PER_PAGE; i++ ) {
+                for ( let i = currentRender.length + 1; i <= ( currentPage ) * POKEMONS_PER_PAGE; i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
                     let { id, name, height, weight, stats, types, sprites } = json
@@ -44,7 +44,7 @@ const CardsManager = () => {
         }
         if ( sourceToRender === 'pokeapi' ) {
             if ( !pokemonsPerPage.length ) {
-                if ( currentPage <= 13 ) {
+                if ( currentPage <= 1 ) {
                     dispatch( setCurrentRender( 'pokeapi' ) )
                 } else {
                     fetchData()

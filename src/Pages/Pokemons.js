@@ -19,7 +19,7 @@ const Pokemons = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = 1; i <= POKEMONS_PER_PAGE; i++ ) {
+                for ( let i = 1; i <= ( POKEMONS_PER_PAGE ); i++ ) {
                     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
                     let json = await res.json()
                     let { id, name, height, weight, stats, types, sprites } = json
@@ -28,17 +28,18 @@ const Pokemons = () => {
                 }
                 dispatch( addPokeAPI( pokemons ) )
                 dispatch( setCurrentRender( 'pokeapi' ) )
-                setTimeout( async () => {
-                    pokemons = []
-                    for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 13; i++ ) {
-                        let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
-                        let json = await res.json()
-                        let { id, name, height, weight, stats, types, sprites } = json
-                        let image = sprites.other["official-artwork"].front_default
-                        dispatch( appendPokeAPI( [{ id, name, height, weight, image, stats, types }] ) )
-                    }
-                }, 500 );
-                console.log( pokemons )
+                // setTimeout( async () => {
+                //     pokemons = []
+                //     for ( let i = POKEMONS_PER_PAGE + 1; i <= POKEMONS_PER_PAGE * 13; i++ ) {
+                //         let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
+                //         let json = await res.json()
+                //         let { id, name, height, weight, stats, types, sprites } = json
+                //         let image = sprites.other["official-artwork"].front_default
+                //         dispatch( appendPokeAPI( [{ id, name, height, weight, image, stats, types }] ) )
+                //         console.log( name )
+                //     }
+                // }, 500 );
+                // console.log( pokemons )
             } catch ( error ) {
                 console.log( error )
             }
