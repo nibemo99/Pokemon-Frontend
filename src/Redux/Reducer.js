@@ -1,4 +1,4 @@
-import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH, ADD_TYPE_FILTER, SET_FILTER_BY_TYPE } from "./Actions"
+import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH, ADD_TYPE_FILTER, SET_FILTER_BY_TYPE, CLEAR_TYPE_FILTER } from "./Actions"
 
 const initialState = {
     bgColor: 'gray',
@@ -23,7 +23,7 @@ const initialState = {
 
     notfound: [{
         "id": '',
-        "name": "No pokemons found...",
+        "name": "Not found...",
         "image": "https://i.imgur.com/J9jdC56.png",
         "types": [{ "type": { "name": "Sorry" } }]
     }],
@@ -1595,13 +1595,13 @@ const setTypesArray = ( array, type ) => {
 }
 
 const setTypesToRender = ( typesArray, state ) => {
-    console.log( typesArray.length === 0 )
+    // console.log( typesArray.length === 0 )
     let temp = []
 
     if ( !typesArray.length ) return [...state[state.sourceToRender]]
     state[state.sourceToRender].forEach( element => {
         for ( const i of typesArray ) {
-            console.log( i, typeof i )
+            // console.log( i, typeof i )
             if ( !temp.includes( element.id ) ) {
                 if ( element.types[0].type.name === i.toLowerCase() || element.types[1]?.type.name === i.toLowerCase() ) {
                     console.log( element.name )
@@ -1616,7 +1616,7 @@ const setTypesToRender = ( typesArray, state ) => {
     } )
 
     if ( !temp.length ) return state.notfound
-    console.log( temp )
+    // console.log( temp )
     return temp
 }
 
@@ -1739,7 +1739,11 @@ const rootReducer = ( state = initialState, action ) => {
                 ...state,
                 currentRender: [...setTypesToRender( state.typesToRender, state )]
             }
-
+        case CLEAR_TYPE_FILTER:
+            return {
+                ...state,
+                typesToRender: []
+            }
 
 
 

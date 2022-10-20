@@ -12,12 +12,8 @@ import Navbar from './Navbar';
 const CardsManager = () => {
     const dispatch = useDispatch()
 
-    // const sourceToRender = useSelector( state => state.sourceToRender )
-    // const currentRender = useSelector( state => state[sourceToRender] )
-    // const currentPage = useSelector( state => state.currentPage )
     const { currentPage, currentRender, isLoading, sourceToRender } = useSelector( state => state )
 
-    // const [page, setPage] = useState( 0 )
     const POKEMONS_PER_PAGE = 12
     let pokemonsPerPage = [...currentRender.slice( ( currentPage - 1 ) * POKEMONS_PER_PAGE, POKEMONS_PER_PAGE * currentPage )]
     // console.log( pokemonsPerPage.length, currentRender.length )

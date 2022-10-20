@@ -8,5 +8,25 @@
 }
 
 .button {
+  position: relative;
   font-size: 1.3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.button::before {
+  position: absolute;
+  content: "";
+  /* top: 0; */
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background-color: rgb(179 84 30);
+  transform: scaleX(0);
+  transition: transform 200ms ease-in-out;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
 }

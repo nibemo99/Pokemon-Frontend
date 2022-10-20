@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addSearch, resetPage, setCurrentRender, setLoadingFalse, setLoadingTrue, setSourceToRender } from '../Redux/Actions'
+import { addSearch, clearFilters, clearTypeFilter, resetPage, setCurrentRender, setLoadingFalse, setLoadingTrue, setSourceToRender } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import notfound from '../Assets/notfound-compressed.png'
 
@@ -18,6 +18,7 @@ const SearchInput = () => {
         let query = event.target.value
         event.target.value = ''
         // dispatch( setCurrentRender( 'empty' ) )
+        dispatch( clearTypeFilter() )
         dispatch( resetPage() )
         fetchData( query )
 
@@ -37,7 +38,7 @@ const SearchInput = () => {
             // console.log( json )
         } catch ( error ) {
             // console.log( error )
-            dispatch( addSearch( [{ id: '', name: 'No pokemons found...', image: 'https://i.imgur.com/J9jdC56.png', height: 0, weight: 0, stats: [], types: [] }] ) )
+            dispatch( addSearch( [{ id: '', name: 'Not found...', image: 'https://i.imgur.com/J9jdC56.png', types: [{ "type": { "name": "Sorry" } }] }] ) )
             dispatch( setSourceToRender( 'search' ) )
             dispatch( setCurrentRender( 'search' ) )
         } finally {
