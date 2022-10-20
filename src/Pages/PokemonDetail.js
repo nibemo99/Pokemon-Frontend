@@ -12,7 +12,7 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
-import { setBgColor, setRemovePage, toggleRemovePage } from '../Redux/Actions';
+import { setBgColor, setRemovePage } from '../Redux/Actions';
 import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
@@ -21,6 +21,7 @@ const PokemonDetail = () => {
     const dispatch = useDispatch()
     const query = Number( pathname.split( '/' ).at( -1 ) )
     const [detail, setDetail] = useState( useSelector( state => state.pokeapi[query - 1] ) )
+    const [removing, setRemoving] = useState( false )
 
     const capFirstLetter = ( name ) => {
         return name.replace( name[0], name[0].toUpperCase() )
@@ -41,6 +42,12 @@ const PokemonDetail = () => {
         }
     }
 
+    const navigateHandler = ( event ) => {
+        setRemoving( prev => !prev )
+        setTimeout( () => {
+            navigate( '/pokemons' )
+        }, 300 );
+    }
 
     if ( !detail ) {
         fetchData( query )
@@ -50,16 +57,8 @@ const PokemonDetail = () => {
         console.log( 'redux' )
     }
 
-    const [removing, setRemoving] = useState( false )
-
-    const navigateHandler = ( event ) => {
-        setRemoving( prev => !prev )
-        setTimeout( () => {
-            navigate( '/pokemons' )
-        }, 300 );
-    }
-
     dispatch( setRemovePage( false ) )
+
     return (
         <AnimatedPage2 removing={removing}>
             <div
@@ -116,7 +115,6 @@ const PokemonDetail = () => {
                             </div>
                             <div className={s.types}>
                                 {detail.types.map( type => (
-                                    // <p>{capFirstLetter( type.type.name )}</p>
                                     <Types key={type.type.name} type={capFirstLetter( type.type.name )} />
                                 ) )}
                             </div>

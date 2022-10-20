@@ -16,7 +16,8 @@ export const LOADING_TRUE = 'LOADING_TRUE'
 export const LOADING_FALSE = 'LOADING_FALSE'
 export const SET_BG_COLOR = 'SET_BG_COLOR'
 export const TOGGLE_REMOVE_PAGE = 'TOGGLE_REMOVE_PAGE'
-export const SET_REMOVE_PAGE = 'TOGGLSET_REMOVE_PAGE_FALSE'
+export const SET_REMOVE_PAGE = 'SET_REMOVE_PAGE'
+export const ADD_SEARCH = 'ADD_SEARCH'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -106,5 +107,10 @@ export const toggleRemovePage = ( payload ) => ( {
 
 export const setRemovePage = ( payload ) => ( {
     type: SET_REMOVE_PAGE,
+    payload
+} )
+
+export const addSearch = ( payload ) => ( {
+    type: ADD_SEARCH,
     payload
 } )
