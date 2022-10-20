@@ -37,7 +37,7 @@ const SearchInput = () => {
             // console.log( json )
         } catch ( error ) {
             // console.log( error )
-            dispatch( addSearch( [{ id: '', name: 'Sorry, no pokemons were found...', image: '../Assets/notfound-compressed.png', height: 0, weight: 0, stats: [], types: [] }] ) )
+            dispatch( addSearch( [{ id: '', name: 'No pokemons found...', image: 'https://i.imgur.com/J9jdC56.png', height: 0, weight: 0, stats: [], types: [] }] ) )
             dispatch( setSourceToRender( 'search' ) )
             dispatch( setCurrentRender( 'search' ) )
         } finally {

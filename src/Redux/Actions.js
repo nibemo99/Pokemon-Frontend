@@ -19,6 +19,7 @@ export const TOGGLE_REMOVE_PAGE = 'TOGGLE_REMOVE_PAGE'
 export const SET_REMOVE_PAGE = 'SET_REMOVE_PAGE'
 export const ADD_SEARCH = 'ADD_SEARCH'
 export const ADD_TYPE_FILTER = 'ADD_TYPE_FILTER'
+export const SET_FILTER_BY_TYPE = 'SET_FILTER_BY_TYPE'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -118,5 +119,10 @@ export const addSearch = ( payload ) => ( {
 
 export const addTypeFilter = ( payload ) => ( {
     type: ADD_TYPE_FILTER,
+    payload
+} )
+
+export const setFilterByType = ( payload ) => ( {
+    type: SET_FILTER_BY_TYPE,
     payload
 } )

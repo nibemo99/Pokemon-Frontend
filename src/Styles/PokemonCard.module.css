@@ -18,6 +18,7 @@
   transition: all 200ms ease-in-out;
   /* transition: background-image 200ms ease-in-out; */
   overflow: hidden;
+  text-align: center;
 }
 
 .individualCardd::before {

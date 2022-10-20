@@ -19,6 +19,7 @@ const PokemonCard = ( { pokemon } ) => {
     }
 
     const navigateHandler = ( event ) => {
+        if ( pokemon.id === '' ) return
         dispatch( toggleRemovePage() )
         setTimeout( () => {
             navigate( `/pokemons/${pokemon.id}` )

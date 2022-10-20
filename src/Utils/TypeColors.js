@@ -79,4 +79,8 @@ export const TypeColors = {
         color1: '#161a1c',
         color2: '#161a1c',
     },
+    'Sorry': {
+        color1: 'gray',
+        color2: 'gray',
+    },
 }

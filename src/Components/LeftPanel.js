@@ -13,8 +13,8 @@ import SourceButton from './SourceButton'
 
 const LeftPanel = () => {
     const dispatch = useDispatch()
-    const { sourceToRender, orderToRender, currentOrder } = useSelector( state => state )
-    const hasFilters = ( sourceToRender === 'pokeapi' && orderToRender === 'id' )
+    const { sourceToRender, orderToRender, currentOrder, typesToRender } = useSelector( state => state )
+    const hasFilters = ( sourceToRender === 'pokeapi' && orderToRender === 'id' && typesToRender.length === 0 )
 
     // Functions
     const setFilter = ( text ) => {
