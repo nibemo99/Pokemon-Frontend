@@ -9,6 +9,7 @@ import SearchInput from './SearchInput'
 import OrderButton from './OrderButton'
 import TypeButton from './TypeButton'
 import TypeFilter from './TypeFilter'
+import SourceButton from './SourceButton'
 
 const LeftPanel = () => {
     const dispatch = useDispatch()
@@ -64,18 +65,6 @@ const LeftPanel = () => {
         }, 500 );
     }
 
-    // Animations
-    const animations = {
-        whileHover: {
-            scale: 1.1,
-            backgroundColor: '#B3541E',
-            // color: 'white'
-        },
-        whileTap: {
-            scale: 1.2,
-        },
-    }
-
 
     return (
         <div className={s.wrapper}>
@@ -106,33 +95,15 @@ const LeftPanel = () => {
             <div className={` ${s.flexColCenter} ${s.mediumGap}`} >
                 <p className={`${s.searchTitle}`} >Source</p>
                 <div className={`${s.flexRowCenter} ${s.smallGap}`} >
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( sourceToRender === 'both' ) && s.selected}`}
-                        onClick={handleSource}
-                    >
+                    <SourceButton handleSource={handleSource} sourceToRender={sourceToRender} >
                         Both
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( sourceToRender === 'pokeapi' ) && s.selected}`}
-                        onClick={handleSource}
-                    >
+                    </SourceButton>
+                    <SourceButton handleSource={handleSource} sourceToRender={sourceToRender} >
                         PokeAPI
-                    </motion.button>
-                    <motion.button
-                        variants={animations}
-                        whileHover='whileHover'
-                        whileTap='whileTap'
-                        className={`${s.mx} ${( sourceToRender === 'database' ) && s.selected}`}
-                        onClick={handleSource}
-                    >
+                    </SourceButton>
+                    <SourceButton handleSource={handleSource} sourceToRender={sourceToRender} >
                         Database
-                    </motion.button>
+                    </SourceButton>
                 </div>
             </div>
             <div className={` ${s.flexColCenter} ${s.mediumGap}`} >
