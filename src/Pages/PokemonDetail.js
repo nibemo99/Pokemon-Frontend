@@ -54,7 +54,7 @@ const PokemonDetail = () => {
     } else {
         const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
         dispatch( setBgColor( colors ) )
-        console.log( 'redux' )
+        // console.log( 'redux' )
     }
 
     dispatch( setRemovePage( false ) )

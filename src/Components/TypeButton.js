@@ -1,9 +1,12 @@
 import React from 'react'
 import s from "../Styles/TypeButton.module.css";
 
-const TypeButton = ( { children, selected } ) => {
+const TypeButton = ( { children, selected, handleClick } ) => {
     return (
-        <button className={`${s.text} ${s[children]} ${( selected ) ? s[`${children}Sel`] : ''}`}>
+        <button
+            onClick={handleClick}
+            className={`${s.text} ${s[children]} ${( selected ) ? s[`${children}Sel`] : ''}`}
+        >
             {children}
         </button>
     )

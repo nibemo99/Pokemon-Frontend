@@ -1,33 +1,40 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTypeFilter } from '../Redux/Actions'
 import s from '../Styles/TypeFilter.module.css'
 import TypeButton from './TypeButton'
 
 const TypeFilter = () => {
+    const dispatch = useDispatch()
+    const { typesToRender } = useSelector( state => state )
 
-    const selectType = ( event ) => {
-        console.log( event.target.value )
+    const handleClick = ( event ) => {
+        // console.log( event.target.innerText, typeof event.target.innerText )
+        dispatch( addTypeFilter( event.target.innerText ) )
     }
+
+    console.log( typesToRender )
 
     return (
         <div className={`${s.flexRowCenter} ${s.smallGap}`} >
-            <TypeButton selectType={selectType} >Grass</TypeButton>
-            <TypeButton selectType={selectType} >Poison</TypeButton>
-            <TypeButton selectType={selectType} >Fire</TypeButton>
-            <TypeButton selectType={selectType} >Flying</TypeButton>
-            <TypeButton selectType={selectType} >Water</TypeButton>
-            <TypeButton selectType={selectType} >Bug</TypeButton>
-            <TypeButton selectType={selectType} >Normal</TypeButton>
-            <TypeButton selectType={selectType} >Electric</TypeButton>
-            <TypeButton selectType={selectType} >Ground</TypeButton>
-            <TypeButton selectType={selectType} >Fairy</TypeButton>
-            <TypeButton selectType={selectType} >Fighting</TypeButton>
-            <TypeButton selectType={selectType} >Psychic</TypeButton>
-            <TypeButton selectType={selectType} >Rock</TypeButton>
-            <TypeButton selectType={selectType} >Steel</TypeButton>
-            <TypeButton selectType={selectType} >Ice</TypeButton>
-            <TypeButton selectType={selectType} >Ghost</TypeButton>
-            <TypeButton selectType={selectType} >Dragon</TypeButton>
-            <TypeButton selectType={selectType} >Dark</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Grass</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Poison</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Fire</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Flying</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Water</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Bug</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Normal</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Electric</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Ground</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Fairy</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Fighting</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Psychic</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Rock</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Steel</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Ice</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Ghost</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Dragon</TypeButton>
+            <TypeButton handleClick={handleClick} selected={false} >Dark</TypeButton>
         </div>
     )
 }

@@ -18,6 +18,7 @@ export const SET_BG_COLOR = 'SET_BG_COLOR'
 export const TOGGLE_REMOVE_PAGE = 'TOGGLE_REMOVE_PAGE'
 export const SET_REMOVE_PAGE = 'SET_REMOVE_PAGE'
 export const ADD_SEARCH = 'ADD_SEARCH'
+export const ADD_TYPE_FILTER = 'ADD_TYPE_FILTER'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -112,5 +113,10 @@ export const setRemovePage = ( payload ) => ( {
 
 export const addSearch = ( payload ) => ( {
     type: ADD_SEARCH,
+    payload
+} )
+
+export const addTypeFilter = ( payload ) => ( {
+    type: ADD_TYPE_FILTER,
     payload
 } )

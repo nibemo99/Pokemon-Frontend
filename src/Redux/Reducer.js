@@ -1,4 +1,4 @@
-import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH } from "./Actions"
+import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH, ADD_TYPE_FILTER } from "./Actions"
 
 const initialState = {
     bgColor: 'gray',
@@ -1578,6 +1578,14 @@ const orderPokemonsADS = ( currentSource, statNumber ) => {
     return temp
 }
 
+const setTypesToRender = ( array, type ) => {
+    if ( array.includes( type ) ) {
+        return array.filter( element => element !== type )
+    }
+    return [...array, type]
+}
+
+
 const rootReducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case ADD_POKE_API:
@@ -1685,6 +1693,11 @@ const rootReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 search: action.payload
+            }
+        case ADD_TYPE_FILTER:
+            return {
+                ...state,
+                typesToRender: [...setTypesToRender( state.typesToRender, action.payload )]
             }
 
 
