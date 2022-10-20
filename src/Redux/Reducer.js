@@ -1602,16 +1602,22 @@ const setTypesToRender = ( typesArray, state ) => {
     state[state.sourceToRender].forEach( element => {
         for ( const i of typesArray ) {
             console.log( i, typeof i )
-            if ( element.types[0].type.name === i.toLowerCase() || element.types[1]?.type.name === i.toLowerCase() ) {
-                console.log( element.name )
-                temp.push( element )
+            if ( !temp.includes( element.id ) ) {
+                if ( element.types[0].type.name === i.toLowerCase() || element.types[1]?.type.name === i.toLowerCase() ) {
+                    console.log( element.name )
+                    temp.push( element.id )
+                }
             }
         }
     } )
 
-    if ( !temp.length ) return [...state.notfound]
+    temp = temp.map( element => {
+        return state[state.sourceToRender][element - 1]
+    } )
+
+    if ( !temp.length ) return state.notfound
     console.log( temp )
-    return [...temp]
+    return temp
 }
 
 
