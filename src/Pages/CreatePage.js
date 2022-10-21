@@ -14,6 +14,7 @@ import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
 import notfound from '../Assets/notfound-compressed.png'
+import { TypeColors } from '../Utils/TypeColors'
 
 const Create = () => {
     const dispatch = useDispatch()
@@ -57,50 +58,64 @@ const Create = () => {
 
     const handleOnChange = ( event ) => {
         const field = event.target.name
-        console.log( event.target.value, typeof event.target.value );
-        switch ( field ) {
-            case 'url':
-                setForm( prev => ( { ...form, url: event.target.value } ) )
-                break;
-            case 'name':
-                setForm( prev => ( { ...form, name: event.target.value } ) )
-                break;
-            case 'id':
-                setForm( prev => ( { ...form, id: event.target.value } ) )
-                break;
-            case 'height':
-                setForm( prev => ( { ...form, height: event.target.value } ) )
-                break;
-            case 'weight':
-                setForm( prev => ( { ...form, weight: event.target.value } ) )
-                break;
-            case 'hp':
-                setForm( prev => ( { ...form, hp: event.target.value } ) )
-                break;
-            case 'attack':
-                setForm( prev => ( { ...form, attack: event.target.value } ) )
-                break;
-            case 'defense':
-                setForm( prev => ( { ...form, defense: event.target.value } ) )
-                break;
-            case 'specialAttack':
-                setForm( prev => ( { ...form, specialAttack: event.target.value } ) )
-                break;
-            case 'specialDefense':
-                setForm( prev => ( { ...form, specialDefense: event.target.value } ) )
-                break;
-            case 'speed':
-                setForm( prev => ( { ...form, speed: event.target.value } ) )
-                break;
-            case 'type1':
-                setForm( prev => ( { ...form, type1: event.target.value } ) )
-                break;
-            case 'type2':
-                setForm( prev => ( { ...form, type2: event.target.value } ) )
-                break;
-            default:
-                break;
+        let value = event.target.value
+        console.log( value );
+
+        if ( field === 'url' ) {
+            if ( !value.includes( 'https://' ) ) value = ''
         }
+        else if ( field === 'name' ) {
+            if ( value.includes( '1' ) ||
+                value.includes( '2' ) ||
+                value.includes( '3' ) ||
+                value.includes( '4' ) ||
+                value.includes( '5' ) ||
+                value.includes( '6' ) ||
+                value.includes( '7' ) ||
+                value.includes( '8' ) ||
+                value.includes( '9' ) ||
+                value.includes( '0' ) ) value = ''
+        }
+        else if ( field === 'id' ||
+            field === 'height' ||
+            field === 'weight' ||
+            field === 'hp' ||
+            field === 'attack' ||
+            field === 'defense' ||
+            field === 'specialAttack' ||
+            field === 'specialDefense' ||
+            field === 'speed'
+        ) {
+            if ( !Number( value ) ) value = ''
+        }
+        else if ( field === 'id' ) {
+
+        }
+        else if ( field === 'height' || field === 'weight' ) {
+            if ( Number( Number( value ) > 2000 ) ) {
+                value = '2000'
+            }
+        }
+        else if ( field === 'hp'
+            || field === 'attack'
+            || field === 'defense'
+            || field === 'specialAttack'
+            || field === 'specialDefense'
+            || field === 'speed'
+        ) {
+            if ( Number( Number( value ) > 500 ) ) {
+                value = '500'
+            }
+        }
+        else if ( field === 'type1' || field === 'type2' ) {
+            let aux = 0
+            for ( let key in TypeColors ) {
+                if ( !key.toLowerCase().includes( value ) ) aux++
+            }
+            if ( aux === Object.keys( TypeColors ).length ) value = ''
+        }
+
+        setForm( prev => ( { ...form, [field]: value } ) )
     }
 
     const handleClear = ( event ) => {
@@ -142,62 +157,62 @@ const Create = () => {
                     <div>
                         <img alt='' className={s.image} src={form.url || notfound} />
                         <div className={s.buttons}>
-                            <div className={s.inputWrapper3} ><input onChange={handleOnChange} value={form.url} name='url' className={s.wh} type='text' placeholder='Image URL' /></div>
+                            <div className={`${s.inputWrapper3} ${( !form.url ) ? s.required : ''}`} ><input onChange={handleOnChange} value={form.url} name='url' className={s.wh} type='text' placeholder='Image URL' /></div>
                             <button onClick={handleClear} className={s.cr} >Clear</button>
                             <button onClick={handleRandom} className={s.cr} >Random</button>
                         </div>
                     </div>
                     <div className={s.info}>
                         <div className={s.title}>
-                            <div className={s.inputWrapper} ><input onChange={handleOnChange} value={form.name} name='name' className={s.name} type='text' placeholder='Name' /></div>
-                            <div className={s.inputWrapper} ><input onChange={handleOnChange} value={form.id} name='id' className={s.id} type='text' placeholder='ID' /></div>
+                            <div className={s.inputWrapper} required={!Boolean( form.name )} ><input onChange={handleOnChange} value={form.name} name='name' className={s.name} type='text' placeholder='Name' /></div>
+                            <div className={s.inputWrapper} required={!Boolean( form.id )} ><input onChange={handleOnChange} value={form.id} name='id' className={s.id} type='text' placeholder='ID' /></div>
                         </div>
                         <div className={s.stats}>
                             <div>
                                 <img alt='' className={s.icons} src={Vertical} />
                                 Height:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.height} name='height' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.height )} ><input onChange={handleOnChange} value={form.height} name='height' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Weight} />
                                 Weight:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.weight} name='weight' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.weight )} ><input onChange={handleOnChange} value={form.weight} name='weight' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                         </div>
                         <div className={s.stats} >
                             <div>
                                 <img alt='' className={s.icons} src={Hp} />
                                 HP:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.hp} name='hp' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.hp )} ><input onChange={handleOnChange} value={form.hp} name='hp' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Attack} />
                                 Attack:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={Boolean( form.attack )} ><input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Defense} />
                                 Defense:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={Boolean( form.defense )} ><input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={SpecialAttack} />
                                 Special Attack:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialAttack} name='specialAttack' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialAttack} name='specialAttack' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={SpecialDefense} />
                                 Special Defense:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialDefense} name='specialDefense' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialDefense} name='specialDefense' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Speed} />
                                 Speed:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='1' /></div>
+                                <div className={s.inputWrapper2} required={Boolean( form.speed )} ><input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                         </div>
                         <div className={s.types}>
-                            <input onChange={handleOnChange} value={form.type1} name='type1' className={s.type1} placeholder='Type 1' list="types" />
+                            <input onChange={handleOnChange} value={form.type1} name='type1' className={s.type1} placeholder='Type 1' list="types" required={!Boolean( form.type1 )} />
                             <input onChange={handleOnChange} value={form.type2} name='type2' className={s.type1} placeholder='Type 2' list="types" />
                             <datalist id="types">
                                 <option value='Grass' />
