@@ -194,14 +194,6 @@
   color: whitesmoke;
 }
 
-.type1 {
-  padding: 0 2%;
-  margin: 3px 0;
-  padding: 1% 1%;
-  width: 3 0%;
-  border-radius: 10px;
-}
-
 .buttons {
   display: flex;
   justify-content: space-evenly;
@@ -309,11 +301,11 @@
   background-clip: text;
   /* color: transparent; */
   color: inherit;
-  transition: color 200ms ease-in-out, scale 10s cubic-bezier(0, 1.24, 1, -0.32);
+  transition: color 200ms ease-in-out, scale 200ms ease-in-out;
 }
 
 .create:hover {
-  scale: 2;
+  scale: 1.3;
   animation-play-state: running;
   color: transparent;
 }
@@ -336,6 +328,128 @@
   transform: scaleX(1);
 } */
 
-.required {
-  /* background-color: red; */
+/* COLORS FOR TYPES */
+
+.type1 {
+  padding: 0 2%;
+  margin: 3px 0;
+  padding: 1% 1%;
+  border-radius: 10px;
+  transition: border-color, color, 300ms ease-in-out;
+}
+
+.type1[data="Grass"],
+.type2[data="Grass"] {
+  background-image: linear-gradient(#a0cc54 50%, #a0cc54 50%);
+  border-color: #a0cc54;
+  color: black;
+}
+
+.type1[data="Poison"],
+.type2[data="Poison"] {
+  background-image: linear-gradient(#dc07cc 50%, #dc07cc 50%);
+  border-color: #dc07cc;
+}
+
+.type1[data="Fire"],
+.type2[data="Fire"] {
+  background-image: linear-gradient(#ff7c24 50%, #ff7c24 50%);
+  border-color: #ff7c24;
+}
+
+.type1[data="Flying"],
+.type2[data="Flying"] {
+  background-image: linear-gradient(#40c4ec 50%, #c0bcbc 50%);
+  border-color: #c0bcbc;
+  color: black;
+}
+
+.type1[data="Water"],
+.type2[data="Water"] {
+  background-image: linear-gradient(#4894c4 50%, #4894c4 50%);
+  border-color: #4894c4;
+}
+
+.type1[data="Bug"],
+.type2[data="Bug"] {
+  background-image: linear-gradient(#789c3c 50%, #789c3c 50%);
+  border-color: #789c3c;
+}
+
+.type1[data="Normal"],
+.type2[data="Normal"] {
+  background-image: linear-gradient(#a8acac 50%, #a8acac 50%);
+  border-color: #a8acac;
+  color: black;
+}
+
+.type1[data="Electric"],
+.type2[data="Electric"] {
+  background-image: linear-gradient(#f0d434 50%, #f0d434 50%);
+  border-color: #f0d434;
+  color: black;
+}
+
+.type1[data="Ground"],
+.type2[data="Ground"] {
+  background-image: linear-gradient(#f8dc3c 50%, #b09c44 50%);
+  border-color: #b09c44;
+  color: black;
+}
+
+.type1[data="Fairy"],
+.type2[data="Fairy"] {
+  background-image: linear-gradient(#ffbcec 50%, #ffbcec 50%);
+  border-color: #ffbcec;
+  color: black;
+}
+
+.type1[data="Fighting"],
+.type2[data="Fighting"] {
+  background-image: linear-gradient(#b4581c 50%, #b4581c 50%);
+  border-color: #b4581c;
+}
+
+.type1[data="Psychic"],
+.type2[data="Psychic"] {
+  background-image: linear-gradient(#f864bc 50%, #f864bc 50%);
+  border-color: #f864bc;
+}
+
+.type1[data="Rock"],
+.type2[data="Rock"] {
+  background-image: linear-gradient(#a88c24 50%, #a88c24 50%);
+  border-color: #a88c24;
+}
+
+.type1[data="Steel"],
+.type2[data="Steel"] {
+  background-image: linear-gradient(#a0b4bc 50%, #a0b4bc 50%);
+  border-color: #a0b4bc;
+  color: black;
+}
+
+.type1[data="Ice"],
+.type2[data="Ice"] {
+  background-image: linear-gradient(#58c4e4 50%, #58c4e4 50%);
+  border-color: #58c4e4;
+  color: black;
+}
+
+.type1[data="Ghost"],
+.type2[data="Ghost"] {
+  background-image: linear-gradient(#8064a4 50%, #8064a4 50%);
+  border-color: #8064a4;
+}
+
+.type1[data="Dragon"],
+.type2[data="Dragon"] {
+  background-image: linear-gradient(#58a4cc 50%, #f86c54 50%);
+  border-color: #f86c54;
+}
+
+.type1[data="Dark"],
+.type2[data="Dark"] {
+  background-image: linear-gradient(#161a1c 50%, #161a1c 50%);
+  border-color: #161a1c;
 }

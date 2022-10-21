@@ -152,8 +152,9 @@ const Create = () => {
         const speed = Math.floor( Math.random() * 500 )
 
         randomNumber = Math.floor( Math.random() * Object.keys( TypeColors ).length )
-        const type1 = Object.keys( TypeColors )[randomNumber]
-        console.log( Object.keys( TypeColors ), randomNumber )
+        let type1 = Object.keys( TypeColors )[randomNumber]
+        if ( type1 === 'Sorry' ) type1 = 'Dark'
+
         let type2 = ''
         if ( randomNumber % 2 === 0 ) {
             while ( type2 === '' ) {
@@ -162,6 +163,7 @@ const Create = () => {
                 if ( type2 === type1 ) type2 = ''
             }
         }
+        if ( type1 === 'Sorry' ) type1 = 'Dragon'
         console.log( type1, type2 )
 
         setForm( prev => ( {
@@ -254,8 +256,8 @@ const Create = () => {
                             </div>
                         </div>
                         <div className={s.types}>
-                            <input onChange={handleOnChange} value={form.type1} name='type1' className={s.type1} placeholder='Type 1' list="types" required={!Boolean( form.type1 )} />
-                            <input onChange={handleOnChange} value={form.type2} name='type2' className={s.type1} placeholder='Type 2' list="types" />
+                            <input onChange={handleOnChange} data={form.type1} value={form.type1} name='type1' className={s.type1} placeholder='Type 1' list="types" required={!Boolean( form.type1 )} />
+                            <input onChange={handleOnChange} data={form.type2} value={form.type2} name='type2' className={s.type1} placeholder='Type 2' list="types" />
                             <datalist id="types">
                                 <option value='Grass' />
                                 <option value='Poison' />
