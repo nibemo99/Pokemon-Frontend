@@ -12,7 +12,7 @@ import SpecialAttack from '../Assets/Icons/sword-double.svg'
 import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
-import Types from '../Components/Types';
+import { InsectNames } from '../Utils/InsectNames';
 import notfound from '../Assets/notfound-compressed.png'
 import { TypeColors } from '../Utils/TypeColors'
 
@@ -137,6 +137,48 @@ const Create = () => {
     }
 
     const handleRandom = ( event ) => {
+        let randomNumber = Math.floor( Math.random() * InsectNames.length )
+        const name = InsectNames[randomNumber]
+        const now = new Date()
+        const id = `${now.getMilliseconds()}${now.getSeconds()}${now.getMinutes()}${now.getHours()}`
+
+        const height = Math.floor( Math.random() * 2000 )
+        const weight = Math.floor( Math.random() * 2000 )
+        const hp = Math.floor( Math.random() * 500 )
+        const attack = Math.floor( Math.random() * 500 )
+        const defense = Math.floor( Math.random() * 500 )
+        const specialAttack = Math.floor( Math.random() * 500 )
+        const specialDefense = Math.floor( Math.random() * 500 )
+        const speed = Math.floor( Math.random() * 500 )
+
+        randomNumber = Math.floor( Math.random() * Object.keys( TypeColors ).length )
+        const type1 = Object.keys( TypeColors )[randomNumber]
+        console.log( Object.keys( TypeColors ), randomNumber )
+        let type2 = ''
+        if ( randomNumber % 2 === 0 ) {
+            while ( type2 === '' ) {
+                randomNumber = Math.floor( Math.random() * Object.keys( TypeColors ).length )
+                type2 = Object.keys( TypeColors )[randomNumber]
+                if ( type2 === type1 ) type2 = ''
+            }
+        }
+        console.log( type1, type2 )
+
+        setForm( prev => ( {
+            url: '',
+            id,
+            name,
+            height,
+            weight,
+            hp,
+            attack,
+            defense,
+            specialAttack,
+            specialDefense,
+            speed,
+            type1,
+            type2,
+        } ) )
 
     }
 
@@ -188,12 +230,12 @@ const Create = () => {
                             <div>
                                 <img alt='' className={s.icons} src={Attack} />
                                 Attack:
-                                <div className={s.inputWrapper2} required={Boolean( form.attack )} ><input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}  ><input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Defense} />
                                 Defense:
-                                <div className={s.inputWrapper2} required={Boolean( form.defense )} ><input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}  ><input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={SpecialAttack} />
@@ -208,7 +250,7 @@ const Create = () => {
                             <div>
                                 <img alt='' className={s.icons} src={Speed} />
                                 Speed:
-                                <div className={s.inputWrapper2} required={Boolean( form.speed )} ><input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='-' /></div>
                             </div>
                         </div>
                         <div className={s.types}>
