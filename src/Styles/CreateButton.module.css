@@ -12,6 +12,12 @@
   font-size: 1.3rem;
   border: none;
   cursor: pointer;
+  scale: 1;
+  transition: scale 200ms ease-in-out;
+}
+
+.button:hover {
+  scale: 1.1;
 }
 
 .button::before {
