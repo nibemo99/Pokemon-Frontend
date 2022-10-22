@@ -110,7 +110,7 @@ const Create = () => {
         else if ( field === 'type1' || field === 'type2' ) {
             let aux = 0
             for ( let key in TypeColors ) {
-                if ( !key.toLowerCase().includes( value ) ) aux++
+                if ( !key.toLowerCase().includes( value.toLowerCase() ) ) aux++
             }
             if ( aux === Object.keys( TypeColors ).length ) value = ''
         }
@@ -163,7 +163,7 @@ const Create = () => {
                 if ( type2 === type1 ) type2 = ''
             }
         }
-        if ( type1 === 'Sorry' ) type1 = 'Dragon'
+        if ( type2 === 'Sorry' ) type2 = 'Dragon'
         console.log( type1, type2 )
 
         setForm( prev => ( {
@@ -215,44 +215,60 @@ const Create = () => {
                             <div>
                                 <img alt='' className={s.icons} src={Vertical} />
                                 Height:
-                                <div className={s.inputWrapper2} required={!Boolean( form.height )} ><input onChange={handleOnChange} value={form.height} name='height' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.height )} >
+                                    <input onChange={handleOnChange} value={form.height} name='height' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Weight} />
                                 Weight:
-                                <div className={s.inputWrapper2} required={!Boolean( form.weight )} ><input onChange={handleOnChange} value={form.weight} name='weight' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.weight )} >
+                                    <input onChange={handleOnChange} value={form.weight} name='weight' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                         </div>
                         <div className={s.stats} >
                             <div>
                                 <img alt='' className={s.icons} src={Hp} />
                                 HP:
-                                <div className={s.inputWrapper2} required={!Boolean( form.hp )} ><input onChange={handleOnChange} value={form.hp} name='hp' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2} required={!Boolean( form.hp )}>
+                                    <input onChange={handleOnChange} value={form.hp} name='hp' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Attack} />
                                 Attack:
-                                <div className={s.inputWrapper2}  ><input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}>
+                                    <input onChange={handleOnChange} value={form.attack} name='attack' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Defense} />
                                 Defense:
-                                <div className={s.inputWrapper2}  ><input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}>
+                                    <input onChange={handleOnChange} value={form.defense} name='defense' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={SpecialAttack} />
                                 Special Attack:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialAttack} name='specialAttack' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}>
+                                    <input onChange={handleOnChange} value={form.specialAttack} name='specialAttack' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={SpecialDefense} />
                                 Special Defense:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.specialDefense} name='specialDefense' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}>
+                                    <input onChange={handleOnChange} value={form.specialDefense} name='specialDefense' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                             <div>
                                 <img alt='' className={s.icons} src={Speed} />
                                 Speed:
-                                <div className={s.inputWrapper2} ><input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='-' /></div>
+                                <div className={s.inputWrapper2}>
+                                    <input onChange={handleOnChange} value={form.speed} name='speed' className={s.wh} type='text' placeholder='-' />
+                                </div>
                             </div>
                         </div>
                         <div className={s.types}>
