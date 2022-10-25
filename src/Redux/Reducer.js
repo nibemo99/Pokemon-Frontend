@@ -1,4 +1,4 @@
-import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH, ADD_TYPE_FILTER, SET_FILTER_BY_TYPE, CLEAR_TYPE_FILTER } from "./Actions"
+import { ADD_POKE_API, APPEND_POKE_API, CREATE_ALPHABETICAL_ORDER, CREATE_BY_ID_ORDER, FLIP_ARRAY, RESET_PAGE, SET_SOURCE_TO_RENDER, SET_ORDER_AS, SET_ORDER_DE, SET_PAGE, SET_ORDER_TO_RENDER, APPLY_ORDER, SET_CURRENT_RENDER, CLEAR_FILTERS, LOADING_TRUE, LOADING_FALSE, SET_BG_COLOR, TOGGLE_REMOVE_PAGE, SET_REMOVE_PAGE, ADD_SEARCH, ADD_TYPE_FILTER, SET_FILTER_BY_TYPE, CLEAR_TYPE_FILTER, SET_DATABASE, SET_BOTH } from "./Actions"
 
 const initialState = {
     bgColor: 'gray',
@@ -19,7 +19,7 @@ const initialState = {
     pokeapi: [],
     both: [],
     search: [],
-    databasee: [],
+    database: [],
 
     notfound: [{
         "id": '',
@@ -29,7 +29,7 @@ const initialState = {
     }],
 
 
-    database: [
+    databasee: [
         {
             "id": 10,
             "name": "caterpie",
@@ -1744,7 +1744,16 @@ const rootReducer = ( state = initialState, action ) => {
                 ...state,
                 typesToRender: []
             }
-
+        case SET_DATABASE:
+            return {
+                ...state,
+                database: action.payload
+            }
+        case SET_BOTH:
+            return {
+                ...state,
+                both: [...state.database, ...state.pokeapi]
+            }
 
 
         default:

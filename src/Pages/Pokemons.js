@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useNavigate } from 'react-router';
-import { addPokeAPI, appendPokeAPI, setCurrentRender } from '../Redux/Actions';
+import { addPokeAPI, setCurrentRender } from '../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
 import LeftPanel from '../Components/LeftPanel';
@@ -29,7 +29,6 @@ const Pokemons = () => {
 
                 let res = await fetch( `http://localhost:3001/pokemons/` )
                 let json = await res.json()
-
                 dispatch( addPokeAPI( json ) )
                 dispatch( setCurrentRender( 'pokeapi' ) )
                 // setTimeout( async () => {

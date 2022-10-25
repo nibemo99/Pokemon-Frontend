@@ -1,20 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse } from '../Redux/Actions'
+import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse, setDatabase, setBoth } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import AnimatedFiltersTitle from './AnimatedFiltersTitle'
 import SearchInput from './SearchInput'
 import OrderButton from './OrderButton'
-import TypeButton from './TypeButton'
 import TypeFilter from './TypeFilter'
 import SourceButton from './SourceButton'
 
 const LeftPanel = () => {
     const dispatch = useDispatch()
-    const { sourceToRender, orderToRender, currentOrder, typesToRender } = useSelector( state => state )
+    const { sourceToRender, orderToRender, currentOrder, typesToRender, database } = useSelector( state => state )
     const hasFilters = ( sourceToRender === 'pokeapi' && orderToRender === 'id' && typesToRender.length === 0 )
+
 
     // Functions
     const setFilter = ( text ) => {
@@ -38,16 +38,69 @@ const LeftPanel = () => {
         setFilter( type )
     }
 
-    const setSource = async ( text ) => {
-        if ( sourceToRender === text.toLowerCase() ) return
+    const fetchDatabase = async ( text ) => {
+        try {
+            const res = await fetch( 'http://localhost:3001/pokemons/database' )
+            const json = await res.json()
+            let parsed = []
+            if ( !json.length ) {
+                parsed = [{ id: '', name: 'Not found...', image: 'https://i.imgur.com/J9jdC56.png', types: [{ "type": { "name": "Sorry" } }] }]
+            } else {
+                parsed = json.map( pokemon => {
+                    let stats = [
+                        { "base_stat": pokemon.hp, "stat": { "name": "hp" } },
+                        { "base_stat": pokemon.attack, "stat": { "name": "attack" } },
+                        { "base_stat": pokemon.defense, "stat": { "name": "defense" } },
+                        { "base_stat": pokemon.specialAttack, "stat": { "name": "special-attack" } },
+                        { "base_stat": pokemon.specialDefense, "stat": { "name": "special-defense" } },
+                        { "base_stat": pokemon.speed, "stat": { "name": "speed" } }
+                    ]
+                    let types = [{ "type": { "name": pokemon.type1 } }]
+                    if ( pokemon.type2 ) types.push( { "type": { "name": pokemon.type2 } } )
+                    return {
+                        id: pokemon.id,
+                        name: pokemon.name,
+                        height: pokemon.height,
+                        weight: pokemon.weight,
+                        image: pokemon.url,
+                        stats,
+                        types
+                    }
+                } )
+            }
+            dispatch( setDatabase( parsed ) )
+            dispatch( setBoth() )
+            console.log( text )
+            dispatch( setSourceToRender( text ) )
+            dispatch( setCurrentRender( text ) )
+            dispatch( applyOrder( orderToRender ) )
+            setTimeout( () => {
+                dispatch( setLoadingFalse() )
+            }, 800 );
+
+        } catch ( error ) {
+            console.log( error )
+        }
+    }
+
+    const setSource = ( text ) => {
+        // if ( sourceToRender === 'pokeapi' ) return
         dispatch( setLoadingTrue() )
         dispatch( setOrderAs() )
         dispatch( resetPage() )
         dispatch( setCurrentRender( 'empty' ) )
+        if ( text.toLowerCase() === 'database' ) {
+            return fetchDatabase( text.toLowerCase() )
+        }
+        if ( text.toLowerCase() === 'both' ) {
+            return fetchDatabase( text.toLowerCase() )
+        }
         dispatch( setSourceToRender( text.toLowerCase() ) )
         dispatch( setCurrentRender( text.toLowerCase() ) )
         dispatch( applyOrder( orderToRender ) )
         setTimeout( () => {
+            console.log( 'setloadingfalse' )
+            console.log( database, sourceToRender )
             dispatch( setLoadingFalse() )
         }, 800 );
     }

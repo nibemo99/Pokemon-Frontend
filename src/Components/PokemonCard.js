@@ -1,7 +1,6 @@
 import React from 'react'
 import s from '../Styles/PokemonCard.module.css'
-import loading from '../Assets/loading_smaller2.gif'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import empty from '../Assets/empty_1.png'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import AnimatedDisplayer from './AnimatedDisplayer';
@@ -40,12 +39,11 @@ const PokemonCard = ( { pokemon } ) => {
                     </p>
                     <p>#{pokemon.id}</p>
                 </div>
-                <LazyLoadImage
+                <img
                     className={s.miniImage}
                     alt=''
-                    src={pokemon.image}
-                    effect='blur'
-                    placeholderSrc={loading}
+                    src={pokemon.image || empty}
+                    data-css={( !pokemon.image ) ? true : false}
                 />
                 <div className={s.cardTypes}>
                     {pokemon.types.map( type => (

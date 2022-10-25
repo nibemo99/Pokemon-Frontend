@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PokemonCard from './PokemonCard';
 import loading from '../Assets/loading_smaller2.gif'
 import s from '../Styles/CardsManager.module.css'
-import { appendPokeAPI, setCurrentRender, setOrderAs } from '../Redux/Actions';
+import { appendPokeAPI, setCurrentRender, setDatabase, setOrderAs } from '../Redux/Actions';
 import { AnimatePresence } from 'framer-motion';
 import AnimatedLoading from './AnimatedLoading';
 import Navbar from './Navbar';
@@ -12,7 +12,7 @@ import Navbar from './Navbar';
 const CardsManager = () => {
     const dispatch = useDispatch()
 
-    const { currentPage, currentRender, isLoading, sourceToRender } = useSelector( state => state )
+    const { currentPage, currentRender, isLoading, sourceToRender, database } = useSelector( state => state )
 
     const POKEMONS_PER_PAGE = 12
     let pokemonsPerPage = [...currentRender.slice( ( currentPage - 1 ) * POKEMONS_PER_PAGE, POKEMONS_PER_PAGE * currentPage )]
@@ -43,6 +43,7 @@ const CardsManager = () => {
                 console.log( error )
             }
         }
+
         if ( sourceToRender === 'pokeapi' ) {
             if ( !pokemonsPerPage.length ) {
                 if ( currentPage <= 1 ) {

@@ -12,7 +12,7 @@ import SpecialAttack from '../Assets/Icons/sword-double.svg'
 import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
-import notfound from '../Assets/notfound-compressed.png'
+import empty from '../Assets/empty.png'
 import yellowAlert from '../Assets/alert.svg'
 import greenCheck from '../Assets/check.svg'
 import { InsectNames } from '../Utils/InsectNames';
@@ -58,7 +58,6 @@ const Create = () => {
 
         const typeCheck1 = TypeColors[form.type1]
         const typeCheck2 = TypeColors[form.type2]
-        console.log( typeCheck1 )
         if ( !typeCheck1 || ( form.type2 !== '' && !typeCheck2 ) ) return setModalInfo( prev => ( { ...prev, show: true, code: 'types' } ) )
 
         const formPokemon = {
@@ -87,9 +86,8 @@ const Create = () => {
             const json = await data.json()
             const { code } = json
             setModalInfo( prev => ( { ...prev, show: true, code } ) )
-
         } catch ( error ) {
-
+            console.log( error )
         }
     }
 
@@ -182,7 +180,7 @@ const Create = () => {
         let randomNumber = Math.floor( Math.random() * InsectNames.length )
         const name = InsectNames[randomNumber]
         const now = new Date()
-        const id = `${now.getMilliseconds()}${now.getSeconds()}${now.getMinutes()}${now.getHours()}`
+        const id = `${now.getMilliseconds()}${now.getSeconds()}`
 
         const height = Math.floor( Math.random() * 2000 )
         const weight = Math.floor( Math.random() * 2000 )
@@ -231,6 +229,9 @@ const Create = () => {
 
         }, 200 );
     }
+
+
+
 
     return (
         <AnimatedPage2 removing={removing}>
@@ -284,7 +285,7 @@ const Create = () => {
 
                 <div className={s.card}>
                     <div>
-                        <img alt='' className={s.image} src={form.url || notfound} />
+                        <img alt='' className={s.image} src={form.url || empty} />
                         <div className={s.buttons}>
                             <div className={`${s.inputWrapper3} ${( !form.url ) ? s.required : ''}`} ><input onChange={handleOnChange} value={form.url} name='url' className={s.wh} type='text' placeholder='Image URL' /></div>
                             <button onClick={handleClear} className={s.cr} >Clear</button>

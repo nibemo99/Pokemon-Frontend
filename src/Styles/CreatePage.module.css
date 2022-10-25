@@ -175,6 +175,7 @@
 }
 
 .image {
+  object-fit: cover;
   width: 380px;
   height: 380px;
 }

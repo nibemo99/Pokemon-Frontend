@@ -21,6 +21,8 @@ export const ADD_SEARCH = 'ADD_SEARCH'
 export const ADD_TYPE_FILTER = 'ADD_TYPE_FILTER'
 export const SET_FILTER_BY_TYPE = 'SET_FILTER_BY_TYPE'
 export const CLEAR_TYPE_FILTER = 'CLEAR_TYPE_FILTER'
+export const SET_DATABASE = 'SET_DATABASE'
+export const SET_BOTH = 'SET_BOTH'
 
 
 export const addPokeAPI = ( payload ) => ( {
@@ -133,3 +135,12 @@ export const clearTypeFilter = ( payload ) => ( {
     payload
 } )
 
+export const setDatabase = ( payload ) => ( {
+    type: SET_DATABASE,
+    payload
+} )
+
+export const setBoth = ( payload ) => ( {
+    type: SET_BOTH,
+    payload
+} )

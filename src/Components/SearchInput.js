@@ -1,9 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addSearch, clearFilters, clearTypeFilter, resetPage, setCurrentRender, setLoadingFalse, setLoadingTrue, setSourceToRender } from '../Redux/Actions'
+import { addSearch, clearTypeFilter, resetPage, setCurrentRender, setLoadingFalse, setLoadingTrue, setSourceToRender } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
-import notfound from '../Assets/notfound-compressed.png'
-
 
 const SearchInput = () => {
     const dispatch = useDispatch()
