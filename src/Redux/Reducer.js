@@ -1546,15 +1546,15 @@ const alphabet = {
 const applyingOrder = ( state, order ) => {
     switch ( order ) {
         case 'id':
-            return state[state.sourceToRender]
+            return state.currentRender
         case 'alphabetical':
-            return orderPokemonsAlphabetical( state[state.sourceToRender] )
+            return orderPokemonsAlphabetical( state.currentRender )
         case 'attack':
-            return orderPokemonsADS( state[state.sourceToRender], 1 )
+            return orderPokemonsADS( state.currentRender, 1 )
         case 'defense':
-            return orderPokemonsADS( state[state.sourceToRender], 2 )
+            return orderPokemonsADS( state.currentRender, 2 )
         case 'speed':
-            return orderPokemonsADS( state[state.sourceToRender], 5 )
+            return orderPokemonsADS( state.currentRender, 5 )
         default:
             break;
     }
@@ -1591,6 +1591,7 @@ const setTypesArray = ( array, type ) => {
         return array.filter( element => element !== type )
     }
     let typesArray = [...array, type]
+    console.log( typesArray )
     return typesArray
 }
 
@@ -1602,22 +1603,36 @@ const setTypesToRender = ( typesArray, state ) => {
     state[state.sourceToRender].forEach( element => {
         for ( const i of typesArray ) {
             // console.log( i, typeof i )
-            if ( !temp.includes( element.id ) ) {
+            if ( !temp.includes( element ) ) {
                 if ( element.types[0].type.name === i.toLowerCase() || element.types[1]?.type.name === i.toLowerCase() ) {
-                    console.log( element.name )
-                    temp.push( element.id )
+                    // console.log( element.name )
+                    temp.push( element )
                 }
             }
         }
     } )
-
-    temp = temp.map( element => {
-        return state[state.sourceToRender][element - 1]
-    } )
-
+    console.log( temp )
+    console.log( state.currentRender )
     if ( !temp.length ) return state.notfound
     // console.log( temp )
     return temp
+
+
+    temp = temp.map( element => {
+        for ( const i of state.currentRender ) {
+            // console.log( state.currentRender, i )
+            if ( i.id === element ) return i
+        }
+    } )
+    // if ( state.sourceToRender === 'pokeapi' ) {
+    //     temp = temp.map( element => {
+    //         return state[state.sourceToRender][element - 1]
+    //     } )
+    // } else {
+    //         }
+    // }
+    console.log( temp )
+
 }
 
 

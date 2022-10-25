@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse, setDatabase, setBoth } from '../Redux/Actions'
+import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse, setDatabase, setBoth, clearTypeFilter } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
 import { AnimatePresence } from "framer-motion";
@@ -20,6 +20,7 @@ const LeftPanel = () => {
     const setFilter = ( text ) => {
         // console.log( , typeof text )
         dispatch( resetPage() )
+        // dispatch( clearTypeFilter() )
         if ( orderToRender !== text.toLowerCase() ) {
             dispatch( setOrderAs() )
             dispatch( applyOrder( text.toLowerCase() ) )
@@ -87,6 +88,7 @@ const LeftPanel = () => {
     const setSource = ( text ) => {
         // if ( sourceToRender === 'pokeapi' ) return
         dispatch( setLoadingTrue() )
+        dispatch( clearTypeFilter() )
         dispatch( setOrderAs() )
         dispatch( resetPage() )
         dispatch( setCurrentRender( 'empty' ) )
@@ -124,25 +126,21 @@ const LeftPanel = () => {
         <div className={s.wrapper}>
             <div className={` ${s.flexColCenter}`} >
                 <div className={`${s.filterTitle}`} >
-                    <AnimatePresence mode="wait">
-                        {( hasFilters ) && (
+                    {( hasFilters ) && (
+                        <AnimatedFiltersTitle>
+                            <p className={s.absolute} >
+                                Filter by...
+                            </p>
+                        </AnimatedFiltersTitle>
+                    )}
+                    {( !hasFilters ) &&
+                        (
                             <AnimatedFiltersTitle>
-                                <p className={s.absolute} >
-                                    Filter by...
+                                <p className={`${s.absolute} ${s.pointer}`} onClick={handleClearFilters} >
+                                    Clear filters
                                 </p>
                             </AnimatedFiltersTitle>
                         )}
-                    </AnimatePresence>
-                    <AnimatePresence mode="wait">
-                        {( !hasFilters ) &&
-                            (
-                                <AnimatedFiltersTitle>
-                                    <p className={`${s.absolute} ${s.pointer}`} onClick={handleClearFilters} >
-                                        Clear filters
-                                    </p>
-                                </AnimatedFiltersTitle>
-                            )}
-                    </AnimatePresence>
                 </div>
                 <SearchInput />
             </div>
