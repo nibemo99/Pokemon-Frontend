@@ -23,7 +23,7 @@ const Navbar = ( { pokemonsPerPage } ) => {
     }
 
     const handleNext = ( event ) => {
-        if ( !pokemonsPerPage.length || ( sourceToRender === 'database' && currentPage === pages ) ) return
+        if ( !pokemonsPerPage.length || ( ( sourceToRender === 'database' || sourceToRender === 'both' ) && currentPage === pages ) ) return
         dispatch( setPageTo( currentPage + 1 ) )
     }
 
