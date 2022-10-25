@@ -35,7 +35,6 @@ const SearchInput = () => {
 
             const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
             let json = await res.json()
-            console.log( json )
             if ( !json.length ) {
                 let stats = [
                     { "base_stat": json.hp, "stat": { "name": "hp" } },

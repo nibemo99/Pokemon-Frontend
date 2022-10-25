@@ -57,6 +57,7 @@
 }
 
 .image {
+  object-fit: cover;
   width: 450px;
   height: 450px;
 }

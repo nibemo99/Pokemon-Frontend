@@ -12,6 +12,7 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
+import empty from '../Assets/empty.png'
 import { setBgColor, setRemovePage } from '../Redux/Actions';
 import { TypeColors } from '../Utils/TypeColors';
 
@@ -29,11 +30,31 @@ const PokemonDetail = () => {
 
     const fetchData = async ( index ) => {
         try {
-            let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${index}` )
+            let res = await fetch( `http://localhost:3001/pokemons/${index}` )
             let json = await res.json()
-            let { id, name, height, weight, stats, types, sprites } = json
-            let image = sprites.other["official-artwork"].front_default
-            setDetail( { id, name, height, weight, image, stats, types } )
+            if ( !json.length ) {
+                let stats = [
+                    { "base_stat": json.hp, "stat": { "name": "hp" } },
+                    { "base_stat": json.attack, "stat": { "name": "attack" } },
+                    { "base_stat": json.defense, "stat": { "name": "defense" } },
+                    { "base_stat": json.specialAttack, "stat": { "name": "special-attack" } },
+                    { "base_stat": json.specialDefense, "stat": { "name": "special-defense" } },
+                    { "base_stat": json.speed, "stat": { "name": "speed" } }
+                ]
+                let types = [{ "type": { "name": json.type1 } }]
+                if ( json.type2 ) types.push( { "type": { "name": json.type2 } } )
+                json = {
+                    id: json.id,
+                    name: json.name,
+                    height: json.height,
+                    weight: json.weight,
+                    image: json.url,
+                    stats,
+                    types
+                }
+            }
+            let { types } = json
+            setDetail( json )
             const colors = TypeColors[capFirstLetter( types[0].type.name )]
             dispatch( setBgColor( colors ) )
             console.log( 'fetched' )
@@ -71,7 +92,7 @@ const PokemonDetail = () => {
 
                 {detail && (
                     <div className={s.card}>
-                        <img alt='' className={s.image} src={detail.image} />
+                        <img alt='' className={s.image} src={detail.image || empty} />
                         <div className={s.info}>
                             <div className={s.title}>
                                 <p className={s.name}>{capFirstLetter( detail.name )}</p>
