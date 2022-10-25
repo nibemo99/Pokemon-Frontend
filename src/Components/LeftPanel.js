@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { flipArray, setSourceToRender, setOrderAs, setOrderDe, resetPage, applyOrder, setCurrentRender, clearFilters, setLoadingTrue, setLoadingFalse, setDatabase, setBoth, clearTypeFilter } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 import Order from './Order'
-import { AnimatePresence } from "framer-motion";
 import AnimatedFiltersTitle from './AnimatedFiltersTitle'
 import SearchInput from './SearchInput'
 import OrderButton from './OrderButton'
