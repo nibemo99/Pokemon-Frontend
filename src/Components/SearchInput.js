@@ -34,9 +34,29 @@ const SearchInput = () => {
             // dispatch( setCurrentRender( 'search' ) )
 
             const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
-            const json = await res.json()
-            // let { id, name, height, weight, stats, types, sprites } = json
-            // let image = sprites.other["official-artwork"].front_default
+            let json = await res.json()
+            console.log( json )
+            if ( !json.length ) {
+                let stats = [
+                    { "base_stat": json.hp, "stat": { "name": "hp" } },
+                    { "base_stat": json.attack, "stat": { "name": "attack" } },
+                    { "base_stat": json.defense, "stat": { "name": "defense" } },
+                    { "base_stat": json.specialAttack, "stat": { "name": "special-attack" } },
+                    { "base_stat": json.specialDefense, "stat": { "name": "special-defense" } },
+                    { "base_stat": json.speed, "stat": { "name": "speed" } }
+                ]
+                let types = [{ "type": { "name": json.type1 } }]
+                if ( json.type2 ) types.push( { "type": { "name": json.type2 } } )
+                json = [{
+                    id: json.id,
+                    name: json.name,
+                    height: json.height,
+                    weight: json.weight,
+                    image: json.url,
+                    stats,
+                    types
+                }]
+            }
 
             dispatch( addSearch( json ) )
             dispatch( setSourceToRender( 'search' ) )

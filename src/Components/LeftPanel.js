@@ -42,37 +42,38 @@ const LeftPanel = () => {
         try {
             const res = await fetch( 'http://localhost:3001/pokemons/database' )
             const json = await res.json()
-            let parsed = []
-            if ( !json.length ) {
-                parsed = [{ id: '', name: 'Not found...', image: 'https://i.imgur.com/J9jdC56.png', types: [{ "type": { "name": "Sorry" } }] }]
-            } else {
-                parsed = json.map( pokemon => {
-                    let stats = [
-                        { "base_stat": pokemon.hp, "stat": { "name": "hp" } },
-                        { "base_stat": pokemon.attack, "stat": { "name": "attack" } },
-                        { "base_stat": pokemon.defense, "stat": { "name": "defense" } },
-                        { "base_stat": pokemon.specialAttack, "stat": { "name": "special-attack" } },
-                        { "base_stat": pokemon.specialDefense, "stat": { "name": "special-defense" } },
-                        { "base_stat": pokemon.speed, "stat": { "name": "speed" } }
-                    ]
-                    let types = [{ "type": { "name": pokemon.type1 } }]
-                    if ( pokemon.type2 ) types.push( { "type": { "name": pokemon.type2 } } )
-                    return {
-                        id: pokemon.id,
-                        name: pokemon.name,
-                        height: pokemon.height,
-                        weight: pokemon.weight,
-                        image: pokemon.url,
-                        stats,
-                        types
-                    }
-                } )
-            }
+            let parsed = json.map( pokemon => {
+                let stats = [
+                    { "base_stat": pokemon.hp, "stat": { "name": "hp" } },
+                    { "base_stat": pokemon.attack, "stat": { "name": "attack" } },
+                    { "base_stat": pokemon.defense, "stat": { "name": "defense" } },
+                    { "base_stat": pokemon.specialAttack, "stat": { "name": "special-attack" } },
+                    { "base_stat": pokemon.specialDefense, "stat": { "name": "special-defense" } },
+                    { "base_stat": pokemon.speed, "stat": { "name": "speed" } }
+                ]
+                let types = [{ "type": { "name": pokemon.type1 } }]
+                if ( pokemon.type2 ) types.push( { "type": { "name": pokemon.type2 } } )
+                return {
+                    id: pokemon.id,
+                    name: pokemon.name,
+                    height: pokemon.height,
+                    weight: pokemon.weight,
+                    image: pokemon.url,
+                    stats,
+                    types
+                }
+            } )
+
             dispatch( setDatabase( parsed ) )
             dispatch( setBoth() )
-            console.log( text )
-            dispatch( setSourceToRender( text ) )
-            dispatch( setCurrentRender( text ) )
+            console.log( text, text === 'database' )
+            if ( json.length === 0 && text === 'database' ) {
+                dispatch( setSourceToRender( 'notfound' ) )
+                dispatch( setCurrentRender( 'notfound' ) )
+            } else {
+                dispatch( setSourceToRender( text ) )
+                dispatch( setCurrentRender( text ) )
+            }
             dispatch( applyOrder( orderToRender ) )
             setTimeout( () => {
                 dispatch( setLoadingFalse() )
