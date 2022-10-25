@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import s from '../Styles/CreatePage.module.css'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
+import { useHistory } from "react-router-dom"
 import { setRemovePage } from '../Redux/Actions'
 import AnimatedPage2 from './AnimatedPage2'
 import SpecialDefense from '../Assets/Icons/blue-shield.svg'
@@ -20,7 +20,7 @@ import { TypeColors } from '../Utils/TypeColors'
 
 const Create = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const history = useHistory()
     const [removing, setRemoving] = useState( false )
     const [modalInfo, setModalInfo] = useState( {
         removing: false,
@@ -49,8 +49,8 @@ const Create = () => {
     const navigateHandler = ( event ) => {
         setRemoving( prev => !prev )
         setTimeout( () => {
-            navigate( '/pokemons' )
-        }, 300 );
+            history.push( '/pokemons' )
+        }, 500 );
     }
 
     const handleCreate = async ( event ) => {

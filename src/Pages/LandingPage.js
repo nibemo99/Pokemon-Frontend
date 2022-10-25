@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'
 import s from '../Styles/App.module.css'
 import { imgs } from '../Utils/Backgrounds'
 import React from 'react'
 import AnimatedPage from './AnimatedPage';
-import { useNavigate } from 'react-router';
+import { useHistory } from "react-router-dom"
 
 const LandingPage = () => {
-    const navigate = useNavigate();
+    const history = useHistory();
 
     const [backgroundIndex, setBackgroundIndex] = useState( { index: 0, isVisible: true } )
-
     useEffect( () => {
 
         const timer = setInterval( () => {
@@ -51,7 +49,7 @@ const LandingPage = () => {
     const navigateHandler = ( event ) => {
         setRemoving( prev => !prev )
         setTimeout( () => {
-            navigate( '/pokemons' )
+            history.push( '/pokemons' )
         }, 1000 );
     }
 
@@ -68,18 +66,16 @@ const LandingPage = () => {
                 >
                     {/* <div className={s.backdrop} /> */}
 
-                    <AnimatePresence>
-                        {backgroundIndex.isVisible &&
-                            <motion.img
-                                initial={{ scale: 1, opacity: 0 }}
-                                animate={{ scale: 1.1, opacity: 1 }}
-                                exit={{ scale: 1.2, opacity: 0, }}
-                                transition={{ duration: 3 }}
-                                className={s.image}
-                                alt=''
-                                src={imgs[backgroundIndex.index]}
-                            />}
-                    </AnimatePresence>
+                    {backgroundIndex.isVisible &&
+                        <img
+                            initial={{ scale: 1, opacity: 0 }}
+                            animate={{ scale: 1.1, opacity: 1 }}
+                            exit={{ scale: 1.2, opacity: 0, }}
+                            transition={{ duration: 3 }}
+                            className={s.image}
+                            alt=''
+                            src={imgs[backgroundIndex.index]}
+                        />}
                 </div>
 
                 <div className={s.section}>
@@ -91,22 +87,6 @@ const LandingPage = () => {
             </div>
 
             <div className={s.click}>
-                <p>
-                    <motion.span animate={{ left }} className={s.bar} />
-                    <motion.span
-                        whileHover={{ display: 'inline-block', color: 'white' }}
-                        onClick={changeLanguage}
-                    >
-                        Español
-                    </motion.span>
-                    {' | '}
-                    <motion.span
-                        whileHover={{ display: 'inline-block', color: 'white' }}
-                        onClick={changeLanguage}
-                    >
-                        English
-                    </motion.span>
-                </p>
                 <p onClick={navigateHandler}>
                     Click anywhere to continue
                 </p>

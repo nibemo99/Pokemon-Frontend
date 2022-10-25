@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
-import { useNavigate } from 'react-router';
+import { useHistory } from "react-router-dom"
 import { addPokeAPI, setCurrentRender } from '../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import RightPanel from '../Components/RightPanel';
@@ -9,14 +9,14 @@ import LeftPanel from '../Components/LeftPanel';
 
 
 const Pokemons = () => {
-    const navigate = useNavigate();
+    const history = useHistory();
     const dispatch = useDispatch()
-    const POKEMONS_PER_PAGE = 12
+    // const POKEMONS_PER_PAGE = 12
 
     const { pokeapi, removingPage } = useSelector( state => state )
 
     useEffect( () => {
-        let pokemons = []
+        // let pokemons = []
         const fetchData = async () => {
             try {
                 // for ( let i = 1; i <= ( POKEMONS_PER_PAGE * 13 ); i++ ) {
@@ -59,7 +59,7 @@ const Pokemons = () => {
             <div className={s.window} >
                 <p
                     className={s.click}
-                    onClick={() => navigate( "/" )}
+                    onClick={() => history.push( "/" )}
                 >
                     Back
                 </p>

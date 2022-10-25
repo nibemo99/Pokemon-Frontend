@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useHistory } from "react-router-dom"
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/PokemonDetail.module.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ import { setBgColor, setRemovePage } from '../Redux/Actions';
 import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
-    const navigate = useNavigate();
+    const history = useHistory();
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const query = Number( pathname.split( '/' ).at( -1 ) )
@@ -66,7 +66,7 @@ const PokemonDetail = () => {
     const navigateHandler = ( event ) => {
         setRemoving( prev => !prev )
         setTimeout( () => {
-            navigate( '/pokemons' )
+            history.push( '/pokemons' )
         }, 300 );
     }
 

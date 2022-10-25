@@ -1,10 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router';
+import { useHistory } from "react-router-dom"
 import s from '../Styles/NotFound.module.css'
 
 
 const NotFound = () => {
-    const navigate = useNavigate();
+    const history = useHistory();
 
     return (
         <div
@@ -13,7 +13,7 @@ const NotFound = () => {
             <h1 className={s.title} >404</h1>
             <button
                 className={s.button}
-                onClick={() => navigate( "/pokemons" )}
+                onClick={() => history.push( "/pokemons" )}
             >
                 Go back
             </button>

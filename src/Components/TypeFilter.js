@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTypeFilter, resetPage, setCurrentRender, setFilterByType, setSourceToRender } from '../Redux/Actions'
+import { addTypeFilter, resetPage, setFilterByType } from '../Redux/Actions'
 import s from '../Styles/TypeFilter.module.css'
 import TypeButton from './TypeButton'
 
@@ -10,15 +10,9 @@ const TypeFilter = () => {
 
     const handleClick = ( event ) => {
         dispatch( resetPage() )
-        // console.log( event.target.innerText, typeof event.target.innerText )
         dispatch( addTypeFilter( event.target.innerText ) )
         dispatch( setFilterByType() )
-        // dispatch( setCurrentRender( 'currentRenderFilteredByTypes' ) )
     }
-    if ( !typesToRender.length ) {
-        // dispatch( setCurrentRender( 'pokeapi' ) )
-    }
-    // console.log( typesToRender )
 
 
     return (

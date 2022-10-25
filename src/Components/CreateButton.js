@@ -1,17 +1,17 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
+import { useHistory } from "react-router-dom"
 import { toggleRemovePage } from '../Redux/Actions'
 import s from '../Styles/CreateButton.module.css'
 
 const CreateButton = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const history = useHistory()
 
     const navigateHandler = ( event ) => {
         dispatch( toggleRemovePage() )
         setTimeout( () => {
-            navigate( `/create` )
+            history.push( `/create` )
         }, 300 );
     }
 

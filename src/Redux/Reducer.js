@@ -14,7 +14,6 @@ const initialState = {
     currentOrder: 'as',
     currentPage: 1,
     currentRender: [],  //
-    currentRenderFilteredByTypes: [],
 
     pokeapi: [],
     both: [],
@@ -1616,22 +1615,6 @@ const setTypesToRender = ( typesArray, state ) => {
     if ( !temp.length ) return state.notfound
     // console.log( temp )
     return temp
-
-
-    temp = temp.map( element => {
-        for ( const i of state.currentRender ) {
-            // console.log( state.currentRender, i )
-            if ( i.id === element ) return i
-        }
-    } )
-    // if ( state.sourceToRender === 'pokeapi' ) {
-    //     temp = temp.map( element => {
-    //         return state[state.sourceToRender][element - 1]
-    //     } )
-    // } else {
-    //         }
-    // }
-    console.log( temp )
 
 }
 

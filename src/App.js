@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation } from "react-router";
+import { Route, useLocation } from "react-router-dom";
 import LandingPage from "./Pages/LandingPage";
 import s from './Styles/App.module.css'
 import Pokemons from './Pages/Pokemons'
@@ -16,13 +16,11 @@ function App () {
   return (
     <div className={s.appContainer} style={{ position: 'relative' }}>
       <Bg location={location} />
-      <Routes>
-        <Route exact path="/" element={<LandingPage />} />
-        <Route path="/pokemons" element={<Pokemons />} />
-        <Route path="/pokemons/:id" element={<PokemonDetail />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/pokemons" component={Pokemons} />
+      <Route path="/pokemons/:id" component={PokemonDetail} />
+      <Route path="/create" component={CreatePage} />
+      <Route path="/*" component={NotFound} />
 
     </div>
   );

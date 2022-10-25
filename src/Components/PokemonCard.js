@@ -1,16 +1,14 @@
 import React from 'react'
 import s from '../Styles/PokemonCard.module.css'
 import empty from '../Assets/empty_1.png'
-import 'react-lazy-load-image-component/src/effects/blur.css';
-import 'react-lazy-load-image-component/src/effects/black-and-white.css';
 import AnimatedDisplayer from './AnimatedDisplayer';
-import { useNavigate } from 'react-router';
+import { useHistory } from "react-router-dom"
 import Types from './Types';
 import { useDispatch } from 'react-redux';
 import { toggleRemovePage } from '../Redux/Actions';
 
 const PokemonCard = ( { pokemon } ) => {
-    const navigate = useNavigate()
+    const history = useHistory()
     const dispatch = useDispatch()
 
     const capFirstLetter = ( name ) => {
@@ -21,7 +19,7 @@ const PokemonCard = ( { pokemon } ) => {
         if ( pokemon.id === '' ) return
         dispatch( toggleRemovePage() )
         setTimeout( () => {
-            navigate( `/pokemons/${pokemon.id}` )
+            history.push( `/pokemons/${pokemon.id}` )
         }, 300 );
     }
 
