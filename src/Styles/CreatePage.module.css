@@ -53,7 +53,7 @@
 .inputWrapper:hover::before,
 .inputWrapper:focus::before {
   opacity: 1;
-  transform: scaleX(0.4);
+  transform: scaleX(0.7);
   background-color: yellow;
 }
 
@@ -438,3 +438,46 @@
   background-image: linear-gradient(#161a1c 50%, #161a1c 50%);
   border-color: #161a1c;
 }
+
+/* MODAL STYLES */
+
+.modal {
+  background-color: #00000099;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  cursor: pointer;
+  z-index: 1;
+  animation: showing 200ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal[data-removing="true"] {
+  animation: disapear 200ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes disapear {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* .modal:hover {
+  scale: 1.4;
+  color: whitesmoke;
+} */

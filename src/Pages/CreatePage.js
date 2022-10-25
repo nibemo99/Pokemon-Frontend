@@ -12,18 +12,23 @@ import SpecialAttack from '../Assets/Icons/sword-double.svg'
 import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
-import { InsectNames } from '../Utils/InsectNames';
 import notfound from '../Assets/notfound-compressed.png'
+import { InsectNames } from '../Utils/InsectNames';
 import { TypeColors } from '../Utils/TypeColors'
 
 const Create = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [removing, setRemoving] = useState( false )
+    const [modalInfo, setModalInfo] = useState( {
+        removing: false,
+        show: false,
+        code: ''
+    } )
     const [form, setForm] = useState( {
         url: '',
-        id: '',
         name: '',
+        id: '',
         height: '',
         weight: '',
         hp: '',
@@ -35,6 +40,7 @@ const Create = () => {
         type1: '',
         type2: '',
     } )
+    const POST_URL = 'http://localhost:3001/pokemons/'
 
     dispatch( setRemovePage( false ) )
 
@@ -45,22 +51,49 @@ const Create = () => {
         }, 300 );
     }
 
-    const capFirstLetter = ( name ) => {
-        return name.replace( name[0], name[0].toUpperCase() )
+    const handleCreate = async ( event ) => {
+        if ( !form.name || !form.id || !form.height || !form.weight || !form.hp || !form.type1 ) return setModalInfo( prev => ( { ...prev, show: true, code: 'fields' } ) )
+
+        const typeCheck1 = TypeColors[form.type1]
+        const typeCheck2 = TypeColors[form.type2]
+        console.log( typeCheck1 )
+        if ( !typeCheck1 || ( form.type2 !== '' && !typeCheck2 ) ) return setModalInfo( prev => ( { ...prev, show: true, code: 'types' } ) )
+
+        const formPokemon = {
+            url: form.url,
+            name: form.name.toLowerCase(),
+            id: Number( form.id ),
+            height: Number( form.height ),
+            weight: Number( form.weight ),
+            hp: Number( form.hp ),
+            attack: Number( form.attack ),
+            defense: Number( form.defense ),
+            specialAttack: Number( form.specialAttack ),
+            specialDefense: Number( form.specialDefense ),
+            speed: Number( form.speed ),
+            type1: form.type1.toLowerCase(),
+            type2: form.type2.toLowerCase(),
+        }
+        try {
+            const data = await fetch( POST_URL, {
+                method: 'POST',
+                body: JSON.stringify( formPokemon ),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            } )
+            const json = await data.json()
+            const { code } = json
+            setModalInfo( prev => ( { ...prev, show: true, code } ) )
+
+        } catch ( error ) {
+
+        }
     }
-
-    const handleCreate = ( event ) => {
-
-    }
-
-
-
 
     const handleOnChange = ( event ) => {
         const field = event.target.name
         let value = event.target.value
-        console.log( value );
-
         if ( field === 'url' ) {
             if ( !value.includes( 'https://' ) ) value = ''
         }
@@ -74,7 +107,17 @@ const Create = () => {
                 value.includes( '7' ) ||
                 value.includes( '8' ) ||
                 value.includes( '9' ) ||
-                value.includes( '0' ) ) value = ''
+                value.includes( '0' ) ||
+                value.includes( '<' ) ||
+                value.includes( '>' ) ||
+                value.includes( '&' ) ||
+                value.includes( '|' ) ||
+                value.includes( '=' ) ||
+                value.includes( '$' ) ||
+                value.includes( '%' ) ||
+                value.includes( '#' ) ||
+                value.includes( '"' ) ||
+                value.includes( '``' ) ) value = ''
         }
         else if ( field === 'id' ||
             field === 'height' ||
@@ -88,11 +131,8 @@ const Create = () => {
         ) {
             if ( !Number( value ) ) value = ''
         }
-        else if ( field === 'id' ) {
-
-        }
         else if ( field === 'height' || field === 'weight' ) {
-            if ( Number( Number( value ) > 2000 ) ) {
+            if ( Number( value > 2000 ) ) {
                 value = '2000'
             }
         }
@@ -163,8 +203,7 @@ const Create = () => {
                 if ( type2 === type1 ) type2 = ''
             }
         }
-        if ( type2 === 'Sorry' ) type2 = 'Dragon'
-        console.log( type1, type2 )
+        if ( type2 === 'Sorry' ) type2 = ''
 
         setForm( prev => ( {
             url: '',
@@ -181,21 +220,63 @@ const Create = () => {
             type1,
             type2,
         } ) )
+    }
 
+    const handleModal = ( event ) => {
+        setModalInfo( prev => ( { ...prev, removing: true } ) )
+        setTimeout( () => {
+            setModalInfo( prev => ( { ...prev, show: false, removing: false } ) )
+
+        }, 200 );
     }
 
     return (
         <AnimatedPage2 removing={removing}>
 
-            <div
-                className={s.wrapper}
-            >
+            <div className={s.wrapper}>
                 <p
                     className={s.click}
                     onClick={navigateHandler}
                 >
                     Back
                 </p>
+
+                {( modalInfo.show ) && (
+                    <div
+                        className={s.modal}
+                        onClick={handleModal}
+                        data-removing={modalInfo.removing}
+                    >
+
+                        {( modalInfo.code === 'types' ) && (
+                            <p>
+                                Please select a type from the list.
+                            </p>
+                        )}
+                        {( modalInfo.code === 'fields' ) && (
+                            <p>
+                                Please make sure to fill all of the fields underlined with red.
+                            </p>
+                        )}
+                        {( modalInfo.code === 'id' ) && (
+                            <p>
+                                {`The ID: ${form.id} is already taken, please change it and try again.`}
+                            </p>
+                        )}
+                        {( modalInfo.code === 'name' ) && (
+                            <p>
+                                {`The name ${form.name} is already taken, please change it and try again.`}
+                            </p>
+                        )}
+                        {( modalInfo.code === 'created' ) && (
+                            <p>
+                                {`${form.name} was created and saved in the database!`}
+                            </p>
+                        )}
+
+                    </div>
+
+                )}
 
                 <div className={s.card}>
                     <div>

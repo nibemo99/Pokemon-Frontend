@@ -19,14 +19,18 @@ const Pokemons = () => {
         let pokemons = []
         const fetchData = async () => {
             try {
-                for ( let i = 1; i <= ( POKEMONS_PER_PAGE * 13 ); i++ ) {
-                    let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
-                    let json = await res.json()
-                    let { id, name, height, weight, stats, types, sprites } = json
-                    let image = sprites.other["official-artwork"].front_default
-                    pokemons.push( { id, name, height, weight, image, stats, types } )
-                }
-                dispatch( addPokeAPI( pokemons ) )
+                // for ( let i = 1; i <= ( POKEMONS_PER_PAGE * 13 ); i++ ) {
+                //     let res = await fetch( `https://pokeapi.co/api/v2/pokemon/${i}` )
+                //     let json = await res.json()
+                //     let { id, name, height, weight, stats, types, sprites } = json
+                //     let image = sprites.other["official-artwork"].front_default
+                //     pokemons.push( { id, name, height, weight, image, stats, types } )
+                // }
+
+                let res = await fetch( `http://localhost:3001/pokemons/` )
+                let json = await res.json()
+
+                dispatch( addPokeAPI( json ) )
                 dispatch( setCurrentRender( 'pokeapi' ) )
                 // setTimeout( async () => {
                 //     pokemons = []

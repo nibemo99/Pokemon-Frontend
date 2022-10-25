@@ -26,14 +26,25 @@ const SearchInput = () => {
 
     const fetchData = async ( query ) => {
         try {
-            const res = await fetch( `https://pokeapi.co/api/v2/pokemon/${query}` )
-            const json = await res.json()
-            let { id, name, height, weight, stats, types, sprites } = json
-            let image = sprites.other["official-artwork"].front_default
+            // const res = await fetch( `https://pokeapi.co/api/v2/pokemon/${query}` )
+            // const json = await res.json()
+            // let { id, name, height, weight, stats, types, sprites } = json
+            // let image = sprites.other["official-artwork"].front_default
 
-            dispatch( addSearch( [{ id, name, height, weight, image, stats, types }] ) )
+            // dispatch( addSearch( [{ id, name, height, weight, image, stats, types }] ) )
+            // dispatch( setSourceToRender( 'search' ) )
+            // dispatch( setCurrentRender( 'search' ) )
+
+            const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
+            const json = await res.json()
+            // let { id, name, height, weight, stats, types, sprites } = json
+            // let image = sprites.other["official-artwork"].front_default
+
+            dispatch( addSearch( json ) )
             dispatch( setSourceToRender( 'search' ) )
             dispatch( setCurrentRender( 'search' ) )
+
+
 
             // console.log( json )
         } catch ( error ) {

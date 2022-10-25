@@ -49,7 +49,6 @@ const PokemonCard = ( { pokemon } ) => {
                 />
                 <div className={s.cardTypes}>
                     {pokemon.types.map( type => (
-                        // <p>{capFirstLetter( type.type.name )}</p>
                         <Types key={type.type.name} type={capFirstLetter( type.type.name )} />
                     ) )}
                 </div>
