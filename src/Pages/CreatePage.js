@@ -13,6 +13,8 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import notfound from '../Assets/notfound-compressed.png'
+import yellowAlert from '../Assets/alert.svg'
+import greenCheck from '../Assets/check.svg'
 import { InsectNames } from '../Utils/InsectNames';
 import { TypeColors } from '../Utils/TypeColors'
 
@@ -247,33 +249,35 @@ const Create = () => {
                         onClick={handleModal}
                         data-removing={modalInfo.removing}
                     >
-
-                        {( modalInfo.code === 'types' ) && (
-                            <p>
-                                Please select a type from the list.
-                            </p>
-                        )}
-                        {( modalInfo.code === 'fields' ) && (
-                            <p>
-                                Please make sure to fill all of the fields underlined with red.
-                            </p>
-                        )}
-                        {( modalInfo.code === 'id' ) && (
-                            <p>
-                                {`The ID: ${form.id} is already taken, please change it and try again.`}
-                            </p>
-                        )}
-                        {( modalInfo.code === 'name' ) && (
-                            <p>
-                                {`The name ${form.name} is already taken, please change it and try again.`}
-                            </p>
-                        )}
-                        {( modalInfo.code === 'created' ) && (
-                            <p>
-                                {`${form.name} was created and saved in the database!`}
-                            </p>
-                        )}
-
+                        <div>
+                            <img alt='Please review the information provided on the fields' src={( modalInfo.code === 'created' ) ? greenCheck : yellowAlert} />
+                            {( modalInfo.code === 'types' ) && (
+                                <p>
+                                    Please select a type from the list.
+                                </p>
+                            )}
+                            {( modalInfo.code === 'fields' ) && (
+                                <p>
+                                    Please make sure to fill all of the fields highlighted with red.
+                                </p>
+                            )}
+                            {( modalInfo.code === 'id' ) && (
+                                <p>
+                                    {`The ID: ${form.id} is already taken, please change it and try again.`}
+                                </p>
+                            )}
+                            {( modalInfo.code === 'name' ) && (
+                                <p>
+                                    {`The name ${form.name} is already taken, please change it and try again.`}
+                                </p>
+                            )}
+                            {( modalInfo.code === 'created' ) && (
+                                <p>
+                                    {`${form.name} was created and saved in the database!`}
+                                </p>
+                            )}
+                            <p>Click anywhere to go back</p>
+                        </div>
                     </div>
 
                 )}

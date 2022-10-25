@@ -450,6 +450,9 @@
   width: 100%;
   cursor: pointer;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: showing 200ms ease-in-out;
   animation-fill-mode: forwards;
 }
@@ -477,7 +480,30 @@
   }
 }
 
-/* .modal:hover {
-  scale: 1.4;
-  color: whitesmoke;
-} */
+.modal > * {
+  background-color: gray;
+  border-radius: 50px;
+  max-width: 30%;
+  padding: 1rem;
+  text-align: center;
+  transition: opacity 200ms ease-in-out;
+}
+
+.modal > *:hover {
+  opacity: 0.5;
+}
+
+.modal > * > *:nth-child(1) {
+  padding: 1rem 0 0 0;
+  width: 6rem;
+}
+
+.modal > * > *:nth-child(2) {
+  padding: 1rem;
+  font-size: large;
+}
+
+.modal > * > *:last-child {
+  font-size: small;
+  padding: 1rem 0 0.5rem 0;
+}
