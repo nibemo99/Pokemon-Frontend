@@ -32,7 +32,7 @@ const PokemonDetail = () => {
         try {
             let res = await fetch( `http://localhost:3001/pokemons/${index}` )
             let json = await res.json()
-            if ( !json.length ) {
+            if ( json.length ) {
                 let stats = [
                     { "base_stat": json.hp, "stat": { "name": "hp" } },
                     { "base_stat": json.attack, "stat": { "name": "attack" } },
@@ -48,7 +48,7 @@ const PokemonDetail = () => {
                     name: json.name,
                     height: json.height,
                     weight: json.weight,
-                    image: json.url,
+                    image: json.url || '',
                     stats,
                     types
                 }
@@ -57,7 +57,6 @@ const PokemonDetail = () => {
             setDetail( json )
             const colors = TypeColors[capFirstLetter( types[0].type.name )]
             dispatch( setBgColor( colors ) )
-            console.log( 'fetched' )
         } catch ( error ) {
             console.log( error )
         }
@@ -73,6 +72,7 @@ const PokemonDetail = () => {
     if ( !detail ) {
         fetchData( query )
     } else {
+        console.log( detail )
         const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
         dispatch( setBgColor( colors ) )
         // console.log( 'redux' )

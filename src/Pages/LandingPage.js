@@ -10,13 +10,11 @@ const LandingPage = () => {
 
     const [backgroundIndex, setBackgroundIndex] = useState( { index: 0, isVisible: true } )
     useEffect( () => {
-
         const timer = setInterval( () => {
             setBackgroundIndex( { ...backgroundIndex, isVisible: false } )
             setTimeout( () => {
                 const newIndex = ( backgroundIndex.index + 1 ) % imgs.length
                 setBackgroundIndex( { index: newIndex, isVisible: true } )
-
             }, 3000 );
         }, 3200 );
         return () => {

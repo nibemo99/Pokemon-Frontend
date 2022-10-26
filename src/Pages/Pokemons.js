@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AnimatedPage2 from './AnimatedPage2'
 import s from '../Styles/Pokemons.module.css'
 import { useHistory } from "react-router-dom"
@@ -12,6 +12,8 @@ const Pokemons = () => {
     const history = useHistory();
     const dispatch = useDispatch()
     // const POKEMONS_PER_PAGE = 12
+    const [removing, setRemoving] = useState( false )
+
 
     const { pokeapi, removingPage } = useSelector( state => state )
 
@@ -53,13 +55,20 @@ const Pokemons = () => {
     }, [] )
     // FUNCTIONS
 
+    const handleNavigate = ( event ) => {
+        setRemoving( prev => !prev )
+        setTimeout( () => {
+            history.push( '/' )
+        }, 300 );
+    }
+
 
     return (
-        <AnimatedPage2 removing={removingPage}>
+        <AnimatedPage2 removing={removing}>
             <div className={s.window} >
                 <p
                     className={s.click}
-                    onClick={() => history.push( "/" )}
+                    onClick={handleNavigate}
                 >
                     Back
                 </p>
