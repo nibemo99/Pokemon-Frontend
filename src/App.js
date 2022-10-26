@@ -15,7 +15,7 @@ function App () {
 
   return (
     <div className={s.appContainer} style={{ position: 'relative' }}>
-      <Bg location={location} />
+      <Bg />
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/pokemons" component={Pokemons} />

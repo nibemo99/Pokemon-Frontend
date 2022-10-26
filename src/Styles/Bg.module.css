@@ -22,7 +22,51 @@
   background-blend-mode: multiply;
 }
 
-.yellow {
+.container[data-css] {
+  background-color: #3a3a3a;
+  opacity: 0;
+  background-blend-mode: multiply;
+  background-image: radial-gradient(circle at center center, #eeeeee, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #eeeeee,
+      #eeeeee,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  transition: background-image, opacity, 1s ease-in-out forwards;
+}
+
+.container[data-css="pokemons"] {
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #ebe134, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #ebe134,
+      #ebe134,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+}
+
+.container[data-css="create"] {
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #a63121, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #a63121,
+      #a63121,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+}
+
+/* NOTES */
+
+/* .yellow {
   background-color: #3a3a3a;
   opacity: 0.8;
   background-image: radial-gradient(circle at center center, #ebe134, #3a3a3a),
@@ -35,9 +79,9 @@
       transparent 40px
     );
   background-blend-mode: multiply;
-}
+} */
 
-.red {
+/* .red {
   background-color: #3a3a3a;
   opacity: 0.8;
   background-image: radial-gradient(circle at center center, #a63121, #3a3a3a),
@@ -50,4 +94,4 @@
       transparent 40px
     );
   background-blend-mode: multiply;
-}
+} */

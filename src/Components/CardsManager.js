@@ -37,7 +37,7 @@ const CardsManager = () => {
                 dispatch( appendPokeAPI( pokemons ) )
                 dispatch( setOrderAs() )
                 dispatch( setCurrentRender( 'pokeapi' ) )
-                console.log( pokemons )
+                // console.log( pokemons )
             } catch ( error ) {
                 console.log( error )
             }
