@@ -30,7 +30,8 @@ const CardsManager = () => {
                 //     pokemons.push( { id, name, height, weight, image, stats, types } )
                 // }
                 for ( let i = currentRender.length + 1; i <= ( currentPage + 2 ) * POKEMONS_PER_PAGE; i++ ) {
-                    let res = await fetch( `http://localhost:3001/pokemons/${i}` )
+                    // let res = await fetch( `http://localhost:3001/pokemons/${i}` )
+                    let res = await fetch( `https://backendpi.onrender.com/pokemons/${i}` )
                     let json = await res.json()
                     pokemons.push( json )
                 }

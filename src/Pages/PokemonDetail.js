@@ -30,7 +30,8 @@ const PokemonDetail = () => {
 
     const fetchData = async ( index ) => {
         try {
-            let res = await fetch( `http://localhost:3001/pokemons/${index}` )
+            // let res = await fetch( `http://localhost:3001/pokemons/${index}` )
+            let res = await fetch( `https://backendpi.onrender.com/pokemons/${index}` )
             let json = await res.json()
             if ( json.length ) {
                 let stats = [
@@ -72,7 +73,6 @@ const PokemonDetail = () => {
     if ( !detail ) {
         fetchData( query )
     } else {
-        console.log( detail )
         const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
         dispatch( setBgColor( colors ) )
         // console.log( 'redux' )

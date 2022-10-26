@@ -29,7 +29,8 @@ const Pokemons = () => {
                 //     pokemons.push( { id, name, height, weight, image, stats, types } )
                 // }
 
-                let res = await fetch( `http://localhost:3001/pokemons/` )
+                // let res = await fetch( `http://localhost:3001/pokemons/` )
+                let res = await fetch( `https://backendpi.onrender.com/pokemons/` )
                 let json = await res.json()
                 dispatch( addPokeAPI( json ) )
                 dispatch( setCurrentRender( 'pokeapi' ) )
