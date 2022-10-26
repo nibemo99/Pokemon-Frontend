@@ -17,6 +17,7 @@ import yellowAlert from '../Assets/alert.svg'
 import greenCheck from '../Assets/check.svg'
 import { InsectNames } from '../Utils/InsectNames';
 import { TypeColors } from '../Utils/TypeColors'
+import { AnimalsImages } from '../Utils/AnimalsImages'
 
 const Create = () => {
     const dispatch = useDispatch()
@@ -204,9 +205,13 @@ const Create = () => {
             }
         }
         if ( type2 === 'Sorry' ) type2 = ''
+        // setForm( prev => ( { ...prev, url: '' } ) )
+
+        randomNumber = Math.floor( Math.random() * AnimalsImages.length )
+        let url = AnimalsImages[randomNumber]
 
         setForm( prev => ( {
-            url: '',
+            url,
             id,
             name,
             height,
