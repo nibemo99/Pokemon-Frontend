@@ -55,7 +55,7 @@ const CardsManager = () => {
 
     }, [pokemonsPerPage.length, currentPage, currentRender.length, dispatch] )
 
-    console.log( pokemonsPerPage )
+    // console.log( pokemonsPerPage )
 
     return (
         <div className={s.cardsManager}>

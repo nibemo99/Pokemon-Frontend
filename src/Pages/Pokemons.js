@@ -64,7 +64,7 @@ const Pokemons = () => {
 
 
     return (
-        <AnimatedPage2 removing={removing}>
+        <AnimatedPage2 removing={removingPage}>
             <div className={s.window} >
                 <p
                     className={s.click}
