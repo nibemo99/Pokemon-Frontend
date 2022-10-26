@@ -1,6 +1,6 @@
 import React from 'react'
 import s from '../Styles/PokemonCard.module.css'
-import empty from '../Assets/empty_1.png'
+import notfound from '../Assets/notfound-min.png'
 import AnimatedDisplayer from './AnimatedDisplayer';
 import { useHistory } from "react-router-dom"
 import Types from './Types';
@@ -40,7 +40,7 @@ const PokemonCard = ( { pokemon } ) => {
                 <img
                     className={s.miniImage}
                     alt=''
-                    src={pokemon.image || empty}
+                    src={pokemon.image || notfound}
                     data-css={( !pokemon.image ) ? true : false}
                 />
                 <div className={s.cardTypes}>
