@@ -12,9 +12,9 @@ import Attack from '../Assets/Icons/sword-single.svg'
 import Vertical from '../Assets/Icons/vertical.svg'
 import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
-import empty from '../Assets/empty.png'
+import notfound from '../Assets/notfound-min.png'
 import { setBgColor, setRemovePage } from '../Redux/Actions';
-import { TypeColors } from '../Utils/TypeColors';
+// import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
     const history = useHistory();
@@ -33,7 +33,8 @@ const PokemonDetail = () => {
             // let res = await fetch( `http://localhost:3001/pokemons/${index}` )
             let res = await fetch( `https://backendpi.onrender.com/pokemons/${index}` )
             let json = await res.json()
-            if ( json.length ) {
+            if ( json.error ) throw new Error()
+            if ( json.stats === undefined ) {
                 let stats = [
                     { "base_stat": json.hp, "stat": { "name": "hp" } },
                     { "base_stat": json.attack, "stat": { "name": "attack" } },
@@ -54,11 +55,14 @@ const PokemonDetail = () => {
                     types
                 }
             }
+            console.log( json )
             let { types } = json
             setDetail( json )
-            const colors = TypeColors[capFirstLetter( types[0].type.name )]
-            dispatch( setBgColor( colors ) )
+            // const colors = TypeColors[capFirstLetter( types[0].type.name )]
+            // dispatch( setBgColor( colors ) )
+            dispatch( setBgColor( types[0].type.name ) )
         } catch ( error ) {
+            history.push( '/pokemons/404' )
             console.log( error )
         }
     }
@@ -73,9 +77,10 @@ const PokemonDetail = () => {
     if ( !detail ) {
         fetchData( query )
     } else {
-        const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
-        dispatch( setBgColor( colors ) )
-        // console.log( 'redux' )
+        console.log( detail )
+        // const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
+        // dispatch( setBgColor( colors ) )
+        dispatch( setBgColor( detail.types[0].type.name ) )
     }
 
     dispatch( setRemovePage( false ) )
@@ -92,7 +97,7 @@ const PokemonDetail = () => {
 
                 {detail && (
                     <div className={s.card}>
-                        <img alt='' className={s.image} src={detail.image || empty} />
+                        <img alt='' className={s.image} src={detail.image || notfound} />
                         <div className={s.info}>
                             <div className={s.title}>
                                 <p className={s.name}>{capFirstLetter( detail.name )}</p>

@@ -1,48 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import s from '../Styles/Bg.module.css'
 
-export const Bg = ( { location } ) => {
-
-    // console.log( location.pathname, typeof location.pathname )
-
-    const animations = {
-        initial: { opacity: 0, },
-        animate: { opacity: 1, },
-        exit: { opacity: 0 },
-    }
-
+export const Bg = () => {
+    const location = useLocation()
+    const [dataCss, setDataCss] = useState( {
+        dataCss: 'root',
+        removing: false
+    } )
     const { bgColor } = useSelector( state => state )
-    // console.log( bgColor )
+    const locationArray = location.pathname.split( '/' )
+    console.log( dataCss, bgColor, locationArray )
+
+
+    useEffect( () => {
+        let temp = ''
+        if ( locationArray[2] ) {
+            temp = bgColor
+        } else {
+            temp = locationArray[1]
+        }
+        setDataCss( prev => temp )
+
+    }, [locationArray, bgColor] )
+
+
 
     return (
         <div className={`${s.container} ${s.gray}`}>
-            {
-                ( location.pathname.length > 9 && location.pathname.includes( '/pokemons' ) ) &&
-                (
-                    <div
-                        className={`${s.container}`}
-                        style={{
-                            backgroundColor: `#3a3a3a`,
-                            opacity: '0.8',
-                            backgroundImage: `radial-gradient(circle at center center, ${bgColor.color1}, #3a3a3a), repeating-radial-gradient(circle at center center,${bgColor.color1},${bgColor.color1},40px,transparent 40px,transparent 40px`,
-                            backgroundBlendMode: 'multiply'
-                        }}
-                    >
-                    </div>
-                )
-            }
-
-            {
-                ( !location.pathname.includes( '/pokemons' ) ) &&
-                (
-                    <div
-                        className={`${s.container} ${s.red}`}
-                    >
-                    </div>
-                )
-            }
-
+            <div className={s.container} data-css={dataCss} />
         </div >
     )
 }
