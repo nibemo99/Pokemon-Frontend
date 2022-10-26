@@ -33,7 +33,8 @@ const SearchInput = () => {
             // dispatch( setSourceToRender( 'search' ) )
             // dispatch( setCurrentRender( 'search' ) )
 
-            const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
+            // const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
+            const res = await fetch( `https://backendpi.onrender.com/?name=${query}` )
             let json = await res.json()
             console.log( json )
             if ( json.error ) throw new Error()
