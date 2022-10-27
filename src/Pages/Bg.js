@@ -5,31 +5,19 @@ import s from '../Styles/Bg.module.css'
 
 export const Bg = () => {
     const location = useLocation()
-    const [dataCss, setDataCss] = useState( {
-        dataCss: 'root',
-        removing: false
-    } )
     const { bgColor } = useSelector( state => state )
-    const locationArray = location.pathname.split( '/' )
-    console.log( dataCss, bgColor, locationArray )
-
-
-    useEffect( () => {
-        let temp = ''
-        if ( locationArray[2] ) {
-            temp = bgColor
-        } else {
-            temp = locationArray[1]
-        }
-        setDataCss( prev => temp )
-
-    }, [locationArray, bgColor] )
-
-
 
     return (
         <div className={`${s.container} ${s.gray}`}>
-            <div className={s.container} data-css={dataCss} />
+            <div
+                style={{
+                    backgroundColor: `#3a3a3a`,
+                    opacity: `${( location.pathname.split( '/' )[2] || location.pathname.split( '/' )[1] === 'create' ) ? '1' : '0'}`,
+                    backgroundImage: `radial-gradient(circle at center center, ${( location.pathname.split( '/' )[1] === 'create' ) ? 'yellow' : bgColor.color1}, #3a3a3a), repeating-radial-gradient(circle at center center,${( location.pathname.split( '/' )[1] === 'create' ) ? 'yellow' : bgColor.color1},${( location.pathname.split( '/' )[1] === 'create' ) ? 'yellow' : bgColor.color1},40px,transparent 40px,transparent 40px`,
+                    backgroundBlendMode: 'multiply',
+                    transition: 'all 3s'
+                }}
+            />
         </div >
     )
 }

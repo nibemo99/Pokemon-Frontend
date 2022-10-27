@@ -14,7 +14,7 @@ import Speed from '../Assets/Icons/speed.svg'
 import Types from '../Components/Types';
 import notfound from '../Assets/notfound-min.png'
 import { setBgColor, setRemovePage } from '../Redux/Actions';
-// import { TypeColors } from '../Utils/TypeColors';
+import { TypeColors } from '../Utils/TypeColors';
 
 const PokemonDetail = () => {
     const history = useHistory();
@@ -58,9 +58,9 @@ const PokemonDetail = () => {
             console.log( json )
             let { types } = json
             setDetail( json )
-            // const colors = TypeColors[capFirstLetter( types[0].type.name )]
-            // dispatch( setBgColor( colors ) )
-            dispatch( setBgColor( types[0].type.name ) )
+            const colors = TypeColors[capFirstLetter( types[0].type.name )]
+            dispatch( setBgColor( colors ) )
+            // dispatch( setBgColor( types[0].type.name ) )
         } catch ( error ) {
             history.push( '/pokemons/404' )
             console.log( error )
@@ -78,9 +78,9 @@ const PokemonDetail = () => {
         fetchData( query )
     } else {
         console.log( detail )
-        // const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
-        // dispatch( setBgColor( colors ) )
-        dispatch( setBgColor( detail.types[0].type.name ) )
+        const colors = TypeColors[capFirstLetter( detail.types[0].type.name )]
+        dispatch( setBgColor( colors ) )
+        // dispatch( setBgColor( detail.types[0].type.name ) )
     }
 
     dispatch( setRemovePage( false ) )

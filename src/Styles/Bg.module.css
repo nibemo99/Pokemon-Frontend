@@ -1,10 +1,14 @@
 .container {
+  z-index: -2;
+}
+
+.container,
+.container > * {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -2;
 }
 
 .gray {
@@ -22,7 +26,74 @@
   background-blend-mode: multiply;
 }
 
-.container[data-css] {
+/* UNMOUNTING */
+
+/* .shadow[data-removing="true"] {
+  animation: removing 1000ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+.removing {
+  animation: removing 1000ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes removing {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+} */
+
+/*  */
+
+.cover {
+  background-color: #3a3a3a;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #eeeeee, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      #eeeeee,
+      #eeeeee,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
+}
+
+/*  */
+
+/* MOUNTING */
+
+.shadow[data-css="create"] {
+  background-color: #3a3a3a;
+  opacity: 0.8;
+  background-image: radial-gradient(circle at center center, red, #3a3a3a),
+    repeating-radial-gradient(
+      circle at center center,
+      red,
+      red,
+      40px,
+      transparent 40px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
+  animation: appearing 1000ms ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appearing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* .container[data-css] {
   background-color: #3a3a3a;
   opacity: 0;
   background-blend-mode: multiply;
@@ -36,9 +107,9 @@
       transparent 40px
     );
   transition: background-image, opacity, 1s ease-in-out forwards;
-}
+} */
 
-.container[data-css="pokemons"] {
+/* .container[data-css="pokemons"] {
   opacity: 1;
   background-image: radial-gradient(circle at center center, #ebe134, #3a3a3a),
     repeating-radial-gradient(
@@ -49,7 +120,7 @@
       transparent 40px,
       transparent 40px
     );
-}
+} */
 
 .container[data-css="create"] {
   opacity: 1;
