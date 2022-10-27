@@ -1,14 +1,15 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addSearch, clearTypeFilter, resetPage, setCurrentRender, setLoadingFalse, setLoadingTrue, setSourceToRender } from '../Redux/Actions'
 import s from '../Styles/LeftPanel.module.css'
 
 const SearchInput = () => {
     const dispatch = useDispatch()
+    const { sourceToRender } = useSelector( state => state )
 
     const handleChange = ( event ) => {
         if ( event.target.value === '' ) {
-            dispatch( setCurrentRender( 'pokeapi' ) )
+            dispatch( setCurrentRender( sourceToRender ) )
             dispatch( resetPage() )
         }
         if ( event.keyCode !== 13 ) return
