@@ -99,7 +99,7 @@ const Create = () => {
         if ( field === 'url' ) {
             if ( !value.includes( 'https://' ) ) value = ''
         }
-        else if ( field === 'name' ) {
+        if ( field === 'name' ) {
             if ( value.includes( '1' ) ||
                 value.includes( '2' ) ||
                 value.includes( '3' ) ||
@@ -121,7 +121,7 @@ const Create = () => {
                 value.includes( '"' ) ||
                 value.includes( '``' ) ) value = ''
         }
-        else if ( field === 'id' ||
+        if ( field === 'id' ||
             field === 'height' ||
             field === 'weight' ||
             field === 'hp' ||
@@ -133,12 +133,12 @@ const Create = () => {
         ) {
             if ( !Number( value ) ) value = ''
         }
-        else if ( field === 'height' || field === 'weight' ) {
+        if ( field === 'height' || field === 'weight' ) {
             if ( Number( value > 2000 ) ) {
                 value = '2000'
             }
         }
-        else if ( field === 'hp'
+        if ( field === 'hp'
             || field === 'attack'
             || field === 'defense'
             || field === 'specialAttack'
@@ -149,12 +149,18 @@ const Create = () => {
                 value = '500'
             }
         }
-        else if ( field === 'type1' || field === 'type2' ) {
+        if ( field === 'type1' || field === 'type2' ) {
             let aux = 0
             for ( let key in TypeColors ) {
                 if ( !key.toLowerCase().includes( value.toLowerCase() ) ) aux++
             }
             if ( aux === Object.keys( TypeColors ).length ) value = ''
+        }
+        if ( field === 'id' ) {
+            console.log( value )
+            if ( Number( value < 1000 ) ) {
+                value = '1000'
+            }
         }
 
         setForm( prev => ( { ...form, [field]: value } ) )
