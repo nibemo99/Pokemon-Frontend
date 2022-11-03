@@ -41,7 +41,7 @@ const LeftPanel = () => {
     const fetchDatabase = async ( text ) => {
         try {
             // const res = await fetch( 'http://localhost:3001/pokemons/database' )
-            const res = await fetch( 'https://backendpi.onrender.com/pokemons/database' )
+            const res = await fetch( 'https://backendpi.up.railway.app/pokemons/database' )
             const json = await res.json()
             let parsed = json.map( pokemon => {
                 let stats = [

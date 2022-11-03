@@ -34,7 +34,7 @@ const SearchInput = () => {
             // dispatch( setCurrentRender( 'search' ) )
 
             // const res = await fetch( `http://localhost:3001/pokemons/?name=${query}` )
-            const res = await fetch( `https://backendpi.onrender.com/pokemons/?name=${query}` )
+            const res = await fetch( `https://backendpi.up.railway.app/pokemons/?name=${query}` )
             let json = await res.json()
             console.log( json )
             if ( json.error ) throw new Error()

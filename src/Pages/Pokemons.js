@@ -30,7 +30,7 @@ const Pokemons = () => {
                 // }
 
                 // let res = await fetch( `http://localhost:3001/pokemons/` )
-                let res = await fetch( `https://backendpi.onrender.com/pokemons/` )
+                let res = await fetch( `https://backendpi.up.railway.app/pokemons/` )
                 let json = await res.json()
                 dispatch( addPokeAPI( json ) )
                 dispatch( setCurrentRender( 'pokeapi' ) )

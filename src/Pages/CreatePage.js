@@ -44,7 +44,7 @@ const Create = () => {
         type2: '',
     } )
     // const POST_URL = 'http://localhost:3001/pokemons/'
-    const POST_URL = 'https://backendpi.onrender.com/pokemons/'
+    const POST_URL = 'https://backendpi.up.railway.app/pokemons/'
 
     dispatch( setRemovePage( false ) )
 

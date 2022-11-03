@@ -31,7 +31,7 @@ const PokemonDetail = () => {
     const fetchData = async ( index ) => {
         try {
             // let res = await fetch( `http://localhost:3001/pokemons/${index}` )
-            let res = await fetch( `https://backendpi.onrender.com/pokemons/${index}` )
+            let res = await fetch( `https://backendpi.up.railway.app/pokemons/${index}` )
             let json = await res.json()
             if ( json.error ) throw new Error()
             if ( json.stats === undefined ) {
