@@ -487,11 +487,30 @@
   max-width: 30%;
   padding: 1rem;
   text-align: center;
-  transition: opacity 200ms ease-in-out;
+  border: 5px gray solid;
+  transition: border-color 200ms ease-in-out;
 }
 
-.modal > *:hover {
-  opacity: 0.5;
+.modal[data-code="fields"] > div > p > span {
+  text-decoration: underline;
+  text-decoration-color: red;
+  text-decoration-thickness: 2px;
+}
+
+.modal[data-code="waiting"] > * {
+  border-color: #b8e4ec;
+}
+
+.modal[data-code="fields"] > * {
+  border-color: red;
+}
+
+.modal[data-code="created"] > * {
+  border-color: #6cc47c;
+}
+
+.modal > * {
+  border-color: #ffc42c;
 }
 
 .modal > * > *:nth-child(1) {

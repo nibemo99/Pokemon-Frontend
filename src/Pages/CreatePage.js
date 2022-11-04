@@ -15,6 +15,7 @@ import Speed from '../Assets/Icons/speed.svg'
 import empty from '../Assets/empty.png'
 import yellowAlert from '../Assets/alert.svg'
 import greenCheck from '../Assets/check.svg'
+import waitingTime from '../Assets/sandclock.svg'
 import { InsectNames } from '../Utils/InsectNames';
 import { TypeColors } from '../Utils/TypeColors'
 import { AnimalsImages } from '../Utils/AnimalsImages'
@@ -77,6 +78,7 @@ const Create = () => {
             type2: form.type2.toLowerCase(),
         }
         try {
+            setModalInfo( prev => ( { ...prev, show: true, code: 'waiting' } ) )
             const data = await fetch( POST_URL, {
                 method: 'POST',
                 body: JSON.stringify( formPokemon ),
@@ -260,9 +262,15 @@ const Create = () => {
                         className={s.modal}
                         onClick={handleModal}
                         data-removing={modalInfo.removing}
+                        data-code={modalInfo.code}
                     >
                         <div>
-                            <img alt='Please review the information provided on the fields' src={( modalInfo.code === 'created' ) ? greenCheck : yellowAlert} />
+                            <img alt='Please review the information provided on the fields' src={( modalInfo.code === 'created' ) ? greenCheck : ( modalInfo.code === 'waiting' ) ? waitingTime : yellowAlert} />
+                            {( modalInfo.code === 'waiting' ) && (
+                                <p>
+                                    Please wait a moment.
+                                </p>
+                            )}
                             {( modalInfo.code === 'types' ) && (
                                 <p>
                                     Please select a type from the list.
@@ -270,7 +278,7 @@ const Create = () => {
                             )}
                             {( modalInfo.code === 'fields' ) && (
                                 <p>
-                                    Please make sure to fill all of the fields highlighted with red.
+                                    Please make sure to fill all of the <span>required fields.</span>
                                 </p>
                             )}
                             {( modalInfo.code === 'id' ) && (
