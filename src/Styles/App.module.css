@@ -17,6 +17,7 @@
 .text {
   font-size: xx-large;
   color: white;
+  text-align: center;
 }
 
 .click {

@@ -21,6 +21,7 @@
 .loadPokemonsCard {
   animation: load-card 300ms ease-in-out;
   animation-fill-mode: forwards;
+  /* outline: red 1px solid; */
 }
 
 @keyframes remove-pokemons-page {

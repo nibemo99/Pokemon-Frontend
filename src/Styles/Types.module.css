@@ -1,0 +1,15 @@
+.parrafo {
+  font-size: medium;
+}
+
+@media (max-width: 768px) {
+  .parrafo {
+    font-size: small;
+  }
+}
+
+@media (max-width: 600px) {
+  .parrafo {
+    font-size: x-small;
+  }
+}

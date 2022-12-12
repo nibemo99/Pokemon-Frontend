@@ -53,6 +53,20 @@
   height: 144px;
 }
 
+@media (max-width: 768px) {
+  .miniImage {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .miniImage {
+    width: 50px;
+    height: 50px;
+  }
+}
+
 .miniImage[data-css="true"] {
   box-sizing: border-box;
   padding: 10px;
@@ -70,4 +84,11 @@
   justify-content: center;
   align-items: center;
   gap: 3%;
+}
+
+@media (max-width: 600px) {
+  .cardTypes {
+    /* width: 90%; */
+    /* font-size: small; */
+  }
 }
